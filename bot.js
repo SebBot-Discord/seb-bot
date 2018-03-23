@@ -18,8 +18,8 @@ request.post('https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-
 	footer: {
         text: `Say "Seb, help" for a list of commands`,
         icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
-    },
-}});
+    }
+}}});
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
@@ -34,7 +34,6 @@ function getElementByAttribute(attr, root) {
     }
     return null;
 }
-///
 const imgurToken = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
