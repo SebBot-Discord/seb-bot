@@ -570,7 +570,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
-		if ((!message.channel.nsfw) && (!message.channel.id == 402320341420212224)){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
@@ -655,7 +655,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	if (message.content == "Seb, nsfw"){
-		if ((!message.channel.nsfw) && (!message.channel.id == 402320341420212224)){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
