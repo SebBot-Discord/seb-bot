@@ -472,15 +472,20 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		request({url:`https://api.imgur.com/3/gallery/search/top/1?q=${tag}`,headers:{Authorization: imgurToken}}, function(error, response, body){
 			if(error) { message.reply(err); return; }
 			var data = JSON.parse(body).data
+			if (!data){
+				message.reply("An error ocurred")
+				return;
+			}
 			request({url:data[0].link,headers:{Authorization: imgurToken}}, function(error, response, body){
 				if(error) { message.reply(err); return; }
 				$ = cheerio.load(body)
 				var div = $('div[class=video-container]')
 				var meta = div.find('meta[itemprop=embedURL]')
 				var file = meta.attr('content')
-				console.log(div)
-				console.log(meta)
-				console.log(file)
+				if (!file){
+					message.reply("Content not found")
+					return;
+				}
 				message.reply({embed:{
 					color: 3394815,
 					title: "Image",
@@ -578,7 +583,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
-		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/0", function(error, response, body){
+		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
 			$ = cheerio.load(body)
 			//var file = $('posts').find('post').attr('file_url')
 			var file = $('a[class=shm-thumb-link]').find('img').attr('src')
