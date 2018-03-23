@@ -579,7 +579,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 			$ = cheerio.load(body)
-			var file = $('posts').find('post').attr('file_url')
+			//var file = $('posts').find('post').attr('file_url')
+			var file = $('div[class=content]').find($('img[class=preview]')).attr('src')
 			if (error) {
 			  console.log(error)
 			  msg.reply('The API returned an unconventional response.\n```\n'+error+"\n```")
