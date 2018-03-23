@@ -585,8 +585,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
 			$ = cheerio.load(body)
-			//var file = $('posts').find('post').attr('file_url')
-			var file = $('a[class=shm-thumb-link]').find('img').attr('src')
+			var img = $('a[class=shm-thumb-link]').find('img')
+			var file = img.attr('src')
+			var dimensionX = img.attr('height') * 3
+			var dimensionY = img.attr('width') * 3
 			if (!file){
 				msg.reply('The maximum page limit has been exceeded. Please try again.')
 				return;
@@ -600,7 +602,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  msg.reply('The API returned an unconventional response.')
 			  return;
 			} else {
-			  $ = cheerio.load(body)
 			  //var count = Math.floor((Math.random() * reply.posts.post.length))
 			  //var file = `reply.posts.post[count].$.file_url`
 			  console.log(file)
@@ -609,7 +610,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				title: "rule34",
 				url: file,
 				image: {
-					url: file
+					url: file,
+					height: dimensionY,
+					width: dimensionX
 				},
 				footer: {
 					text: `Requested by ${message.author.username}`,
