@@ -475,7 +475,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			request({url:data[0].link,headers:{Authorization: imgurToken}}, function(error, response, body){
 				if(error) { message.reply(err); return; }
 				$ = cheerio.load(body)
-				var file = $('div[class=video-container]').find('meta[itemprop=embedURL]').attr('content')
+				var div = $('div[class=video-container]')
+				var meta = file.find('meta[itemprop=embedURL]')
+				var file = meta.attr('content')
+				console.log(div)
+				console.log(meta)
 				console.log(file)
 				message.reply({embed:{
 					color: 3394815,
