@@ -578,7 +578,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
-		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
+		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/"+getRandomInt(0,30), function(error, response, body){
 			$ = cheerio.load(body)
 			//var file = $('posts').find('post').attr('file_url')
 			var file = $('a[class=shm-thumb-link]').find('img').attr('src')
