@@ -3,6 +3,8 @@ var cheerio = require('cheerio');
 var stat = 0;
 var ready = 0;
 var setup = 0;
+const DBL = require("dblapi.js");
+const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwODcxODI5NzQwMDQ3NTY2OCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIxODQ4MDE5fQ.reW3JZGy5vxcdsJbdRpxhJ0D_vdLP7dm23q0nSo55os', client);
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
@@ -58,12 +60,15 @@ var stat = 0;
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
 	} else if (stat == 1){
-		client.user.setPresence({ game: { name: `${client.guilds.size + 578}	servers`, type: 3 } });
+		client.user.setPresence({ game: { name: `${client.guilds.size.tonumber() + 578}	servers`, type: 3 } });
 	} else if (stat == 2){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 		stat = -1;
 	}
 },30000)
+setInterval(() => {
+    dbl.postStats(client.guilds.size.tonumber() + 578, client.shards.Id, client.shards.total);
+}, 1800000);
 	//client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
   //stat = 1;
   //console.log("Finished!");
@@ -439,8 +444,8 @@ try {
                 title: "Statistics",
                 description: `
 **Seb Bot Stats**
-Running in ` + "`" + client.guilds.size + 578 + "`" + ` servers
-Shards: ` + "`4/20`" + `
+Running in ` + "`" + `${client.guilds.size.tonumber() + 578}` + "`" + ` servers
+Shards: ` + "`7/20`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
 Verification level: ` + "`" + verification + "`" + `
