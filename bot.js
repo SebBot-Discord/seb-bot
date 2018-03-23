@@ -476,7 +476,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				if(error) { message.reply(err); return; }
 				$ = cheerio.load(body)
 				var div = $('div[class=video-container]')
-				var meta = file.find('meta[itemprop=embedURL]')
+				var meta = div.find('meta[itemprop=embedURL]')
 				var file = meta.attr('content')
 				console.log(div)
 				console.log(meta)
