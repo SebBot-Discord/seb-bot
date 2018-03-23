@@ -218,7 +218,7 @@ try {
     if (message.content == "Seb, cat pic"){
 		cmd = true;
 		message.channel.startTyping();
-        request("http://random.cat/meow", function (error, response, body){
+        request("http://aws.random.cat/meow", function (error, response, body){
 			if (error){
 			message.reply(error);
 			return;
@@ -476,18 +476,19 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				if(error) { message.reply(err); return; }
 				$ = cheerio.load(body)
 				var file = $('div[class=video-container]').find('meta[itemprop=embedURL]').attr('content')
+				console.log(file)
 				message.reply({embed:{
-				color: 3394815,
-				title: "Image",
-				image: {
-					url: file
-				},
-				url: file,
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-		    }});
+					color: 3394815,
+					title: "Image",
+					image: {
+						url: file
+					},
+					url: file,
+					footer: {
+						text: `Requested by ${message.author.username}`,
+						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+					}
+				}});
 			});
 		});
 		message.channel.stopTyping();
