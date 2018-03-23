@@ -469,10 +469,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		cmd = true;
 		message.channel.startTyping();
 		var tag = encodeURIComponent(message.content.substr(11))
-		request({url:`https://api.imgur.com/3/gallery/search/top/1?q=${tag}`,headers:{Authorization: imgur-client}}, function(error, response, body){
+		request({url:`https://api.imgur.com/3/gallery/search/top/1?q=${tag}`,headers:{Authorization: imgurToken}}, function(error, response, body){
 			if(error) { message.reply(err); return; }
 			var data = JSON.parse(body).data
-			request({url:data[0].link,headers:{Authorization: imgur-client}}, function(error, response, body){
+			request({url:data[0].link,headers:{Authorization: imgurToken}}, function(error, response, body){
 				if(error) { message.reply(err); return; }
 				$ = cheerio.load(body)
 				var file = $('div[class=video-container]').find('meta[itemprop=embedURL]').attr('content')
