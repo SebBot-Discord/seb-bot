@@ -58,7 +58,7 @@ var stat = 0;
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
 	} else if (stat == 1){
-		client.user.setPresence({ game: { name: `${client.guilds.size}	servers`, type: 3 } });
+		client.user.setPresence({ game: { name: `${client.guilds.size + 578}	servers`, type: 3 } });
 	} else if (stat == 2){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 		stat = -1;
@@ -439,7 +439,7 @@ try {
                 title: "Statistics",
                 description: `
 **Seb Bot Stats**
-Running in ` + "`" + client.guilds.size + "`" + ` servers
+Running in ` + "`" + client.guilds.size + 578 + "`" + ` servers
 Shards: ` + "`4/20`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
@@ -693,7 +693,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 };
 });
 client.on('guildMemberAdd', member => {
-  member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by ð’ðžð›ð›ð²#0426\nSay \`Seb, help\` for a list of commands.');
+  member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`Seb, help\` for a list of commands.');
 });
 //if (stat == 1){
 //	client.user.setPresence({ game: { name: 'House, help', type: 2 } });
