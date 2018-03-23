@@ -1,3 +1,5 @@
+const ver = "12.7b";
+
 var count = 0;
 var cheerio = require('cheerio');
 var stat = 0;
@@ -6,7 +8,18 @@ var setup = 0;
 var Discord = require('discord.js');
 var client = new Discord.Client();
 const DBL = require("dblapi.js");
+const request = require('request')
 const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwODcxODI5NzQwMDQ3NTY2OCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIxODQ4MDE5fQ.reW3JZGy5vxcdsJbdRpxhJ0D_vdLP7dm23q0nSo55os', client);
+request.post('https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK', form: {embeds: {
+	title: "Seb Bot",
+    color: 16711893,
+	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
+	description: "Seb Bot has updated! The most recent version is " + ver,
+	footer: {
+        text: `Say "Seb, help" for a list of commands`,
+        icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
+    },
+}});
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
@@ -39,7 +52,6 @@ Flickr.authenticate(flickrOptions, function(error, flickr) {
   // we can now use "flickr" as our API object
 });*/
 function run(){try{
-const request = require('request')
 function repeat(func, times) {
     func();
     --times && repeat(func, times);
@@ -200,15 +212,16 @@ try {
 		message.channel.startTyping();
         request("http://api.giphy.com/v1/gifs/random?api_key=66dDvOlfHygVwKPDOIeLTwOX8wtHxrZY", function (error, response, body){
 			if (error){
-			message.reply(error);
-			return;
-		};
+				message.reply(error);
+				return;
+			};
             if (body){
                message.reply({embed:{
                     color: 3394815,
                     title: "Random Meme",
+					url: JSON.parse(body).data[0].url,
                     image: {
-                        url: JSON.parse(body).image_original_url
+                        url: JSON.parse(body).data[0].images.source.url
                     },
                     footer: {
                         text: `Requested by ${message.author.username}`,
