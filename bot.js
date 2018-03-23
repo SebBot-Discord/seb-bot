@@ -577,7 +577,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message;
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
-		request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+message.content.substr(12), function(error, response, body){
+		request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 			$ = cheerio.load(body)
 			var file = $('posts').find('post').attr('file_url')
 			if (error) {
@@ -607,6 +607,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  }});
 			};
 		});
+		/*
         request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
 			if (err) {
 			  console.log(result)
@@ -637,6 +638,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  }});
 			};
 		});
+		*/
 		message.channel.stopTyping();
     };
 	function getRandomInt(min, max) {
