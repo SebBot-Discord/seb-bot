@@ -17,7 +17,7 @@ function getElementByAttribute(attr, root) {
     }
     return null;
 }
-const imgur-token = process.env.IMGUR_TOKEN;
+const imgurToken = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
 //const ytdl = require('ytdl-core');
