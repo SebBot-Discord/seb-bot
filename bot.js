@@ -622,7 +622,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		var file = nsfw[getRandomInt(0,nsfw.size)]
 		//https://rbxutility.000webhostapp.com/get.php?url=
-		  message.reply({embed:{
+		message.reply({embed:{
 			color: 3394815,
 			title: "NSFW",
 			url: file,
@@ -633,8 +633,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				text: `Requested by ${message.author.username}`,
 				icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 			}
-		  }});
-		};
+		}});
 		message.channel.stopTyping();
     };
 	//Default mix-up/error functions
