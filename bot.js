@@ -490,7 +490,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    }});
 			});
 		});
-		message.channel.stopTyping():
+		message.channel.stopTyping();
     };
 	if (message.content == "Seb, ping" || message.content == "ping"){
 		cmd = true;
