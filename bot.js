@@ -34,6 +34,7 @@ function getElementByAttribute(attr, root) {
     }
     return null;
 }
+///
 const imgurToken = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
