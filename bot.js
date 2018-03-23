@@ -3,6 +3,8 @@ var cheerio = require('cheerio');
 var stat = 0;
 var ready = 0;
 var setup = 0;
+var Discord = require('discord.js');
+var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwODcxODI5NzQwMDQ3NTY2OCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIxODQ4MDE5fQ.reW3JZGy5vxcdsJbdRpxhJ0D_vdLP7dm23q0nSo55os', client);
 function getElementByAttribute(attr, root) {
@@ -37,8 +39,6 @@ Flickr.authenticate(flickrOptions, function(error, flickr) {
   // we can now use "flickr" as our API object
 });*/
 function run(){try{
-var Discord = require('discord.js');
-var client = new Discord.Client();
 const request = require('request')
 function repeat(func, times) {
     func();
