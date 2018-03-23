@@ -10,16 +10,22 @@ var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const request = require('request')
 const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwODcxODI5NzQwMDQ3NTY2OCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIxODQ4MDE5fQ.reW3JZGy5vxcdsJbdRpxhJ0D_vdLP7dm23q0nSo55os', client);
-request.post('https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK', form: {embeds: {
-	title: "Seb Bot",
-    color: 16711893,
-	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-	description: "Seb Bot has updated! The most recent version is " + ver,
-	footer: {
-        text: `Say "Seb, help" for a list of commands`,
-        icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
-    }
-}}});
+request.post({
+	url: 
+	'https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK',
+	form: {
+		embeds: {
+			title: "Seb Bot",
+			color: 16711893,
+			url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
+			description: "Seb Bot has updated! The most recent version is " + ver,
+			footer: {
+				text: `Say "Seb, help" for a list of commands`,
+				icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
+			}
+		}
+	}
+});
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
