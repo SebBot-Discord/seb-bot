@@ -580,13 +580,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+message.content.substr(12), function(error, response, body){
 			$ = cheerio.load(body)
 			var file = $('posts').find('post').attr('file_url')
-			if (err) {
-			  console.log(result)
+			if (error) {
 			  console.log(error)
-			  msg.reply('The API returned an unconventional response.')
+			  msg.reply('The API returned an unconventional response.\n```\n'+error+"\n```")
 			  return;
 			}
-			if (err) {
+			if (error) {
 			  msg.reply('The API returned an unconventional response.')
 			  return;
 			} else {
