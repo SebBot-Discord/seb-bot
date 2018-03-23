@@ -90,7 +90,7 @@ try {
         message.author.send({embed: {
             title: "ðŸ…’ðŸ…žðŸ…œðŸ…œðŸ…ðŸ…ðŸ…“ðŸ…¢",
             color: 3394815,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, rule34 {query}**\n Searcges rule34 for {query}",
+		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, rule34 {query}**\n Searches rule34 for {query}\n:underage: **Seb, nsfw**\n Gets a great nsfw pic",
             footer: {
                 text: "Seb Bot created by ð’ðžð›ð›ð²#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
@@ -577,6 +577,37 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message;
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
+		request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+message.content.substr(12), function(error, response, body){
+			$ = cheerio.load(body)
+			var file = $('posts').find('post').attr('file_url')
+			if (err) {
+			  console.log(result)
+			  console.log(error)
+			  msg.reply('The API returned an unconventional response.')
+			  return;
+			}
+			if (err) {
+			  msg.reply('The API returned an unconventional response.')
+			  return;
+			} else {
+			  $ = cheerio.load(body)
+			  //var count = Math.floor((Math.random() * reply.posts.post.length))
+			  //var file = `reply.posts.post[count].$.file_url`
+			  console.log(file)
+			  message.reply({embed:{
+				color: 3394815,
+				title: "rule34",
+				url: file,
+				image: {
+					url: file
+				},
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			  }});
+			};
+		});
         request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
 			if (err) {
 			  console.log(result)
