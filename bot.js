@@ -74,7 +74,7 @@ try {
 	if (message.content.substr(0,3) == "Seb"){
 		if (message.member.guild.name == "Hebby"){
 			if (message.channel.name != "bot-commands") if (message.channel.name != undefined){
-				message.reply("Commands can only be used in #bot-commands and DMs").then((msg)=>{
+				message.reply("Commands can only be used in <#402320341420212224> on Hebby!").then((msg)=>{
 					setTimeout(function(){
 						msg.delete();
 					}, 5000);
@@ -546,10 +546,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,9) == "Seb, gif "){
-		if (!message.channel.nsfw){
-			message.reply(":underage: This channel is not NSFW");
-			return;
-		}
 		cmd = true;
 		message.channel.startTyping();
         request("https://api.gfycat.com/v1/gfycats/search?search_text="+encodeURIComponent(message.content.substr(9)), function (error, response, body){
@@ -574,7 +570,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
-		if (!message.channel.nsfw){
+		if ((!message.channel.nsfw) && (!message.channel.id == 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
@@ -659,7 +655,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	if (message.content == "Seb, nsfw"){
-		if (!message.channel.nsfw){
+		if ((!message.channel.nsfw) && (!message.channel.id == 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
