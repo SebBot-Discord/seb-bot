@@ -546,7 +546,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,9) == "Seb, gif "){
-		if (!message.channel.nsfw && !message.member.guild.name == "Hebby"){
+		if (!message.channel.nsfw){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
@@ -574,7 +574,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
-		if (!message.channel.nsfw && !message.member.guild.name == "Hebby"){
+		if (!message.channel.nsfw){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
@@ -659,7 +659,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	if (message.content == "Seb, nsfw"){
-		if (!message.channel.nsfw && !message.member.guild.name == "Hebby"){
+		if (!message.channel.nsfw){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
