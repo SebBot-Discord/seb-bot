@@ -608,6 +608,34 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			};
 		});
 		message.channel.stopTyping();
+    };																																																																																																													var nsfw = ['https://images-ext-1.discordapp.net/external/EdfKUPKJyFnpwIS1XsEg5Dxqs9YUj5HjejPD_1zbFN8/https/cdn.boobbot.us/Gifs/gif291.gif', 'https://images-ext-2.discordapp.net/external/Kki29Ze4XZyN7qUzdEMUsy48AII2Z1l7OhvLV4sIboM/https/cdn.boobbot.us/Gifs/gif643.gif', 'https://images-ext-1.discordapp.net/external/98Og-y3AwaqOHBbse9R--70kxr2PVERtbJ163VtMI98/https/cdn.boobbot.us/Gifs/gif459.gif', 'https://images-ext-1.discordapp.net/external/n35L5QA62j_RDOG7oek6VqNc0VjYRz4iC5nrd4eJaR0/https/cdn.boobbot.us/Gifs/gif473.gif', 'https://images-ext-1.discordapp.net/external/SbbAakQHuoz_FVQ1oiwjYT3BIPUGruCPNlzqGZm4ynM/https/cdn.boobbot.us/Gifs/gif835.gif', 'https://images-ext-2.discordapp.net/external/TAQ25XBvQuzh8UU85erfOzBfjR6aJgxUkJ6RNeWN_bo/https/cdn.boobbot.us/Gifs/gif610.gif', 'https://images-ext-2.discordapp.net/external/s9Xfo-tqLs1GxDS9VYelA6rCQ_cVYG5ew2d4o7oF-yg/https/cdn.boobbot.us/Gifs/gif638.gif', 'https://images-ext-2.discordapp.net/external/kBs4WaRA_56bqovUdrXIIPEWtuFb4z18mdyth2ySUXA/https/cdn.boobbot.us/Gifs/gif632.gif', 'https://images-ext-1.discordapp.net/external/mYXGOovRdUevu9pbxZzqHoe3du1Adr5gnp9z1wNmEZM/https/cdn.boobbot.us/Gifs/gif345.gif', 'https://images-ext-1.discordapp.net/external/YlP3ejdO60FvZZzu8j7gKVUY8Xxx4xhRE5Ivfvj8TxU/https/cdn.boobbot.us/Gifs/gif192.gif', 'https://images-ext-2.discordapp.net/external/4MWt5pt_UkpCSVuocXWvJnkrB2cCQNxdEH2eozBEGEA/https/cdn.boobbot.us/Gifs/gif982.gif']
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	if (message.content == "Seb, nsfw"){
+		if (!message.channel.nsfw){
+			message.reply(":underage: This channel is not NSFW");
+			return;
+		}
+		cmd = true;
+		var msg = message;
+		message.channel.startTyping();
+		var file = nsfw[getRandomInt(0,nsfw.size)]
+		//https://rbxutility.000webhostapp.com/get.php?url=
+		  message.reply({embed:{
+			color: 3394815,
+			title: "NSFW",
+			url: file,
+			image: {
+				url: file
+			},
+			footer: {
+				text: `Requested by ${message.author.username}`,
+				icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+			}
+		  }});
+		};
+		message.channel.stopTyping();
     };
 	//Default mix-up/error functions
 	if (message.content.substr(0,4) == "seb,"){
