@@ -17,6 +17,7 @@ function getElementByAttribute(attr, root) {
     }
     return null;
 }
+const imgur-token = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
 //const ytdl = require('ytdl-core');
@@ -27,8 +28,8 @@ function n(){};
 //});
 /*var Flickr = require("flickrapi"),
     flickrOptions = {
-      api_key: "",
-      secret: ""
+      api_key: "6b807a40da9758e417950fee0e68e728",
+      secret: "b57d98136303a192"
     };
 Flickr.authenticate(flickrOptions, function(error, flickr) {
   // we can now use "flickr" as our API object
@@ -464,24 +465,33 @@ rule34 `+"`"+"ONLINE"+"`"+`
         //});
 		message.channel.stopTyping();
     };
-	//if (message.content.substr(0,11) == "Seb, image "){
-		// cmd = true;
-		// message.channel.startTyping();
-		// request(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=d51c3445ff4a06e9924634ba7a106c48&format=json&nojsoncallback=1&auth_token=72157666920627438-1a569be0adcb1678&api_sig=c12330a0fc2f5dafca6ca25c0ff4e462`, function(error, response, body){
-			// if(error) { message.reply(err); }
-				// message.reply({embed:{
-				// color: 3394815,
-				// title: "Yo Momma",
-				// description: result,
-				// url: "http://yomomma.info/",
-				// footer: {
-					// text: `Requested by ${message.author.username}`,
-					// icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				// }
-		    // }});
-		// });
-		// message.channel.stopTyping():
-    // };
+	if (message.content.substr(0,11) == "Seb, image "){
+		cmd = true;
+		message.channel.startTyping();
+		var tag = encodeURIComponent(message.content.substr(11))
+		request({url:`https://api.imgur.com/3/gallery/search/top/1?q=${tag}`,headers:{Authorization: imgur-client}}, function(error, response, body){
+			if(error) { message.reply(err); return; }
+			var data = JSON.parse(body).data
+			request({url:data[0].link,headers:{Authorization: imgur-client}}, function(error, response, body){
+				if(error) { message.reply(err); return; }
+				$ = cheerio.load(body)
+				var file = $('div[class=video-container]').find('meta[itemprop=embedURL]').attr('content')
+				message.reply({embed:{
+				color: 3394815,
+				title: "Image",
+				image: {
+					url: file
+				},
+				url: file,
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+		    }});
+			});
+		});
+		message.channel.stopTyping():
+    };
 	if (message.content == "Seb, ping" || message.content == "ping"){
 		cmd = true;
 		message.channel.startTyping();
@@ -562,7 +572,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message;
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
-        request("https://rule34.xxx/index.php?page=post&s=list&tags="+message.content.substr(12), function (err, response, body){
+        request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
 			if (err) {
 			  console.log(result)
 			  console.log(error)
@@ -636,7 +646,7 @@ client.on('ready', () => {
 	};
 },5000);*/
 });
-setup = 1;
+setup = 1;//NDA4NzE4Mjk3NDAwNDc1NjY4.DZLM3w.LqgF-e9s0FkiHskvE2XimreVyVI
 };
 stat++;
 count++;
