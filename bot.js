@@ -577,7 +577,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
     };
 	if (message.content == "Seb, dblinfo"){
 		cmd = true;
-		message.channel.startTyping();
+		/*message.channel.startTyping();
         //request({url: 'https://discordapp.com/api/users/@me/guilds',headers: {'Authorization': 'Bot NDA4NzE4Mjk3NDAwNDc1NjY4.DVUleg.VJV1fHSXPvXV_TX3CtJor-oAX8I'}};, function (error, response, body){
             message.reply({embed:{
                 color: 3394815,
@@ -591,7 +591,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
             }});
-        //});
+        //});*/
+		message.reply({attachment:{
+			url: "https://discordbots.org/api/widget/408718297400475668.svg"
+		}});
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,9) == "Seb, gif "){
