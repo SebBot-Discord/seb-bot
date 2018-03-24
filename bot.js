@@ -63,7 +63,7 @@ var stat = 0;
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 	} else if (stat == 1){
-		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers | Say "Seb, help" for a list of commands`, type: 3 } });
+		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers | Say "Seb, help" for a list of commands | Version ${ver}`, type: 3 } });
 	} else if (stat == 2){
 		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
 		stat = -1;
@@ -862,6 +862,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	//
 	//Default mix-up/error functions
 	if (message.content.substr(0,4) == "seb,"){
+		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
+	};
+	if (message.content.substr(0,4) == "SEB,"){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
 	};
 	if (message.content.substr(0,4) == "Seb," && !cmd){
