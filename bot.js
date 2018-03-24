@@ -9,7 +9,7 @@ var Discord = require('discord.js');
 var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const request = require('request')
-const dbl = new DBL('fffffffffff', client);
+const dbl = new DBL(process.env.DBL_TOKEN, client);
 request.post({
 	url: 
 	'https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK',
