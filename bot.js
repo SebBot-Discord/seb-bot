@@ -225,9 +225,9 @@ try {
                message.reply({embed:{
                     color: 3394815,
                     title: "Random Meme",
-					url: JSON.parse(body).data[0].url,
+					url: JSON.parse(body).data.url,
                     image: {
-                        url: JSON.parse(body).data[0].images.source.url
+                        url: JSON.parse(body).data.images.source.url
                     },
                     footer: {
                         text: `Requested by ${message.author.username}`,
