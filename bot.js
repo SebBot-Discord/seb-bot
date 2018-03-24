@@ -628,8 +628,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}
 				file = result.images[getRandomInt(5,74)];
 			});
-			var dimensionX = img.attr('height') * 3
-			var dimensionY = img.attr('width') * 3
+			//var dimensionX = img.attr('height') * 3
+			//var dimensionY = img.attr('width') * 3
 			if (!file){
 				msg.reply('The maximum page limit has been exceeded. Please try again.')
 				return;
