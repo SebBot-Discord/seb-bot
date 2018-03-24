@@ -664,11 +664,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
 			  }});*/
-			  message.reply({attachment:{
+			  message.reply({
 				  url: file,
 				  height: dimensionY,
 				  width: dimensionX
-			  }});
+			  });
 			};
 		});
 		/*
