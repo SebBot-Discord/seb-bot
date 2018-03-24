@@ -623,17 +623,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}]
 			}, function (err, result) {
 				if (!file){
-					message.reply("Sorry fam, no porn 4 u\nStatus code `473A`: **``**");
+					message.reply("Sorry fam, no porn 4 u\nStatus code `473A`: **`Content not found`**");
 					return;
 				}
 				file = result.images[getRandomInt(5,74)];
 			});
+			/////////////////////////////////////////a[class=shm-thumb]
 			//var dimensionX = img.attr('height') * 3
 			//var dimensionY = img.attr('width') * 3
-			if (!file){
-				msg.reply('The maximum page limit has been exceeded. Please try again.')
-				return;
-			}
 			if (error) {
 			  console.log(error)
 			  msg.reply('The API returned an unconventional response.\n```\n'+error+"\n```")
