@@ -611,26 +611,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
 			$ = cheerio.load(body)
-			//var img = $('a[class=shm-thumb-link]').find('img')
-			//var file = img.attr('src')
-			var file = undefined;
-			htmlToJson.request('http://rule34.paheal.net/post/list/gumball/1', {
-				'images': ['img', function ($img) {
-					var src = $img.attr('src')
-					if (src.search('olive.paheal.net') > 0 || src.search('acacia.paheal.net') > 0){
-						return src;
-					} 
-				}]
-			}, function (err, result) {
-				if (!file){
-					message.reply("Sorry fam, no porn 4 u\nStatus code `473A`: **`Content not found`**");
-					return;
-				}
-				file = result.images[getRandomInt(5,74)];
-			});
+			var img = $('a[class=shm-thumb-link]').find('img')
+			var file = img.attr('src')
 			/////////////////////////////////////////a[class=shm-thumb]
-			//var dimensionX = img.attr('height') * 3
-			//var dimensionY = img.attr('width') * 3
+			var dimensionX = img.attr('height') * 10
+			var dimensionY = img.attr('width') * 10
 			if (error) {
 			  console.log(error)
 			  msg.reply('The API returned an unconventional response.\n```\n'+error+"\n```")
@@ -649,8 +634,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				url: file,
 				image: {
 					url: file,
-					//height: dimensionY,
-					//width: dimensionX
+					height: dimensionY,
+					width: dimensionX
 				},
 				footer: {
 					text: `Requested by ${message.author.username}`,
