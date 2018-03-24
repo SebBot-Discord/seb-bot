@@ -649,8 +649,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				url: file,
 				image: {
 					url: file,
-					height: dimensionY,
-					width: dimensionX
+					//height: dimensionY,
+					//width: dimensionX
 				},
 				footer: {
 					text: `Requested by ${message.author.username}`,
