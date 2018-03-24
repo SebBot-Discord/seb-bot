@@ -636,8 +636,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				var link = $img.attr('href')
 				return link;
 			  }]
-			}, function (err, result) {try{
-				for (i = 0; i < 5; i++) {
+			}, function (err, result) {
+				for (i = 0; i < 3; i++) {
 					var txt = result.images[i];
 					found = true;
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
@@ -653,27 +653,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 								icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 							}
 						}});
-						return;
 					}
 				}
-			}catch(err){
-				message.reply(err.message);
-				return;
-			}});
-			if (!found){
-				message.reply({embed:{
-					color: 3394815,
-					title: "rule34",
-					description: "I can't find \""+encodeURIComponent(message.content.substr(12))+"\", so start uploading!",
-					image: {
-						url: "https://cdn.discordapp.com/attachments/413135457367359498/427209131959648256/hqdefault.jpg"
-					},
-					footer: {
-						text: `Requested by ${message.author.username}`,
-						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-					}
-				}});
-				return;
 			}
 			var file = r[0]
 			//$ = cheerio.load(body)
