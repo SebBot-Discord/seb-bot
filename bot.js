@@ -1,4 +1,4 @@
-const ver = "12.7b";
+const ver = "12.0b";
 
 var count = 0;
 var cheerio = require('cheerio');
@@ -113,7 +113,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3394815,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, nsfw**\n Gets a great nsfw pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34",
+		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif",
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
@@ -678,7 +678,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	if (message.content == "Seb, nsfw"){
+	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
@@ -691,7 +691,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
 			message.reply({embed:{
 				color: 3394815,
-				title: "NSFW",
+				title: "Boobs",
 				url: file,
 				image: {
 					url: file
@@ -704,6 +704,65 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping();
     };
+	if (message.content == "Seb, sex"){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW");
+			return;
+		}
+		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
+			var b = JSON.parse(body)
+			var key, count = 0;
+			for(key in b.data) {
+				if(b.data.hasOwnProperty(key)) {
+					count++;
+				}
+			}
+			var index = getRandomInt(0,count)
+			var file = b.data[index].images.original.url
+			message.reply({embed:{
+				color: 3394815,
+				title: "Sex",
+				url: file,
+				image: {
+					url: file
+				},
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			}});
+		});
+	}
+	if (message.content == "Seb, ass"){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW");
+			return;
+		}
+		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
+			var b = JSON.parse(body)
+			var key, count = 0;
+			for(key in b.data) {
+				if(b.data.hasOwnProperty(key)) {
+					count++;
+				}
+			}
+			var index = getRandomInt(0,count)
+			var file = b.data[index].images.original.url
+			message.reply({embed:{
+				color: 3394815,
+				title: "Ass",
+				url: file,
+				image: {
+					url: file
+				},
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			}});
+		});
+	}
+	
 	//Default mix-up/error functions
 	if (message.content.substr(0,4) == "seb,"){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
