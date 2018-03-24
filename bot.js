@@ -643,7 +643,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 				}
 			});
-			var file = r[getRandomInt(0, 150)]
+			var file = r[0]
 			//$ = cheerio.load(body)
 			//var img = $('a[class=shm-thumb-link]').find('img')
 			//var file = img.attr('src')
