@@ -6,26 +6,11 @@ var stat = 0;
 var ready = 0;
 var setup = 0;
 var Discord = require('discord.js');
+var htmlToJson = require("html-to-json");
 var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const request = require('request')
 const dbl = new DBL(process.env.DBL_TOKEN, client);
-request.post({
-	url: 
-	'https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK',
-	form: {
-		embeds: {
-			title: "Seb Bot",
-			color: 16711893,
-			url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-			description: "Seb Bot has updated! The most recent version is " + ver,
-			footer: {
-				text: `Say "Seb, help" for a list of commands`,
-				icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
-			}
-		}
-	}
-});
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
@@ -626,8 +611,23 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
 			$ = cheerio.load(body)
-			var img = $('a[class=shm-thumb-link]').find('img')
-			var file = img.attr('src')
+			//var img = $('a[class=shm-thumb-link]').find('img')
+			//var file = img.attr('src')
+			var file = undefined;
+			htmlToJson.request('http://rule34.paheal.net/post/list/gumball/1', {
+				'images': ['img', function ($img) {
+					var src = $img.attr('src')
+					if (src.search('olive.paheal.net') > 0 || src.search('acacia.paheal.net') > 0){
+						return src;
+					} 
+				}]
+			}, function (err, result) {
+				if (!file){
+					message.reply("Sorry fam, no porn 4 u\nStatus code `473A`: **``**");
+					return;
+				}
+				file = result.images[getRandomInt(5,74)];
+			});
 			var dimensionX = img.attr('height') * 3
 			var dimensionY = img.attr('width') * 3
 			if (!file){
