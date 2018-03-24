@@ -785,7 +785,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}});
 		});
 	}
-	if (message.content == "Seb, furrry"){
+	if (message.content == "Seb, furry"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
@@ -801,7 +801,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.items[index].link
-			message.reply({embed:{
+			/*message.reply({embed:{
 				color: 3394815,
 				title: "Furry",
 				url: file,
@@ -812,7 +812,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					text: `Requested by ${message.author.username}`,
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
-			}});
+			}});*/
+			message.reply(file);
 		});
 	}
 	//
