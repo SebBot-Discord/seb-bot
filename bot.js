@@ -656,18 +656,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 				}
 			}catch(err){
-				message.reply({embed:{
-					color: 3394815,
-					title: "rule34",
-					description: "I can't find \""+encodeURIComponent(message.content.substr(12))+"\", so start uploading!",
-					image: {
-						url: "https://cdn.discordapp.com/attachments/413135457367359498/427209131959648256/hqdefault.jpg"
-					},
-					footer: {
-						text: `Requested by ${message.author.username}`,
-						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-					}
-				}});
+				message.reply(err.message);
 				return;
 			}});
 			if (!found){
