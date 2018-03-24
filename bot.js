@@ -85,7 +85,7 @@ var stat = 0;
 	}
 },30000)
 setInterval(() => {
-    dbl.postStats(client.guilds.size + 578, client.shards.Id, client.shards.total);
+    dbl.postStats(client.guilds.size + 578);
 }, 1800000);
 	//client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
   //stat = 1;
@@ -113,7 +113,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3394815,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif",
+		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
@@ -279,6 +279,27 @@ try {
                 thumbnail: {
                     url: "http://moziru.com/images/chinese-food-clipart-fortune-cookie-10.png"
                 },
+                footer: {
+                    text: `Requested by ${message.author.username}`,
+                    icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+                }
+            }});
+        });
+		message.channel.stopTyping();
+    };
+	if (message.content.substr(0,12) == "Seb, pirate "){
+		cmd = true;
+		message.channel.startTyping();
+        request(`http://api.funtranslations.com/translate/pirate.json?text=${message.content.substr(12)}`, function (error, response, body){
+			if (error){
+			message.reply(error);
+			return;
+		};
+            var fortune = JSON.parse(body).contents.translated
+            message.reply({embed:{
+                color: 3394815,
+                title: "Pirate Translation",
+                description: `**${fortune}**`,
                 footer: {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
@@ -762,7 +783,36 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}});
 		});
 	}
-	
+	if (message.content == "Seb, furrry"){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW");
+			return;
+		}
+		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
+			var b = JSON.parse(body)
+			var key, count = 0;
+			for(key in b.items) {
+				if(b.items.hasOwnProperty(key)) {
+					count++;
+				}
+			}
+			var index = getRandomInt(0,count)
+			var file = b.items[index].link
+			message.reply({embed:{
+				color: 3394815,
+				title: "Furry",
+				url: file,
+				image: {
+					url: file
+				},
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			}});
+		});
+	}
+	//
 	//Default mix-up/error functions
 	if (message.content.substr(0,4) == "seb,"){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
