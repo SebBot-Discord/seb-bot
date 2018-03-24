@@ -653,6 +653,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 								icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 							}
 						}});
+						return;
 					}
 				}
 			}catch(err){
