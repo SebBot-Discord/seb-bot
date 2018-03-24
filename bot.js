@@ -9,7 +9,7 @@ var Discord = require('discord.js');
 var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const request = require('request')
-const dbl = new DBL('femov', client);
+const dbl = new DBL('fffffffffff', client);
 request.post({
 	url: 
 	'https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK',
@@ -730,6 +730,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
+		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
 			var b = JSON.parse(body)
 			var key, count = 0;
@@ -759,6 +760,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
+		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
 			var b = JSON.parse(body)
 			var key, count = 0;
@@ -788,6 +790,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
+		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
 			var b = JSON.parse(body)
 			var key, count = 0;
