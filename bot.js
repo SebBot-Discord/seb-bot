@@ -639,7 +639,18 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				for (i = 0; i < 150; i++) {
 					var txt = result.images[i]
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
-					  r.push(txt)
+						message.reply({embed:{
+							color: 3394815,
+							title: "rule34",
+							url: txt,
+							image: {
+								url: txt
+							},
+							footer: {
+								text: `Requested by ${message.author.username}`,
+								icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+							}
+						}});
 					}
 				}
 			});
@@ -662,7 +673,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  //var count = Math.floor((Math.random() * reply.posts.post.length))
 			  //var file = `reply.posts.post[count].$.file_url`
 			  console.log(file)
-			  message.reply({embed:{
+			  /*message.reply({embed:{
 				color: 3394815,
 				title: "rule34",
 				url: file,
@@ -673,7 +684,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					text: `Requested by ${message.author.username}`,
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
-			  }});
+			  }});*/
 			};
 		});
 		/*
