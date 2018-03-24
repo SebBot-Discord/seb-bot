@@ -9,7 +9,7 @@ var Discord = require('discord.js');
 var client = new Discord.Client();
 const DBL = require("dblapi.js");
 const request = require('request')
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwODcxODI5NzQwMDQ3NTY2OCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIxODQ4MDE5fQ.reW3JZGy5vxcdsJbdRpxhJ0D_vdLP7dm23q0nSo55os', client);
+const dbl = new DBL('femov', client);
 request.post({
 	url: 
 	'https://ptb.discordapp.com/api/webhooks/426889395786743827/vJ3Zyi-p9iMEeo1VUx1xWwkWpYF0yUG2lG1BQBwNbUsUxz6MYpKgVAMWg7F-_yet98uK',
