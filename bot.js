@@ -636,7 +636,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return link;
 			  }]
 			}, function (err, result) {
-				for (i = 0; i < 150; i++) {
+				for (i = 0; i < 5; i++) {
 					var txt = result.images[i]
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
 						message.reply({embed:{
