@@ -657,7 +657,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 				}
 			})
-			if (!found){
+			setTimeout(function(){if (!found){
 				message.reply({embed:{
 					color: 3394815,
 					title: "rule34",
@@ -671,7 +671,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 				}});
 				return;
-			}
+			}},1000)
 			var file = r[0]
 			//$ = cheerio.load(body)
 			//var img = $('a[class=shm-thumb-link]').find('img')
