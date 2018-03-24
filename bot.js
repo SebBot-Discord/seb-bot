@@ -630,20 +630,20 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
 		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
 			var r = []
-			htmlToJson.request('http://rule34.paheal.net/post/list/diives/1', {
+			htmlToJson.request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", {
 			  'images': ['a', function ($img) {
 				var link = $img.attr('href')
 				return link;
 			  }]
 			}, function (err, result) {
-				for (i = 0; i < 200; i++) {
+				for (i = 0; i < 150; i++) {
 					var txt = result.images[i]
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
 					  r.push(txt)
 					}
 				}
 			});
-			var file = r[getRandomInt(0,r.length)]
+			var file = r[getRandomInt(0, 150)]
 			//$ = cheerio.load(body)
 			//var img = $('a[class=shm-thumb-link]').find('img')
 			//var file = img.attr('src')
