@@ -780,6 +780,108 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		*/
 		message.channel.stopTyping();
     };
+	if (message.content.substr(0,16) == "Seb, rule34-xxx "){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW");
+			return;
+		}
+		cmd = true;
+		var msg = message;
+		message.channel.startTyping();
+			try{
+			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(16)), {
+			  'links': ['a', function ($img) {
+				return $img.attr('href');
+			  }]
+			}, function (err, result) {
+				var fields = []
+				for (i = 0; i < result.links.length; i++) {
+				   var txt = result.links[i];
+				   found = true;
+				   if (txt.includes("\?page\=post") && txt.includes('\&id\=') && !txt.includes("rule34.xxx")){
+					fields.push("https://rule34.xxx/"+txt);
+				  }
+				}
+				var ff = fields[getRandomInt(0, fields.length)];
+				htmlToJson.request(ff, {
+				  'links': ['a', function ($img) {
+					return $img.attr('href');
+				  }]
+				}, function (err, result) {
+				   for (i = 0; i < result.links.length; i++) {
+					   var txt = result.links[i];
+					   found = true;
+					   if (txt.includes("img.rule34.xxx")){
+						  /*message.reply({embed:{
+						 	color: 3394815,
+						 	title: "rule34",
+						 	url: txt,
+						 	image: {
+						 		url: txt
+						 	},
+						 	footer: {
+						 		text: `Requested by ${message.author.username}`,
+						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+						 	}
+						  }});*/
+						  message.reply({url:txt});
+					   }
+					}
+				})
+			})
+			}catch(err){
+				message.reply("I can't find that, start uploading!");
+			}
+			setTimeout(function(){if (!found){
+				message.reply({embed:{
+					color: 3394815,
+					title: "rule34",
+					description: "**I can't find **`"+message.content.substr(12)+"`**, so start uploading!**",
+					image: {
+						url: "https://cdn.discordapp.com/attachments/413135457367359498/427209131959648256/hqdefault.jpg"
+					},
+					footer: {
+						text: `Requested by ${message.author.username}`,
+						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+					}
+				}});
+				return;
+			}},1000)
+		//});
+		/*
+        request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
+			if (err) {
+			  console.log(result)
+			  console.log(error)
+			  msg.reply('The API returned an unconventional response.')
+			  return;
+			}
+			if (err) {
+			  msg.reply('The API returned an unconventional response.')
+			  return;
+			} else {
+			  $ = cheerio.load(body)
+			  //var count = Math.floor((Math.random() * reply.posts.post.length))
+			  //var file = `reply.posts.post[count].$.file_url`
+			  var file = $('div[class=content]').find($('img[class=preview]')).attr('src')
+			  console.log(file)
+			  message.reply({embed:{
+				color: 3394815,
+				title: "rule34",
+				url: file,
+				image: {
+					url: file
+				},
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			  }});
+			};
+		});
+		*/
+		message.channel.stopTyping();
+    };
 	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
