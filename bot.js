@@ -709,7 +709,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						 		text: `Requested by ${message.author.username}`,
 						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 						 	}
-						  }});*/
+						  }});//*\/
 						  message.reply("https://images.weserv.nl/?url="+encodeURIComponent(txt));
 					   }
 					}
