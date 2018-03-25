@@ -76,7 +76,7 @@ var stat = 0;
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 	} else if (stat == 1){
-		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers | Say "Seb, help" for a list of commands | Version ${ver}`, type: 3 } });
+		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers`, type: 3 } });
 	} else if (stat == 2){
 		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
 		stat = -1;
@@ -711,7 +711,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						 		text: `Requested by ${message.author.username}`,
 						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 						 	}
-						 });
+						  }});
 					   }
 					}
 				})
