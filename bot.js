@@ -1,4 +1,7 @@
-const ver = "12.0b";
+const ver = "12.1b";
+const changelog = `
+* Command fixes
+`;
 
 var count = 0;
 var cheerio = require('cheerio');
@@ -57,6 +60,16 @@ function output(error, token) {
 client.on('ready', () => {
 ready = 1;
   //console.log('I am ready!');
+client.guilds.get("395371039779192842").channels.find("name", "bot-commands").sendMessage({embed:{
+	title: "Seb Bot has updated",
+    color: 3394815,
+	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
+	description: "**v"+ver+" Changelog:**\n```\n"+changelog+"\n```",
+	footer: {
+        text: `Say "Seb, help" for a list of commands`,
+        icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
+    },
+}});
 var stat = 0;
  setInterval(function(){
 	stat++;
