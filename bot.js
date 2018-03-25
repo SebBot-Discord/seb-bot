@@ -1,6 +1,6 @@
-const ver = "12.5b";
+const ver = "12.7b";
 const changelog = `
-* More crash fixes
+* Seb, cat pic doesn't crash anymore
 `;
 
 var count = 0;
@@ -74,7 +74,7 @@ var stat = 0;
  setInterval(function(){
 	stat++;
 	if (stat == 0){
-		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
+		client.user.setPresence({ game: { name: 'with Sebby', type: 1, url: 'https://twitch.tv/roblox' } });
 	} else if (stat == 1){
 		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers`, type: 3 } });
 	} else if (stat == 2){
@@ -272,11 +272,12 @@ try {
     if (message.content == "Seb, cat pic"){
 		cmd = true;
 		message.channel.startTyping();
+		try {
         request("http://aws.random.cat/meow", function (error, response, body){
 			if (error){
-			message.reply(error);
-			return;
-		};
+				message.reply(error);
+				return;
+			};
             var file = JSON.parse(body).file
             message.reply({embed:{
                 color: 3394815,
@@ -291,6 +292,9 @@ try {
                 }
             }});
         });
+		} catch(err) {
+			message.reply("**ERROR!**\n```\n"+err.message+"\n```");
+		}
 		message.channel.stopTyping();
     };
     if (message.content == "Seb, fortune cookie"){
