@@ -1,6 +1,6 @@
-const ver = "12.7b";
+const ver = "12.8b";
 const changelog = `
-* Seb, cat pic doesn't crash anymore
+* Fixed DM commmands (hopefully)
 `;
 
 var count = 0;
@@ -70,7 +70,6 @@ client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({
         icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
     },
 }});
-client.guilds.get("395371039779192842").members.find("id", "299708692129906692").user.addFriend()
 var stat = 0;
  setInterval(function(){
 	stat++;
@@ -95,7 +94,7 @@ try {
 	var cmd = false;
 	if (message.content.substr(0,3) == "Seb"){
 		if (message.member.guild.name == "Hebby"){
-			if (message.channel.name != "bot-commands") if (message.channel.name != undefined){
+			if (message.channel.name != "bot-commands" && message.guild != null){
 				message.reply("Commands can only be used in <#402320341420212224> on Hebby!").then((msg)=>{
 					setTimeout(function(){
 						msg.delete();
