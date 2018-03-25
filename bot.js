@@ -126,9 +126,9 @@ try {
 		var _result = "";
 		for (i = 0; i < input.length; i++) {
 			var emoji = k[input.substr(i,i)];
-			if (emoji == null){
-				emoji = "."
-			}
+			//if (emoji == null){
+			//	emoji = "."
+			//}
 			if (input.substr(i,i) == " "){
 				emoji = "   ";
 			}
