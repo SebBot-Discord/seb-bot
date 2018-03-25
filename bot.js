@@ -1,6 +1,6 @@
-const ver = "12.8b";
+const ver = "12.9b";
 const changelog = `
-* Added new command: Seb, cryptic
+* none
 `;
 
 var count = 0;
@@ -823,7 +823,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
 						if (i > selector){
-							message.reply({embed:{
+							/*message.reply({embed:{
 								color: 3394815,
 								title: "rule34",
 								url: txt,
@@ -834,7 +834,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 									text: `Requested by ${message.author.username}`,
 									icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 								}
-							}});
+							}});*/
+							message.reply({attachments:[txt]});
 							return;
 						}
 					}
