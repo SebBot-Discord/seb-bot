@@ -1,6 +1,6 @@
-const ver = "12.9b";
+const ver = "12.8b";
 const changelog = `
-* none
+* Added new command: Seb, cryptic
 `;
 
 var count = 0;
@@ -835,7 +835,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 									icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 								}
 							}});*/
-							message.reply({attachments:[txt]});
+							message.reply({files:[txt]});
 							return;
 						}
 					}
