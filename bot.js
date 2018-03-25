@@ -1,6 +1,6 @@
 const ver = "12.4b";
 const changelog = `
-* Command improvements (again)
+* Logging improvements
 `;
 
 var count = 0;
@@ -60,7 +60,7 @@ function output(error, token) {
 client.on('ready', () => {
 ready = 1;
   //console.log('I am ready!');
-client.guilds.get("395371039779192842").channels.find("name", "bot-commands").send({embed:{
+client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 	title: "Seb Bot has updated",
     color: 3394815,
 	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
@@ -1066,6 +1066,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 });
 client.on('guildMemberAdd', member => {
   member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`Seb, help\` for a list of commands.');
+});
+client.on("guildCreate", (guild) => {
+	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
+		title: "New Guild",
+		color: 3394815,
+		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
+		description: "I joined " .. guild.name .. "!"
+	}});
 });
 //if (stat == 1){
 //	client.user.setPresence({ game: { name: 'House, help', type: 2 } });
