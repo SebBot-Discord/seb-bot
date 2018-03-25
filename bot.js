@@ -1072,7 +1072,7 @@ client.on("guildCreate", (guild) => {
 		title: "New Guild",
 		color: 3394815,
 		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-		description: "I joined " .. guild.name .. "!"
+		description: "I joined " + guild.name + "!"
 	}});
 });
 //if (stat == 1){
