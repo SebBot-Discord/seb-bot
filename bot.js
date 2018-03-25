@@ -779,6 +779,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		*/
 		message.channel.stopTyping();
+		return;
     };
 	if (message.content.substr(0,16) == "Seb, rule34-xxx "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
@@ -824,7 +825,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 						 	}
 						  }});*/
-						  message.reply({url:txt});
+						  message.reply(txt);
 					   }
 					}
 				})
