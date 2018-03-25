@@ -924,7 +924,7 @@ client.on('guildMemberAdd', member => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
-const botHell = client.guilds.find("395371039779192842").channels.find("name", "bot-hell");
+const botHell = client.guilds.find("id","395371039779192842").channels.find("name", "bot-hell");
 client.on('presenceUpdate', (oldMember, newMember) => {
 	var p1 = oldMember
 	var p2 = newMember
@@ -996,6 +996,6 @@ stat++;
 count++;
 client.login(token);
 console.log(`refreshed seb bot (${count})`);
-}catch(err){console.log(`=== [ Error Encountered ] ===\n\n${err.message}\n\n=================`);};};
+}catch(err){console.log(`=== [ Error Encountered ] ===\n\n${err.message}\n\n=================`);run();};};
 run();
 //setInterval(run,60000);
