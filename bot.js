@@ -677,7 +677,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					}
 				}
 			})
-			try{
+			/*try{
 			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(12)), {
 			  'links': ['a', function ($img) {
 				return $img.attr('href');
@@ -719,7 +719,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			})
 			}catch(err){
 				message.reply("I can't find that, start uploading!");
-			}
+			}*/
 			setTimeout(function(){if (!found){
 				message.reply({embed:{
 					color: 3394815,
