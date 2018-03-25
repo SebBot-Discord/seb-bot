@@ -1,6 +1,6 @@
-const ver = "12.1b";
+const ver = "12.3b";
 const changelog = `
-* Command fixes
+* Command improvements
 `;
 
 var count = 0;
@@ -651,23 +651,26 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return link;
 			  }]
 			}, function (err, result) {
+				var selector = getRandomInt(0,result.images.length);
 				for (i = 0; i < result.images.length; i++) {
 					var txt = result.images[i];
 					found = true;
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
-						message.reply({embed:{
-							color: 3394815,
-							title: "rule34",
-							url: txt,
-							image: {
-								url: txt
-							},
-							footer: {
-								text: `Requested by ${message.author.username}`,
-								icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-							}
-						}});
-						return;
+						if (i > selector){
+							message.reply({embed:{
+								color: 3394815,
+								title: "rule34",
+								url: txt,
+								image: {
+									url: txt
+								},
+								footer: {
+									text: `Requested by ${message.author.username}`,
+									icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+								}
+							}});
+							return;
+						}
 					}
 				}
 			})
@@ -693,33 +696,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			/////////////////////////////////////////a[class=shm-thumb]
 			//var dimensionX = img.attr('height') * 5
 			//var dimensionY = img.attr('width') * 5
-			if (error) {
-			  console.log(error)
-			  msg.reply('The API returned an unconventional response.\n```\n'+error+"\n```")
-			  return;
-			}
-			if (error) {
-			  msg.reply('The API returned an unconventional response.')
-			  return;
-			} else {
-			  //var count = Math.floor((Math.random() * reply.posts.post.length))
-			  //var file = `reply.posts.post[count].$.file_url`
-			  console.log(file)
-			  /*message.reply({embed:{
-				color: 3394815,
-				title: "rule34",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			  }});*/
-			};
 		} catch(err) {
-			message.reply("ErrorL\n```\n"+err.message+"\n```")
+			message.reply("Error:\n```\n"+err.message+"\n```")
 		}
 		//});
 		/*
