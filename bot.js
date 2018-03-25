@@ -94,7 +94,7 @@ try {
 	var cmd = false;
 	if (message.content.substr(0,3) == "Seb"){
 		if (message.member.guild.name == "Hebby"){
-			if (message.channel.name != "bot-commands" && message.guild){
+			if (message.channel.name != "bot-commands" && message.member.guild != null){
 				message.reply("Commands can only be used in <#402320341420212224> on Hebby!").then((msg)=>{
 					setTimeout(function(){
 						msg.delete();
