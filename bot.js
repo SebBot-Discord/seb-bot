@@ -74,7 +74,7 @@ var stat = 0;
  setInterval(function(){
 	stat++;
 	if (stat == 0){
-		client.user.setPresence({ game: { name: 'with Sebby', type: 1, url: 'https://twitch.tv/roblox' } });
+		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 	} else if (stat == 1){
 		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers`, type: 3 } });
 	} else if (stat == 2){
