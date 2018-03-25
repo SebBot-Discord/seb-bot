@@ -962,7 +962,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
 		color: 7399993
 	}});
 });
-client.on('messageUpdate', (oldMessage, newMessage) => {
+/*client.on('messageUpdate', (oldMessage, newMessage) => {
 	botHell.send({embed:{
 		title: "Message Updated",
 		description: "by "+oldMessage.author,
@@ -978,7 +978,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 		],
 		color: 7399993
 	}});
-});
+});*/
 client.on('guildMemberAdd', (member) => {
 	botHell.send({embed:{
 		title: "New Member",
