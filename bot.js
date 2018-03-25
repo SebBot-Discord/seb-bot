@@ -1,6 +1,6 @@
-const ver = "12.4b";
+const ver = "12.5b";
 const changelog = `
-* Logging improvements
+* More crash fixes
 `;
 
 var count = 0;
@@ -61,7 +61,7 @@ client.on('ready', () => {
 ready = 1;
   //console.log('I am ready!');
 client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
-	title: "Seb Bot has updated",
+	title: "Seb Bot has restarted",
     color: 3394815,
 	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
 	description: "**v"+ver+" Changelog:**\n```\n"+changelog+"\n```",
@@ -666,7 +666,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	if (message.content.substr(0,12) == "Seb, rule34 "){
+	/*if (message.content.substr(0,12) == "Seb, rule34 "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
@@ -734,7 +734,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return;
 			}},1000)
 		message.channel.stopTyping();
-    };
+    };*/
 	if (message.content.substr(0,12) == "Seb, rule34 "){
 		if (cmd){ return; }
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
