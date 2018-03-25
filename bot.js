@@ -651,7 +651,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return link;
 			  }]
 			}, function (err, result) {
-				var selector = getRandomInt(0,result.images.length);
+				var selector = getRandomInt(0,result.images.length/2);
 				for (i = 0; i < result.images.length; i++) {
 					var txt = result.images[i];
 					found = true;
