@@ -111,7 +111,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3394815,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
+		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n**Seb, ddg {query}**\n Searches {query} on duckduckgo and returns the first results\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
@@ -211,6 +211,37 @@ try {
         }});
 		message.channel.stopTyping();
 	};
+	//https://api.duckduckgo.com/?q=DuckDuckGo&format=json
+	if (message.content.substr(0,9) == "Seb, ddg "){
+		cmd = true;
+		message.channel.startTyping();
+        request("https://api.duckduckgo.com/?q="+message.content.substr(9)+"&format=json", function (error, response, body){
+			var data = JSON.parse(body).Results[0]
+			if (error){
+				message.reply(error);
+				return;
+			};
+            if (body){
+               message.reply({embed:{
+                    color: 3394815,
+                    title: "DuckDuckGo",
+					url: "https://duckduckgo.com",
+                    description: `${data.FirstUrl}`,
+					image: {
+						url: data.Icon.URL,
+						width: data.Icon.Width,
+						height: data.Icon.Height
+					},
+                    footer: {
+                        text: `Requested by ${message.author.username}`,
+                        icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+                    }
+               }});
+            } else
+               message.reply("No results for that query");
+        });
+		message.channel.stopTyping();
+    };
     if (message.content == "Seb, random meme"){
 		cmd = true;
 		message.channel.startTyping();
