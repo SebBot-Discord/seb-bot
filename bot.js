@@ -811,7 +811,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				   for (i = 0; i < result.links.length; i++) {
 					   var txt = result.links[i];
 					   found = true;
-					   if (txt.includes("img.rule34.xxx")){
+					   if (txt != undefined && txt.includes("img.rule34.xxx")){
 						  /*message.reply({embed:{
 						 	color: 3394815,
 						 	title: "rule34",
