@@ -924,6 +924,7 @@ client.on('guildMemberAdd', member => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
+client.on('ready', () => {
 const botHell = client.guilds.get("395371039779192842").channels.find("name", "bot-hell");
 client.on('presenceUpdate', (oldMember, newMember) => {
 	var p1 = oldMember
@@ -991,6 +992,7 @@ client.on('guildMemberRemove', (member) => {
 		description: member.displayName,
 		color: 7399993
 	}});
+});
 });
 stat++;
 count++;
