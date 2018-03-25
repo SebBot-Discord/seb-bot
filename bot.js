@@ -215,8 +215,8 @@ try {
 	if (message.content.substr(0,9) == "Seb, ddg "){
 		cmd = true;
 		message.channel.startTyping();
-        request("https://api.duckduckgo.com/?q="+message.content.substr(9)+"&format=json", function (error, response, body){
-			var data = JSON.parse(body).Results[0]
+        /*request("https://api.duckduckgo.com/?q="+message.content.substr(9)+"&format=json", function (error, response, body){
+			var data = JSON.parse(body).Results
 			if (error){
 				message.reply(error);
 				return;
@@ -226,7 +226,7 @@ try {
                     color: 3394815,
                     title: "DuckDuckGo",
 					url: "https://duckduckgo.com",
-                    description: `${data.FirstUrl}`,
+                    description: `**${data.Text}**\n${data.FirstUrl}`,
 					image: {
 						url: data.Icon.URL,
 						width: data.Icon.Width,
@@ -239,7 +239,8 @@ try {
                }});
             } else
                message.reply("No results for that query");
-        });
+        });*/
+		message.reply("The bot has reached its API quota for DuckDuckGo, try again tomorrow.")
 		message.channel.stopTyping();
     };
     if (message.content == "Seb, random meme"){
