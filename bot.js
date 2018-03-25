@@ -641,7 +641,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		//request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags="+encodeURIComponent(message.content.substr(12)), function(error, response, body){
-		request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
+		//request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", function(error, response, body){
+		try {
 			var r = [];
 			var found = false;
 			htmlToJson.request("http://rule34.paheal.net/post/list/"+encodeURIComponent(message.content.substr(12))+"/1", {
@@ -717,7 +718,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}
 			  }});*/
 			};
-		});
+		} catch(err) {
+			message.reply("ErrorL\n```\n"+err.message+"\n```")
+		}
+		//});
 		/*
         request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
 			if (err) {
