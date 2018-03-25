@@ -1,6 +1,6 @@
-const ver = "12.3b";
+const ver = "12.4b";
 const changelog = `
-* Command improvements
+* Command improvements (again)
 `;
 
 var count = 0;
@@ -631,6 +631,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			});
 		message.channel.stopTyping();
     };
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 	if (message.content.substr(0,12) == "Seb, rule34 "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
@@ -673,6 +676,45 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						}
 					}
 				}
+			})
+			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(12)), {
+			  'links': ['a', function ($img) {
+				return $img.attr('href');
+			  }]
+			}, function (err, result) {
+				var fields = []
+				for (i = 0; i < result.links.length; i++) {
+				   var txt = result.links[i];
+				   found = true;
+				   if (txt.includes("\?page\=post") && txt.includes('\&id\=') && !txt.includes("rule34.xxx")){
+					fields.push("https://rule34.xxx/"+txt);
+				  }
+				}
+				var ff = fields[getRandomInt(0, fields.length)];
+				htmlToJson.request(ff, {
+				  'links': ['a', function ($img) {
+					return $img.attr('href');
+				  }]
+				}, function (err, result) {
+				   for (i = 0; i < result.links.length; i++) {
+					   var txt = result.links[i];
+					   found = true;
+					   if (txt.includes("img.rule34.xxx")){
+						  message.reply({embed:{
+						 	color: 3394815,
+						 	title: "rule34",
+						 	url: txt,
+						 	image: {
+						 		url: txt
+						 	},
+						 	footer: {
+						 		text: `Requested by ${message.author.username}`,
+						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+						 	}
+						 });
+					   }
+					}
+				})
 			})
 			setTimeout(function(){if (!found){
 				message.reply({embed:{
@@ -734,9 +776,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		*/
 		message.channel.stopTyping();
     };
-	function getRandomInt(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
 	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
