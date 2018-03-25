@@ -761,6 +761,21 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				for (i = 0; i < result.images.length; i++) {
 					var txt = result.images[i];
 					found = true;
+					if (txt == undefined || txt == null){
+						message.reply({embed:{
+							color: 3394815,
+							title: "rule34",
+							description: "**I can't find **`"+message.content.substr(12)+"`**, so start uploading!**",
+							image: {
+								url: "https://cdn.discordapp.com/attachments/413135457367359498/427209131959648256/hqdefault.jpg"
+							},
+							footer: {
+								text: `Requested by ${message.author.username}`,
+								icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+							}
+						}});
+						return;
+					}
 					if (txt.includes('pansy') || txt.includes('acacia') || txt.includes('holly') || txt.includes('scarlet') || txt.includes('heather') || txt.includes('ivy') || txt.includes('clover') || txt.includes('lotus') || txt.includes('jasmine') || txt.includes('peach')){
 						if (i > selector){
 							message.reply({embed:{
