@@ -60,7 +60,7 @@ function output(error, token) {
 client.on('ready', () => {
 ready = 1;
   //console.log('I am ready!');
-client.guilds.get("395371039779192842").channels.find("name", "bot-commands").sendMessage({embed:{
+client.guilds.get("395371039779192842").channels.find("name", "bot-commands").send({embed:{
 	title: "Seb Bot has updated",
     color: 3394815,
 	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
@@ -924,7 +924,7 @@ client.on('guildMemberAdd', member => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
-const botHell = client.guilds.find("id","395371039779192842").channels.find("name", "bot-hell");
+const botHell = client.guilds.get("395371039779192842").channels.find("name", "bot-hell");
 client.on('presenceUpdate', (oldMember, newMember) => {
 	var p1 = oldMember
 	var p2 = newMember
