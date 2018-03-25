@@ -1,6 +1,6 @@
 const ver = "12.8b";
 const changelog = `
-* Fixed DM commmands (hopefully)
+* Added new command: Seb, cryptic
 `;
 
 var count = 0;
@@ -128,17 +128,17 @@ try {
 		function rem(time){
 			setTimeout(function(){ message.clearReactions() }, time * 1000);
 		}
-		r(0, ":regional_indicator_o:");
-		r(1, ":regional_indicator_k:");
+		r(0, "regional_indicator_o");
+		r(1, "regional_indicator_k");
 		rem(2);
 		setTimeout(function(){
-			r(0, ":regional_indicator_h:");
-			r(1, ":regional_indicator_a:");
+			r(0, "regional_indicator_h");
+			r(1, "regional_indicator_a");
 			rem(2);
 		}, 3000);
 		setTimeout(function(){
-			r(0, ":regional_indicator_h:");
-			r(1, ":regional_indicator_a:");
+			r(0, "regional_indicator_h");
+			r(1, "regional_indicator_a");
 			rem(2);
 		}, 6000);
     };
