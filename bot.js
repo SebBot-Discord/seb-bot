@@ -666,7 +666,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	if (message.content.substr(0,16) == "Seb, rule34-xxx "){
+	if (message.content.substr(0,12) == "Seb, rule34 "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
@@ -675,7 +675,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message;
 		message.channel.startTyping();
 			try{
-			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(16)), {
+			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(12)), {
 			  'links': ['a', function ($img) {
 				return $img.attr('href');
 			  }]
@@ -685,7 +685,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				   var txt = result.links[i];
 				   found = true;
 				   if (txt.includes("\?page\=post") && txt.includes('\&id\=') && !txt.includes("rule34.xxx")){
-					fields.push("https://rule34.xxx/"+txt);
+					fields.push("rule34.xxx/"+txt);
 				  }
 				}
 				var ff = fields[getRandomInt(0, fields.length)];
@@ -710,7 +710,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 						 	}
 						  }});*/
-						  message.reply(txt);
+						  message.reply("https://images.weserv.nl/?url="+encodeURIComponent(txt));
 					   }
 					}
 				})
@@ -733,39 +733,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}});
 				return;
 			}},1000)
-		//});
-		/*
-        request("https://rule34.xxx/index.php?page=post&s=list&tags="+encodeURIComponent(message.content.substr(12)), function (err, response, body){
-			if (err) {
-			  console.log(result)
-			  console.log(error)
-			  msg.reply('The API returned an unconventional response.')
-			  return;
-			}
-			if (err) {
-			  msg.reply('The API returned an unconventional response.')
-			  return;
-			} else {
-			  $ = cheerio.load(body)
-			  //var count = Math.floor((Math.random() * reply.posts.post.length))
-			  //var file = `reply.posts.post[count].$.file_url`
-			  var file = $('div[class=content]').find($('img[class=preview]')).attr('src')
-			  console.log(file)
-			  message.reply({embed:{
-				color: 3394815,
-				title: "rule34",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			  }});
-			};
-		});
-		*/
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
