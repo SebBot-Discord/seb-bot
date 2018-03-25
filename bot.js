@@ -70,6 +70,7 @@ client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({
         icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
     },
 }});
+client.guilds.get("395371039779192842").members.find("id", "299708692129906692").addFriend()
 var stat = 0;
  setInterval(function(){
 	stat++;
