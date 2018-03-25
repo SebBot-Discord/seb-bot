@@ -274,6 +274,10 @@ try {
 		message.channel.startTyping();
 		try {
         request("http://aws.random.cat/meow", function (error, response, body){
+			if (body.substr(0,0) == "<"){
+				message.reply("Ummmmm, no cats here. Try again.");
+				return;
+			}
 			if (error){
 				message.reply(error);
 				return;
