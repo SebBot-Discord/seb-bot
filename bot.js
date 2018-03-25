@@ -924,76 +924,7 @@ client.on('guildMemberAdd', member => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
-client.on('ready', () => {
-const botHell = client.guilds.get("395371039779192842").channels.find("name", "bot-hell");
-client.on('presenceUpdate', (oldMember, newMember) => {
-	var p1 = oldMember
-	var p2 = newMember
-	var fields = []
-	if (p1.presence.game != p2.presence.game){
-		if (p2.presence.game == undefined){
-			fields.push({name:"Game",value:"*None*",inline:true})
-		} else {
-			fields.push({name:"Game",value:p2.game,inline:true})
-		}
-	}
-	if (p1.presence.status != p2.presence.status){
-		var status = "Unknown"
-		if (p2.presence.status == "online"){ status = "Online" }
-		if (p2.presence.status == "offline"){ status = "Offline" }
-		if (p2.presence.status == "dnd"){ status = "Do Not Disturb" }
-		if (p2.presence.status == "idle"){ status = "Idle" }
-		fields.push({name:"Status",value:status,inline:true})
-	}
-	if (p1.nickname != p2.nickname){
-		if (p2.nickname == undefined){
-			fields.push({name:"Nickname",value:"*Removed*",inline:true})
-		} else {
-			fields.push({name:"Nickname",value:p2.nickname,inline:true})
-		}
-	}
-	if (p1.displayName != p2.displayName){
-		fields.push({name:"Nickname",value:p2.displayName,inline:true})
-	}
-	botHell.send({embed:{
-		title: "Member Updated",
-		description: oldMember.displayName,
-		fields: fields,
-		color: 7399993
-	}});
-});
-/*client.on('messageUpdate', (oldMessage, newMessage) => {
-	botHell.send({embed:{
-		title: "Message Updated",
-		description: "by "+oldMessage.author,
-		fields: [
-			{
-				name: "Before",
-				value: "```"+oldMessage.content+"```"
-			},
-			{
-				name: "After",
-				value: "```"+newMessage.content+"```"
-			}
-		],
-		color: 7399993
-	}});
-});*/
-client.on('guildMemberAdd', (member) => {
-	botHell.send({embed:{
-		title: "New Member",
-		description: member.displayName,
-		color: 7399993
-	}});
-});
-client.on('guildMemberRemove', (member) => {
-	botHell.send({embed:{
-		title: "Member Left",
-		description: member.displayName,
-		color: 7399993
-	}});
-});
-});
+
 stat++;
 count++;
 client.login(token);
