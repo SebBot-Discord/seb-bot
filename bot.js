@@ -238,7 +238,7 @@ try {
         title: "Google Search",
 		description: desc,
         fields: [{
-			name: "",
+			name: "ﾠ",
 			value: "["+name+"]("+link+")"
 		}],
         footer: {
