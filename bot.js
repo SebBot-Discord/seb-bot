@@ -3,6 +3,7 @@ const changelog = `
 * Added new command: Seb, cryptic
 `;
 
+var previous = null;
 var count = 0;
 var cheerio = require('cheerio');
 var stat = 0;
@@ -220,14 +221,25 @@ try {
     if (message.content.substr(0,16) == "Seb, search for "){
 		cmd = true;
 		message.channel.startTyping();
-        var link = ('https://www.google.com/search?q=').concat(message.content.substr(16))
+		var link = "about:blank";
+		var name = "Search Failed";
+        request({ headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) Gecko/20100101 Firefox/53.0' },'url':"https://google.com/search?lr=lang_en&hl=en&safe=on&q="+message.content.substr(16)}, function (error, response, body){
+			var $ = cheerio.load(body);
+			var desc = $('span[class="st"]').text();
+			if (desc.length > 30){
+				desc = desc.replace("...", " ").substr(0,300)+"..."
+			}
+			link = $('h3[class="r"]').find('a').attr('href')
+			name = $('h3[class="r"]').find('a').text()
+		});
         message.reply({embed:{
         color: 3394815,
         title: "Google Search",
-        provider: {
-            name: "Google Search",
-            url: link
-        },
+		description: desc,
+        fields: [{
+			name: "",
+			value: "["+name+"]("+link+")"
+		}],
         footer: {
             text: `Requested by ${message.author.username}`,
             icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
