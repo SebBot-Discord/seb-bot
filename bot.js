@@ -223,9 +223,10 @@ try {
 		message.channel.startTyping();
 		var link = "about:blank";
 		var name = "Search Failed";
+		var desc = "Nothing here...";
         request({ headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) Gecko/20100101 Firefox/53.0' },'url':"https://google.com/search?lr=lang_en&hl=en&safe=on&q="+message.content.substr(16)}, function (error, response, body){
 			var $ = cheerio.load(body);
-			var desc = $('span[class="st"]').text();
+			desc = $('span[class="st"]').text();
 			if (desc.length > 30){
 				desc = desc.replace("...", " ").substr(0,300)+"..."
 			}
