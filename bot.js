@@ -1,6 +1,6 @@
-const ver = "12.8b";
+const ver = "12.9b";
 const changelog = `
-* Added new command: Seb, cryptic
+* Fixed "Seb, google {search}" (hopefully)
 `;
 
 var previous = null;
