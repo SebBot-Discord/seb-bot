@@ -1,6 +1,6 @@
 const ver = "12.9b";
 const changelog = `
-* Fixed "Seb, google {search}" (hopefully)
+* Fixed "Seb, search for {search}" (hopefully)
 `;
 
 var previous = null;
