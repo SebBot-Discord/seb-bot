@@ -1,6 +1,6 @@
-const ver = "12.9b";
+const ver = "13b";
 const changelog = `
-* Fixed "Seb, search for {search}" (hopefully)
+* Fixed HTTP errors being handled badly
 `;
 
 var previous = null;
@@ -72,7 +72,10 @@ client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({
     },
 }});
 var stat = 0;
+client.user.setStatus("idle");
+client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 } });
  setInterval(function(){
+	client.user.setStatus("online");
 	stat++;
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
