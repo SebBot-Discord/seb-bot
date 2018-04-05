@@ -968,6 +968,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
+			if (response != 200 || error){
+				data = `[Response code ${response}]\n[Error]\n${error}`
+				message.reply("Error reading data:\n```"+data+"\n```");
+				return;
+			}
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
 			message.reply({embed:{
 				color: 3394815,
@@ -991,6 +996,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
+			if (response != 200 || error){
+				data = `[Response code ${response}]\n[Error]\n${error}`
+				message.reply("Error reading data:\n```"+data+"\n```");
+				return;
+			}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1021,6 +1031,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
+			if (response != 200 || error){
+				data = `[Response code ${response}]\n[Error]\n${error}`
+				message.reply("Error reading data:\n```"+data+"\n```");
+				return;
+			}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1051,6 +1066,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
+			if (response != 200 || error){
+				data = `[Response code ${response}]\n[Error]\n${error}`
+				message.reply("Error reading data:\n```"+data+"\n```");
+				return;
+			}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.items) {
