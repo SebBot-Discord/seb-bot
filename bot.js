@@ -972,10 +972,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
 			if (response.code != 200 || error){message.reply(`Our party hamster got too drunk, and can't handle your request right now. :hamster: :beers:`);return;}
-				data = `[Response code ${response.code}]\n[Error]\n${error}`
-				message.reply("Error reading data:\n```"+data+"\n```");
-				return;
-			}
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
 			message.reply({embed:{
 				color: 3394815,
