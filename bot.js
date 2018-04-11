@@ -1,6 +1,6 @@
-const ver = "13b";
+const ver = "13.1b";
 const changelog = `
-* Fixed HTTP errors being handled badly
+* More detailed error handling
 `;
 
 var previous = null;
@@ -126,7 +126,7 @@ try {
     };
 	if (message.content.substr(0,13) == "Seb, cryptic "){
 		var input = message.content.substr(13);
-		var k = [];k["a"] = "🇦";k["b"] = "🇧";k["c"] = "🇨";k["d"] = "🇩";k["e"] = "🇪";k["f"] = "🇫";k["g"] = "🇬";k["h"];"🇭";k["i"] = "🇮";k["j"] = "🇯";k["k"] = "🇰";k["l"] = "🇱";k["m"] = "🇲";k["n"] = "🇳";k["o"] = "🇴";k["p"] = "🇵";k["q"] = "🇶";k["r"] = "🇷";k["s"] = "🇸";k["t"] = "🇹";k["u"] = "🇺";k["v"] = "🇻";k["w"] = "🇼";k["x"] = "🇽";k["y"] = "🇾";k["z"] = "🇿";
+		var k = [];k["a"] = "ðŸ‡¦";k["b"] = "ðŸ‡§";k["c"] = "ðŸ‡¨";k["d"] = "ðŸ‡©";k["e"] = "ðŸ‡ª";k["f"] = "ðŸ‡«";k["g"] = "ðŸ‡¬";k["h"];"ðŸ‡­";k["i"] = "ðŸ‡®";k["j"] = "ðŸ‡¯";k["k"] = "ðŸ‡°";k["l"] = "ðŸ‡±";k["m"] = "ðŸ‡²";k["n"] = "ðŸ‡³";k["o"] = "ðŸ‡´";k["p"] = "ðŸ‡µ";k["q"] = "ðŸ‡¶";k["r"] = "ðŸ‡·";k["s"] = "ðŸ‡¸";k["t"] = "ðŸ‡¹";k["u"] = "ðŸ‡º";k["v"] = "ðŸ‡»";k["w"] = "ðŸ‡¼";k["x"] = "ðŸ‡½";k["y"] = "ðŸ‡¾";k["z"] = "ðŸ‡¿";
 		var _result = "";
 		for (i = 0; i < input.length; i++) {
 			var emoji = k[input.substr(i,i)];
@@ -145,17 +145,17 @@ try {
 		function rem(time){
 			setTimeout(function(){ message.clearReactions() }, time * 1000);
 		}
-		r(0, "🇴");
-		r(1, "🇰");
+		r(0, "ðŸ‡´");
+		r(1, "ðŸ‡°");
 		rem(2);
 		setTimeout(function(){
-			r(0, "🇭");
-			r(1, "🇦");
+			r(0, "ðŸ‡­");
+			r(1, "ðŸ‡¦");
 			rem(2);
 		}, 3000);
 		setTimeout(function(){
-			r(0, "🇭");
-			r(1, "🇦");
+			r(0, "ðŸ‡­");
+			r(1, "ðŸ‡¦");
 			rem(2);
 		}, 6000);
 		setTimeout(function(){
@@ -241,7 +241,7 @@ try {
         title: "Google Search",
 		description: desc,
         fields: [{
-			name: "ﾠ",
+			name: "ï¾ ",
 			value: "["+name+"]("+link+")"
 		}],
         footer: {
@@ -971,7 +971,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
-			if (response.code != 200 || error){message.reply(`Our party hamster got too drunk, and can't handle your request right now. :hamster: :beers:`);return;}
+			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error.message+'\n'+response.code+'\n```');return;}
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
 			message.reply({embed:{
 				color: 3394815,
@@ -995,7 +995,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			if (response.code != 200 || error){message.reply(`Our party hamster got too drunk, and can't handle your request right now. :hamster: :beers:`);return;}
+			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error.message+'\n'+response.code+'\n```');return;}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1026,7 +1026,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			if (response.code != 200 || error){message.reply(`Our party hamster got too drunk, and can't handle your request right now. :hamster: :beers:`);return;}
+			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error.message+'\n'+response.code+'\n```');return;}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1057,7 +1057,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
-			if (response.code != 200 || error){message.reply(`Our party hamster got too drunk, and can't handle your request right now. :hamster: :beers:`);return;}
+			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error.message+'\n'+response.code+'\n```');return;}
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.items) {
