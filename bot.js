@@ -1109,11 +1109,13 @@ client.on("guildCreate", (guild) => {
 		.then(invites => {
 			invite = (invites.find(invite => invite.guild == guild));
 		});
+	var fields = [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")"}]
+	if (invite === "No invite") fields = [{name:"I joined",value:guild.name}]
 	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 		title: "New Guild",
 		color: 3394815,
 		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-		fields: [{name:"I joined",value:"[" + guild.name + "]("+invite+")"}]
+		fields: fields,
 	}}).catch(console.error);
 });
 //if (stat == 1){
