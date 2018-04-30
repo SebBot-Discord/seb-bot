@@ -975,7 +975,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
 			console.log(error, response, body);
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
-			message.reply({files: [file]}).catch(console.error);
+			message.reply("\n" + file).catch(console.error);
 		});
 		message.channel.stopTyping();
     };
@@ -996,7 +996,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply({files: [file]}).catch(console.error);
+			message.reply("\n" + file).catch(console.error);
 		});
 	}
 	if (message.content == "Seb, ass"){
@@ -1017,7 +1017,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply({files: [file]}).catch(console.error);
+			message.reply("\n" + file).catch(console.error);
 		});
 	}
 	if (message.content == "Seb, furry"){
@@ -1037,11 +1037,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var index = getRandomInt(0,count)
 			var file = b.items[index].thumbnail
 			request(file, function (error, response, body){
-				console.log(error, response, body);
 				var $ = cheerio.load(body);
 				file = $('img').prop('src');
 			});
-			message.reply("" + b.items[index].thumbnail).catch(console.error);
+			message.reply("\n" + b.items[index].thumbnail).catch(console.error);
 		});
 	}
 	//
