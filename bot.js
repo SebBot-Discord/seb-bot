@@ -1053,7 +1053,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
 			}});*/
-			message.reply({files: [file]}).catch(console.error);
+			message.reply({content: b.items[index].thumbnail, files: [file]}).catch(console.error);
 		});
 	}
 	//
