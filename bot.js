@@ -127,7 +127,8 @@ try {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
             },
-        }}).catch(console.error);
+        }})
+			.catch(console.error);
         message.reply("Check your DMs, I sent you a list of commands!");
 		message.channel.stopTyping();
     };
@@ -166,7 +167,8 @@ try {
 			rem(2);
 		}, 6000);
 		setTimeout(function(){
-			message.reply(_result);
+			message.reply(_result)
+				.catch(console.error);
 		}, 7000);
     };
 	if (message == "Seb, invite"){
@@ -181,7 +183,8 @@ try {
                 text: `Say "Seb, help" for a list of commands`,
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
             },
-		}}).catch(console.error);
+		}})
+			.catch(console.error);
 		message.channel.stopTyping();
 	};
     if (message == "Seb, tell me a joke"){
@@ -201,7 +204,8 @@ try {
                 text: `Requested by ${message.author.username}`,
                 icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
             }
-        }}).catch(console.error);
+        }})
+			.catch(console.error);
     });
 	message.channel.stopTyping();
     };
@@ -222,7 +226,8 @@ try {
             text: `Requested by ${message.author.username}`,
             icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
         }
-     }}).catch(console.error);
+     }})
+		 .catch(console.error);
      } else
      message.reply("That number sucks!");
     });
@@ -255,7 +260,8 @@ try {
             text: `Requested by ${message.author.username}`,
             icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
         }
-        }}).catch(console.error);
+        }})
+			.catch(console.error);
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0,10) == "Seb, echo "){
@@ -269,7 +275,8 @@ try {
             text: `Requested by ${message.author.username}`,
             icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
         }
-        }}).catch(console.error);
+        }})
+			.catch(console.error);
 		message.channel.stopTyping();
 	};
 	//https://api.duckduckgo.com/?q=DuckDuckGo&format=json
@@ -301,7 +308,8 @@ try {
             } else
                message.reply("No results for that query");
         });*/
-		message.reply("The bot has reached its API quota for DuckDuckGo, try again tomorrow.").catch(console.error);
+		message.reply("The bot has reached its API quota for DuckDuckGo, try again tomorrow.")
+			.catch(console.error);
 		message.channel.stopTyping();
     };
     if (message.content == "Seb, random meme"){
@@ -324,7 +332,8 @@ try {
                         text: `Requested by ${message.author.username}`,
                         icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                     }
-               }}).catch(console.error);
+               }})
+				   .catch(console.error);
             } else
                message.reply("I can't find any memes right now").catch(console.error);
         });
@@ -336,7 +345,8 @@ try {
 		try {
         request("http://aws.random.cat/meow", function (error, response, body){
 			if (body.substr(0,0) == "<"){
-				message.reply("Ummmmm, no cats here. Try again.").catch(console.error);
+				message.reply("Ummmmm, no cats here. Try again.")
+					.catch(console.error);
 				return;
 			}
 			if (error){
@@ -355,7 +365,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		} catch(err) {
 			message.reply("**ERROR!**\n```\n"+err.message+"\n```");
@@ -382,7 +393,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -403,7 +415,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -427,7 +440,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -453,7 +467,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -476,7 +491,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -496,7 +512,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
        // });
 		message.channel.stopTyping();
     };
@@ -522,7 +539,8 @@ try {
 				setTimeout(n,500);
 			},5);
 			newmessage.edit("Firecracker!");
-		}).catch(console.error);
+		})
+			.catch(console.error);
 		message.channel.stopTyping();
 	};
 	if (message.content == "Seb, yo momma"){
@@ -542,7 +560,8 @@ try {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         });
 		message.channel.stopTyping();
     };
@@ -605,7 +624,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         //});
 		message.channel.stopTyping();
     };
@@ -641,7 +661,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						text: `Requested by ${message.author.username}`,
 						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 					}
-				}}).catch(console.error);
+				}})
+					.catch(console.error);
 			});
 		});
 		message.channel.stopTyping();
@@ -656,7 +677,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		        text: `Requested by ${message.author.username}`,
 				icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 		    }
-		}}).catch(console.error);
+		}})
+			.catch(console.error);
 		message.channel.stopTyping();
     };
 	if (message.content == "Seb, servers"){
@@ -672,7 +694,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				"name": response.name,
 				//"value": response.Name,
 				"inline": true
-			}).catch(console.error);
+			})
 		}
 		message.channel.startTyping();
         //request({url: 'https://discordapp.com/api/users/@me/guilds',headers: {'Authorization': 'Bot NDA4NzE4Mjk3NDAwNDc1NjY4.DVUleg.VJV1fHSXPvXV_TX3CtJor-oAX8I'}};, function (error, response, body){
@@ -685,7 +707,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         //});
 		message.channel.stopTyping();
     };
@@ -704,7 +727,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                 }
-            }}).catch(console.error);
+            }})
+				.catch(console.error);
         //});
 		message.channel.stopTyping();
     };
@@ -728,7 +752,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					text: `Requested by ${message.author.username}`,
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
-			}}).catch(console.error);
+			}})
+				.catch(console.error);
 			});
 		message.channel.stopTyping();
     };
@@ -919,7 +944,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 						text: `Requested by ${message.author.username}`,
 						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 					}
-				}}).catch(console.error);
+				}})
+					.catch(console.error);
 				return;
 			}},1000)
 			var file = r[0]
@@ -980,7 +1006,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
 			console.log(error, response, body);
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
-			message.reply("\n" + file).catch(console.error);
+			message.reply("\n" + file)
+				.catch(console.error);
 		});
 		message.channel.stopTyping();
     };
@@ -1001,7 +1028,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply("\n" + file).catch(console.error);
+			message.reply("\n" + file)
+				.catch(console.error);
 		});
 	}
 	if (message.content == "Seb, ass"){
@@ -1012,7 +1040,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
 			console.log(error, response, body);
-			console.log(error, response, body);
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1022,7 +1049,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply("\n" + file).catch(console.error);
+			message.reply("\n" + file)
+				.catch(console.error);
 		});
 	}
 	if (message.content == "Seb, furry"){
@@ -1045,7 +1073,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				var $ = cheerio.load(body);
 				file = $('img').prop('src');
 			});
-			message.reply("\n" + b.items[index].thumbnail).catch(console.error);
+			message.reply("\n" + b.items[index].thumbnail)
+				.catch(console.error);
 		});
 	}
 	//
