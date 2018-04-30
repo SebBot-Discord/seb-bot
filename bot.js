@@ -975,18 +975,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
 			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error+'\n'+response.code+'\n```');return;}
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
-			message.reply({embed:{
-				color: 3394815,
-				title: "Boobs",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			}}).catch(console.error);
+			message.reply({files: [file]}).catch(console.error);
 		});
 		message.channel.stopTyping();
     };
@@ -1007,18 +996,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply({embed:{
-				color: 3394815,
-				title: "Sex",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			}}).catch(console.error);
+			message.reply({files: [file]}).catch(console.error);
 		});
 	}
 	if (message.content == "Seb, ass"){
@@ -1038,18 +1016,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.data[index].images.original.url
-			message.reply({embed:{
-				color: 3394815,
-				title: "Ass",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			}}).catch(console.error);
+			message.reply({files: [file]}).catch(console.error);
 		});
 	}
 	if (message.content == "Seb, furry"){
@@ -1069,6 +1036,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			var index = getRandomInt(0,count)
 			var file = b.items[index].link
+			request(file, function (error, response, body){
+				var $ = cheerio.load(body);
+				file = $('a[onclick="sfhd_1.open(); return false;"]').children('img').prop('src');
+			});
 			/*message.reply({embed:{
 				color: 3394815,
 				title: "Furry",
@@ -1081,7 +1052,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
 			}});*/
-			message.reply({files: file}).catch(console.error);
+			message.reply({files: [file]}).catch(console.error);
 		});
 	}
 	//
