@@ -973,7 +973,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
-			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error+'\n'+response.code+'\n```');return;}
+			console.log(error, response, body);
 			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
 			message.reply({files: [file]}).catch(console.error);
 		});
@@ -986,7 +986,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error+'\n'+response.code+'\n```');return;}
+			console.log(error, response, body);
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1006,7 +1006,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error+'\n'+response.code+'\n```');return;}
+			console.log(error, response, body);
+			console.log(error, response, body);
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.data) {
@@ -1026,7 +1027,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
-			if (response.code != 200 || error){message.reply('Our party hamster got too drunk, and can\'t handle your request right now. :hamster: :beers:\n```\n'+error+'\n'+response.code+'\n```');return;}
+			console.log(error, response, body);
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.items) {
