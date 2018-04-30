@@ -1036,12 +1036,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}
 			}
 			var index = getRandomInt(0,count)
-			var file = b.items[index].link
+			var file = b.items[index].thumbnail
 			request(file, function (error, response, body){
 				var $ = cheerio.load(body);
-				file = $('a[onclick="sfhd_1.open(); return false;"]').children('img').prop('src');
+				file = $('img').prop('src');
 			});
-			var fileThumb = b.items[index].thumbnail;
 			/*message.reply({embed:{
 				color: 3394815,
 				title: "Furry",
@@ -1054,7 +1053,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				}
 			}});*/
-			message.reply({files: [fileThumb, file]}).catch(console.error);
+			message.reply({files: [file]}).catch(console.error);
 		});
 	}
 	//
