@@ -1,6 +1,11 @@
 const ver = "13.1b";
 const changelog = `
 * Less crashing, more ".catch()"-ing
+* Fixed:
+	Seb, ass
+	Seb, boobs
+	Seb, sex
+	Seb, rule34 {query}
 * You can now be invited to guilds the bot joins
 `;
 
