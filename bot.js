@@ -1041,19 +1041,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				var $ = cheerio.load(body);
 				file = $('img').prop('src');
 			});
-			/*message.reply({embed:{
-				color: 3394815,
-				title: "Furry",
-				url: file,
-				image: {
-					url: file
-				},
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			}});*/
-			message.reply({content: b.items[index].thumbnail, files: [file]}).catch(console.error);
+			message.reply("" + b.items[index].thumbnail).catch(console.error);
 		});
 	}
 	//
