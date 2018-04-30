@@ -1111,9 +1111,8 @@ client.on("guildCreate", (guild) => {
 	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 		title: "New Guild",
 		color: 3394815,
-		description: invite,
 		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-		description: "I joined " + guild.name + "!"
+		fields: [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")"}]
 	}}).catch(console.error);
 });
 //if (stat == 1){
