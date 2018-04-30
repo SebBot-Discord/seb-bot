@@ -1027,7 +1027,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
-			console.log(error, response, body);
 			var b = JSON.parse(body)
 			var key, count = 0;
 			for(key in b.items) {
@@ -1038,6 +1037,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var index = getRandomInt(0,count)
 			var file = b.items[index].thumbnail
 			request(file, function (error, response, body){
+				console.log(error, response, body);
 				var $ = cheerio.load(body);
 				file = $('img').prop('src');
 			});
