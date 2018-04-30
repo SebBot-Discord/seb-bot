@@ -1,6 +1,7 @@
 const ver = "13.1b";
 const changelog = `
 * Less crashing, more ".catch()"-ing
+* You can now be invited to guilds the bot joins
 `;
 
 var previous = null;
@@ -1106,13 +1107,13 @@ client.on("guildCreate", (guild) => {
 	var invite = "No invite";
 	guild.fetchInvites()
 		.then(invites => {
-			invite = (invites.find(invite));
+			invite = (invites.find(invite => invite.guild == guild));
 		});
 	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 		title: "New Guild",
 		color: 3394815,
 		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-		fields: [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")"}]
+		fields: [{name:"I joined",value:"[" + guild.name + "]("+invite+")"}]
 	}}).catch(console.error);
 });
 //if (stat == 1){
