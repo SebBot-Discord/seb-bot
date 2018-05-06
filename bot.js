@@ -1098,10 +1098,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			message.reply({embed:{
 				color: 3394815,
-				title: "Top Story",
 				fields: [
 					{
-						name: "Title",
+						name: "Top Story",
 						value: "[" + data.title + "](" + data.url + ")",
 						inline: false
 					},
