@@ -1080,6 +1080,57 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 		});
 	}
+	if (message.content.substr(0,11) == "Seb, image "){
+		cmd = true;
+		message.channel.startTyping();
+		var tag = encodeURIComponent(message.content.substr(11))
+		request.get({
+			url: "https://api.nytimes.com/svc/topstories/v2/home.json",
+			qs: {
+				'api-key': "3c04bc2b825f4f419bfc6d368d661049"
+			}
+		}, function(error, response, body){
+			if(error) { message.reply(err); return; }
+			var data = JSON.parse(body).results[0]
+			if (!data){
+				message.reply("An error ocurred")
+				return;
+			}
+			message.reply({embed:{
+				color: 3394815,
+				title: "Top Story",
+				fields: [
+					{
+						name: "Title",
+						value: "[" + data.title + "](" + data.url + ")",
+						inline: false
+					},
+					{
+						name: "Description",
+						value: "*" + data.abstract + "*",
+						inline: false
+					},
+					{
+						name: "Authors",
+						value: data.byline,
+						inline: true
+					},
+					{
+						name: "Category",
+						value: data.section,
+						inline: true
+					}
+				],
+				url: file,
+				footer: {
+					text: `Requested by ${message.author.username}`,
+					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				}
+			}})
+				.catch(console.error);
+		});
+		message.channel.stopTyping();
+    };
 	//
 	//
 	//Default mix-up/error functions
