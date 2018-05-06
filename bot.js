@@ -1,6 +1,6 @@
-const ver = "13.1b";
+const ver = "13.3b";
 const changelog = `
-* New command: Seb, xkcd
+* New command: Seb, news
 `;
 
 var previous = null;
