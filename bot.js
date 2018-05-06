@@ -1080,7 +1080,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 		});
 	}
-	if (message.content.substr(0,11) == "Seb, image "){
+	if (message.content == "Seb, news"){
 		cmd = true;
 		message.channel.startTyping();
 		var tag = encodeURIComponent(message.content.substr(11))
