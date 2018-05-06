@@ -1076,18 +1076,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var index = getRandomInt(0, 1989);
 		request(`https://xkcd.com/${index}/info.0.json`, function (error, response, body) {
 			var b = JSON.parse(body)
-			message.reply({embed:{
-				color: 3394815,
-				title: "XKCD",
-				image: {
-					url: file
-				},
-				url: b.img,
-				footer: {
-					text: `Requested by ${message.author.username}`,
-					icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				}
-			}})
+			message.reply({files: [b.img]})
 				.catch(console.error);
 		});
 	}
