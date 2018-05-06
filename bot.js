@@ -1079,7 +1079,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply({embed:{
 				color: 3394815,
 				title: "XKCD",
-				description: b.alt,
 				image: {
 					url: file
 				},
