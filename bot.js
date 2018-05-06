@@ -1074,7 +1074,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content == "Seb, xkcd"){
 		cmd = true;
 		var index = getRandomInt(0, 1989);
-		request(`https://xkcd.com/1989/info.${index}.json`, function (error, response, body) {
+		request(`https://xkcd.com/${index}/info.0.json`, function (error, response, body) {
 			var b = JSON.parse(body)
 			message.reply({embed:{
 				color: 3394815,
