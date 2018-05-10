@@ -1148,6 +1148,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 };
 });
 client.on('guildMemberAdd', member => {
+  if(member.guild.id == 264445053596991498) return;
   member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`Seb, help\` for a list of commands.');
 });
 client.on("guildCreate", (guild) => {
