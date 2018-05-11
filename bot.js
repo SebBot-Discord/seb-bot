@@ -110,6 +110,15 @@ try {
 			};
 		};
 	};
+    if (message.content == "Seb, fprestart"){
+	    if (message.author.id != 299708692129906692){
+			message.reply("Haha, nice try");
+			return;
+		} else {
+			message.reply("Forcing process restart...");
+			process.exit(0);
+		}
+    }
     if (message == "Seb, help"){
 		cmd = true;
 		message.channel.startTyping();
