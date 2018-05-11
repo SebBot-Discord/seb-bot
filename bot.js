@@ -81,14 +81,14 @@ client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 }
 	if (stat == 0){
 		client.user.setPresence({ game: { name: 'with Sebby', type: 1 } });
 	} else if (stat == 1){
-		client.user.setPresence({ game: { name: `${client.guilds.size + 578} servers`, type: 3 } });
+		client.user.setPresence({ game: { name: `${client.guilds.size} servers`, type: 3 } });
 	} else if (stat == 2){
 		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
 		stat = -1;
 	}
 },30000)
 setInterval(() => {
-    dbl.postStats(client.guilds.size + 578);
+    dbl.postStats(client.guilds.size);
 }, 1800000);
 	//client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
   //stat = 1;
@@ -596,7 +596,7 @@ try {
                 title: "Statistics",
                 description: `
 **Seb Bot Stats**
-Running in ` + "`" + `${client.guilds.size + 578}` + "`" + ` servers
+Running in ` + "`" + `${client.guilds.size}` + "`" + ` servers
 Shards: ` + "`7/20`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
