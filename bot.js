@@ -1,4 +1,4 @@
-const ver = "13.3b";
+const ver = "13.5b";
 const changelog = `
 * Seb, rule34b for rule34.xxx instead of paheal
 `;
