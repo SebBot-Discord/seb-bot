@@ -1,6 +1,6 @@
 const ver = "13.3b";
 const changelog = `
-* New command: Seb, news
+* None
 `;
 
 var previous = null;
