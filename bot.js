@@ -1,6 +1,6 @@
 const ver = "13.3b";
 const changelog = `
-* None
+* Seb, rule34b for rule34.xxx instead of paheal
 `;
 
 var previous = null;
@@ -763,75 +763,48 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	/*if (message.content.substr(0,12) == "Seb, rule34 "){
+	if (message.content.substr(0,13) == "Seb, rule34b "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
 		}
-		cmd = true;
-		var msg = message;
 		message.channel.startTyping();
-			try{
-			htmlToJson.request('https://rule34.xxx/index.php?page=post&s=list&tags='+encodeURIComponent(message.content.substr(12)), {
-			  'links': ['a', function ($img) {
-				return $img.attr('href');
+		cmd = true;
+		try {
+			var r = [];
+			var found = false;
+			htmlToJson.request("https://rule34.xxx/index.php?page=post&s=list&tags=" + encodeURIComponent(message.content.substr(13)), {
+			  'images': ['a', function ($img) {
+				var link = $img.attr('href')
+				return link;
 			  }]
 			}, function (err, result) {
-				var fields = []
-				for (i = 0; i < result.links.length; i++) {
-				   var txt = result.links[i];
-				   found = true;
-				   if (txt.includes("\?page\=post") && txt.includes('\&id\=') && !txt.includes("rule34.xxx")){
-					fields.push("rule34.xxx/"+txt);
-				  }
+				console.log(result);
+				var selector = getRandomInt(0,result.images.length);
+				for (i = 0; i < result.images.length; i++) {
+					var txt = result.images[i];
+					found = true;
+					if (txt == undefined || txt == null){
+						console.log("err")
+                    }
+					if (txt.includes("\&s\=view")){
+						if (i > selector){
+                            htmlToJson.request("https://rule34.xxx/" + txt, {
+                            'images': ['img', function ($img) {
+                             var link = $img.attr('src')
+                             return link;
+                            }]
+                            }, function (err, result) {
+                                console.log(result.images[3])
+                            })
+                            return;
+						}
+					}
 				}
-				var ff = fields[getRandomInt(0, fields.length)];
-				htmlToJson.request(ff, {
-				  'links': ['a', function ($img) {
-					return $img.attr('href');
-				  }]
-				}, function (err, result) {
-				   for (i = 0; i < result.links.length; i++) {
-					   var txt = result.links[i];
-					   found = true;
-					   if (txt != undefined && txt.includes("img.rule34.xxx")){
-						  /*message.reply({embed:{
-						 	color: 3394815,
-						 	title: "rule34",
-						 	url: txt,
-						 	image: {
-						 		url: txt
-						 	},
-						 	footer: {
-						 		text: `Requested by ${message.author.username}`,
-						 		icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-						 	}
-						  }});//*\/
-						  message.reply("https://images.weserv.nl/?url="+encodeURIComponent(txt));
-					   }
-					}
-				})
 			})
-			}catch(err){
-				message.reply("I can't find that, start uploading!");
-			}
-			setTimeout(function(){if (!found){
-				message.reply({embed:{
-					color: 3394815,
-					title: "rule34",
-					description: "**I can't find **`"+message.content.substr(12)+"`**, so start uploading!**",
-					image: {
-						url: "https://cdn.discordapp.com/attachments/413135457367359498/427209131959648256/hqdefault.jpg"
-					},
-					footer: {
-						text: `Requested by ${message.author.username}`,
-						icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-					}
-				}});
-				return;
-			}},1000)
-		message.channel.stopTyping();
-    };*/
+        }catch(err){}
+	message.channel.stopTyping();
+    };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
 		if (cmd){ return; }
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
