@@ -1,6 +1,6 @@
 const ver = "13.5b";
 const changelog = `
-* Seb, rule34b for rule34.xxx instead of paheal
+None
 `;
 
 var previous = null;
@@ -670,7 +670,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping();
     };
-	if (message.content == "Seb, ping" || message.content == "ping"){
+	if (message.content == "Seb, ping"){
 		cmd = true;
 		message.channel.startTyping();
 		message.reply({embed:{
