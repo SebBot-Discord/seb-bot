@@ -1,6 +1,6 @@
-const ver = "13.5b";
+const ver = "1.0.0";
 const changelog = `
-Internal changes
+New command: Seb, crazyimg
 `;
 
 var previous = null;
@@ -12,6 +12,7 @@ var setup = 0;
 var Discord = require('discord.js');
 var htmlToJson = require("html-to-json");
 var client = new Discord.Client();
+const gm = require("gm").subClass({imageMagick: true});
 const DBL = require("dblapi.js");
 const request = require('request')
 const dbl = new DBL(process.env.DBL_TOKEN, client);
@@ -125,7 +126,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3750201,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, cryptic {message}**\n Ecrypts {message} in emoji!\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, help**\n Sends a list of commands\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n**Seb, ddg {query}**\n Searches {query} on duckduckgo and returns the first results\n**Seb, xkcd**\n Gets a random xkcd comic\n**Seb, news**\n Gets the latest NY Times article\n:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
+		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, cowsay {message}**\n Make the cow say {message}!\n**Seb, cryptic {message}**\n Ecrypts {message} in emoji!\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, xkcd**\n Get an XKCD comic\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n**Seb, ddg {query}**\n Searches {query} on duckduckgo and returns the first results\n**Seb, xkcd**\n Gets a random xkcd comic\n**Seb, news**\n Gets the latest NY Times article\n**Seb, crazyimg**\n cRaZiFys your image!:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
@@ -1112,16 +1113,45 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping();
     };
-	//
-	//
+	if (message.content.substr(0, 14) == "Seb, crazyimg "){
+		var img;
+		if (message.attachments.length != 1){
+			var m = message.replace("https", "http").match(/http:\/\/\S+/));
+			if (!m){
+				message.reply("Please attach an image file or supply an image URL as the second argument");
+				return;
+			}
+		} else
+			img = message.attachments[0]
+		gm(request(img.url))
+			.flip()
+			.magnify()
+			.rotate('green', 45)
+			.blur(7, 3)
+			.crop(300, 300, 150, 130)
+			.edge(3)
+			.stream((error, stdout) => {
+			  console.log(stdout);
+			})
+	}
+	if (message.content.substr(0, 12) == "Seb, cowsay "){
+		request("http://cowsay.morecode.org/say?message=" + encodeURIComponents(message.content.substr(12)) + "&format=json", function (err, resp, bod){
+			var txt = JSON.parse(bod).cow;
+			message.reply({embed:{
+				color: 3750201,
+				title: "The Cow Says",
+				description: "```\n" + txt + "\n```"
+			}});
+		})
+	}
 	//Default mix-up/error functions
-	if (message.content.substr(0,4) == "seb,"){
+	if (message.content.substr(0,5) == "seb, "){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
 	};
-	if (message.content.substr(0,4) == "SEB,"){
+	if (message.content.substr(0,5) == "SEB, "){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
 	};
-	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message.content + "', Embed " + message.content.embed + ", Command " + cmd + "}");
+	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message[] '" + message + "', Embed " + message.content.embed + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
