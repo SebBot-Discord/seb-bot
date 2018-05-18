@@ -1138,7 +1138,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
-		request("http://cowsay.morecode.org/say?message=" + encodeURIComponents(message.content.substr(12)) + "&format=json", function (err, resp, bod){
+		request("http://cowsay.morecode.org/say?message=" + encodeURIComponent(message.content.substr(12)) + "&format=json", function (err, resp, bod){
 			var txt = JSON.parse(bod).cow;
 			message.reply({embed:{
 				color: 3750201,
