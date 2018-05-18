@@ -1144,13 +1144,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}});
 		})
 	}
-	//Default mix-up/error functions
-	if (message.content.substr(0,5) == "seb, "){
-		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
-	};
-	if (message.content.substr(0,5) == "SEB, "){
-		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
-	};
 	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message[] '" + message + "', Embed " + message.content.embed + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
