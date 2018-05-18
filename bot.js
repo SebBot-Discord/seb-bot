@@ -1,6 +1,6 @@
 const ver = "13.5b";
 const changelog = `
-Seb, ping
+Internal changes
 `;
 
 var previous = null;
@@ -1121,6 +1121,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0,4) == "SEB,"){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
 	};
+	console.log("[" + message.member.guild.name + "]: {Author " + message.author.username + ", Message '" + message.content + "', Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
