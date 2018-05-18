@@ -126,11 +126,11 @@ try {
 			return;
 		} else {
 			try {
-				eval(message.content.substr(10));
+				var out = eval(message.content.substr(10));
 				message.reply({embed:{
 					color: 3750201,
 					title: "JavaScript Evaluated",
-					description: "```css\nNo problems while running the code\n```"
+					description: "```css\nNo problems while running the code\n```\n*Output:*\n```cs\n# " + out + "\n```"
 				}}).catch();
 			} catch(output){
 				message.reply({embed:{
