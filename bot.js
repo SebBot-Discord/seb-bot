@@ -1116,7 +1116,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0, 14) == "Seb, crazyimg "){
 		var img;
 		if (message.attachments.length != 1){
-			var m = message.replace("https", "http").match(/http:\/\/\S+/));
+			var m = message.replace("https", "http").match(/http:\/\/\S+/);
 			if (!m){
 				message.reply("Please attach an image file or supply an image URL as the second argument");
 				return;
