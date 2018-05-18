@@ -1114,7 +1114,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping();
     };
 	if (message.content.substr(0, 14) == "Seb, crazyimg "){
-		var img;
+		message.channel.startTyping();
+		var img = undefined;
 		if (message.attachments.length != 1){
 			var m = message.replace("https", "http").match(/http:\/\/\S+/);
 			if (!m){
@@ -1131,10 +1132,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.crop(300, 300, 150, 130)
 			.edge(3)
 			.stream((error, stdout) => {
-			  console.log(stdout);
+			  message.reply({files:[stdout]});
 			})
+		message.channel.stopTyping();
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
+		message.channel.startTyping();
 		request("http://cowsay.morecode.org/say?message=" + encodeURIComponents(message.content.substr(12)) + "&format=json", function (err, resp, bod){
 			var txt = JSON.parse(bod).cow;
 			message.reply({embed:{
@@ -1143,8 +1146,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				description: "```\n" + txt + "\n```"
 			}});
 		})
+		message.channel.stopTyping();
 	}
-	//console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message[] '" + message + "', Embed " + message.content.embed + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
+	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message[] '" + message + "', Embed " + message.content.embed + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
