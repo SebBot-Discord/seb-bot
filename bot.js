@@ -117,7 +117,28 @@ try {
 			return;
 		} else {
 			message.reply("Forcing process restart...");
-			process.exit(0);
+			setTimeout(function(){process.exit(0);}, 1000);
+		}
+    }
+    if (message.content.substr(0, 10) == "Seb, eval "){
+	    if (message.author.id != 299708692129906692){
+			message.reply("Haha, nice try");
+			return;
+		} else {
+			try {
+				eval(message.content.substr(10));
+				message.reply({embed:{
+					color: 3750201,
+					title: "JavaScript Evaluated",
+					description: "```css\nNo problems while running the code\n```"
+				}}).catch();
+			} catch(output){
+				message.reply({embed:{
+					color: 3750201,
+					title: "JavaScript Evaluation Error",
+					description: "```http\n" + output + "\n```"
+				}}).catch();
+			}
 		}
     }
     if (message == "Seb, help"){
