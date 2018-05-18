@@ -1169,7 +1169,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping();
 	}
-	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message[] '" + message + "', Embed " + message.content.embed + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
+	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message + "', Embeds[] " + message.embeds + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
