@@ -1121,7 +1121,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0,4) == "SEB,"){
 		message.reply("Whoops! The prefix is `Seb,` (case sensitive)");
 	};
-	console.log("[" + message.member.guild.name + "]: {Author " + message.author.username + ", Message '" + message.content + "', Embed " + message.embed + ", Command " + cmd + "}");
+	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message.content + "', Embed " + message.content.embed + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
