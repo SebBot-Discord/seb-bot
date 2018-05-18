@@ -62,7 +62,7 @@ function output(error, token) {
 }
 client.on('ready', () => {
 ready = 1;
-console.log("[" + time() + "]: SebBot " + ver + " loaded!");
+console.log("SebBot " + ver + " ready!");
 client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 	title: "Seb Bot has restarted",
     color: 3750201,
