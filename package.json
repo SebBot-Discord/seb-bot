@@ -8,9 +8,10 @@
   },
   "dependencies": {
     "discord.js": "11.3.2",
-    "request": "2.81.0",
+    "request": "2.86.0",
     "cheerio": "0.22.0",
-    "dblapi.js": "1.2.1",
-    "html-to-json": "0.6.0"
+    "dblapi.js": "2.0.1",
+    "html-to-json": "0.6.0",
+    "gm": "1.23.1"
   }
 }
