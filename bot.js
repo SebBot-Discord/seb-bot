@@ -1,4 +1,4 @@
-const ver = "1.0.0";
+const ver = "1.0.1";
 const changelog = `
 New command: Seb, crazyimg
 `;
@@ -543,6 +543,7 @@ try {
 		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, firecracker"){
+		message.reply("That command has been removed"); return;
 		cmd = true;
 		message.channel.startTyping();
 		var emojis = {
@@ -1134,13 +1135,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0, 14) == "Seb, crazyimg "){
+	if (message.content.substr(0, 13) == "Seb, crazyimg"){
 		message.channel.startTyping();
 		var img = undefined;
 		if (message.attachments.length != 1){
-			var m = message.replace("https", "http").match(/http:\/\/\S+/);
+			var m = message.content.replace("https", "http").match(/http:\/\/\S+/);
 			if (!m){
-				message.reply("Please attach an image file or supply an image URL as the second argument");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
 			}
 		} else {
