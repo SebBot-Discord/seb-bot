@@ -66,6 +66,7 @@ function output(error, token) {
         } else
                 console.log(`Logged in. Token: ${token}`);
 }
+var seconds = 0;
 client.on('ready', () => {
 ready = 1;
 console.log("SebBot " + ver + " ready!");
@@ -82,6 +83,7 @@ client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({
 var stat = 0;
 client.user.setStatus("idle");
 client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 } });
+ setInterval(function(){ seconds++; }, 1000);
  setInterval(function(){
 	client.user.setStatus("online");
 	stat++;
