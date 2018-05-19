@@ -130,7 +130,7 @@ try {
 							value: `Retry that command in ${timeleft}.`
 						}],
 						image: {
-							url: "https://i.pinimg.com/originals/60/ff/e4/60ffe47457e221d2d08c3cae9d6bee3b.jpg"
+							url: "https://i.imgur.com/jOs6J2C.gif"
 						},
 				 footer: {
 				     text: `${message.author.username} got rekt`,
