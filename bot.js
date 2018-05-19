@@ -1233,13 +1233,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.edge(3)
 			.toBuffer('PNG',function (err, buffer) {
 			  if (err) console.log("!!!!!!!!!!!!!!!  " + err); return;
-			  process.env['output-' + message.author.id + '.png'] = buffer.toString('utf-8');
+			  process.env['output-' + message.author.id + '.buf'] = buffer.toString('utf-8');
 			});
 			//.write('output-' + message.author.id + '.jpg', function (err) {
 			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
 			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		message.reply({files:[process.env['output-' + message.author.id + '.png']]});
+		//message.reply({files:[process.env['output-' + message.author.id + '.buf']]});
+		message.reply(process.env['output-' + message.author.id + '.buf']);
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
 	}
