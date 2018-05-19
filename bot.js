@@ -1,6 +1,6 @@
 const ver = "1.0.1";
 const changelog = `
-New command: Seb, crazyimg
+Seb, help updates
 `;
 
 var previous = null;
@@ -99,7 +99,7 @@ setInterval(() => {
 client.on('message', message => {
 try {
 	var cmd = false;
-	if (message.content.substr(0,3) == "Seb"){
+	if (message.content.substr(0,5) == "Seb, "){
 		if (message.member.guild.name == "Hebby"){
 			if (message.channel.name != "bot-commands" && message.member.guild != null){
 				message.reply("Commands can only be used in <#402320341420212224> on Hebby!").then((msg)=>{
@@ -148,7 +148,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3750201,
-		description: "\n**Seb, invite**\n Get the link to invite Seb Bot to your server\n**Seb, cowsay {message}**\n Make the cow say {message}!\n**Seb, cryptic {message}**\n Ecrypts {message} in emoji!\n**Seb, pirate {text}**\n Translates {text} to pirate speak\n**Seb, xkcd**\n Get an XKCD comic\n**Seb, tell me a joke**\n Gives you a (not so) funny joke\n**Seb, search for {item}**\n Searches for {item} on google\n**Seb, tell me a fact about {number}**\n Gives you a random fact about {number}\n**Seb, random meme**\n Sends a random meme from imgflip\n**Seb, cat pic**\n Sends you an adorable cat picture from HTTP-Meow\n**Seb, fortune cookie**\n Reveal your true fate. The chinese are never wrong.\n**Seb, 8ball {question}**\n Test your luck.\n**Seb, trbmb**\n Generates a that really blank's my blank phrase\n**Seb, dog pic**\n Sends an adorable picture of a dog.\n**Seb, be like {name}**\n Generates a  be like bill image for {name}\n**Seb, firecracker**\n Amazing display of fireworks!\n**Seb, yo momma**\n Get an epic yo momma joke.\n**Seb, echo {msg}**\n Seb Bot will echo whatever you want!\n**Seb, stats**\n Shows the bot's status\n**Seb, image {query}**\n Searches for query with the flickr api\n**Seb, ping**\n Measures the latency of the bot\n**Seb, gif {query}**\n Searches for {query} on gfycat, then returns the first result\n**Seb, ddg {query}**\n Searches {query} on duckduckgo and returns the first results\n**Seb, xkcd**\n Gets a random xkcd comic\n**Seb, news**\n Gets the latest NY Times article\n**Seb, crazyimg**\n cRaZiFys your image!:underage: **Seb, boobs**\n Gets a great boob pic\n:underage: **Seb, rule34 {query}**\n Searches for {query} on rule34\n:underage: **Seb, ass**\n Gets a great ass pic\n:underage: **Seb, sex**\n Get a sexy gif\n:underage: **Seb, furry**\n Get a great furry pic",
+	    description: `**Running SebBot ${ver}**\nSeb Bot is an open-source multi-purpose discord bot with many fun + NSFW commands. You can see a list of all the commands at **__http://sebbot.tk/__**. Join the support service to speak to the owner and request help: **__https://discord.gg/8MQx6J7/__**`,
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
