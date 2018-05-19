@@ -689,7 +689,7 @@ try {
 		var member_count = "`" + guild.memberCount + "`";
 		message.channel.startTyping();
 		function toEmoji(num){
-		        return num.replace("0", ":zero:").replace("1", ":one:").replace("2", ":two:").replace("3", ":three:").replace("4", ":four:").replace("5", ":five:").replace("6", ":six:").replace("7", ":seven:").replace("8", ":eight:").replace("9", ":nine:");
+		        return num + "".replace("0", ":zero:").replace("1", ":one:").replace("2", ":two:").replace("3", ":three:").replace("4", ":four:").replace("5", ":five:").replace("6", ":six:").replace("7", ":seven:").replace("8", ":eight:").replace("9", ":nine:");
 		}
 		var minutes = toEmoji(Math.floor(seconds/60));
 		var hours = toEmoji(Math.floor(minutes/60));
