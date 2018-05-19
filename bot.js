@@ -1145,6 +1145,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
 			}
+			img = img[0];
 		} else {
 			img = message.attachments[0].url;
 		}
