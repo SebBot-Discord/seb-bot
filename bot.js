@@ -702,7 +702,7 @@ try {
                   description: `
 **Seb Bot Stats**
 Running in ` + `${client.guilds.size}` + ` servers
-Running for ` + "`" + `*:clock1: ${time}*` + "`" + `
+Running for ` + `*:clock1: ${time}*` + `
 Shard: ` + "`undefined`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
