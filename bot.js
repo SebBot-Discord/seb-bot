@@ -127,7 +127,7 @@ try {
 							name: "YOU JUST GOT...",
 							value: "__***RATELIMITED SON!!***__"
 						}, {
-							name: String.fromCharCode(160),
+							name: String.fromCharCode(239),
 							value: "Retry that command in ${timeleft}."
 						}],
 						image: {
