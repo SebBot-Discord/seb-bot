@@ -686,19 +686,26 @@ try {
 		};
 		var member_count = "`" + guild.memberCount + "`";
 		message.channel.startTyping();
-        //request({url: 'https://discordapp.com/api/users/@me/guilds',headers: {'Authorization': 'Bot NDA4NzE4Mjk3NDAwNDc1NjY4.DVUleg.VJV1fHSXPvXV_TX3CtJor-oAX8I'}};, function (error, response, body){
-            message.reply({embed:{
-                color: 3750201,
-                title: "Statistics",
-                description: `
+		function toEmoji(num){
+		        return num.replace("0", ":zero:").replace("1", ":one:").replace("2", ":two:").replace("3", ":three:").replace("4", ":four:").replace("5", ":five:").replace("6", ":six:").replace("7", ":seven:").replace("8", ":eight:").replace("9", ":nine:");
+		}
+		var minutes = toEmoji(Math.floor(seconds/60));
+		var hours = toEmoji(Math.floor(minutes/60));
+		var days = toEmoji(Math.floor(hours/24));
+		var time = `:clock1: ${days} days | ${hours} hours | ${seconds} seconds`;
+                message.reply({embed:{
+                  color: 3750201,
+                  title: "Statistics",
+                  description: `
 **Seb Bot Stats**
 Running in ` + "`" + `${client.guilds.size}` + "`" + ` servers
-Shards: ` + "`7/20`" + `
+Running for ` + "`" + `*${time}*` + "`" + `
+Shard: ` + "`undefined`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
 Verification level: ` + "`" + verification + "`" + `
 Explicit content filter: ` + "`" + explicit_filter + "`" + `
-Member count: ` + "`" + member_count + "`" + `
+Member count: ` + "`" + member_count + "`" + `\n
 **Api Stats**
 Be Like Bill `+"`"+"ONLINE"+"`"+`
 Flickr **`+"`"+"OFFLINE"+"`**"+`
