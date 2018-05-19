@@ -117,27 +117,30 @@ try {
 			};
 		};
 		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
-			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
-			var timeleft = Math.floor((new Date().getTime() - limiters[message.author.id]) / 1000);
-			message.reply({embed:{
-				color: 3750201,
-				title: "OH SNAP",
-						fields: [{
-							name: "YOU JUST GOT...",
-							value: "__***RATELIMITED SON!!***__"
-						}, {
-							name: "._.",
-							value: `Retry that command in ${timeleft} seconds.`
-						}],
-						image: {
-							url: "https://i.imgur.com/jOs6J2C.gif"
-						},
-				 footer: {
-				     text: `${message.author.username} got rekt`,
-				     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-				 }
-		        }}).catch();
-			return;
+			var success = false;
+			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) success = true; }
+			if (!success){
+				var timeleft = Math.floor((new Date().getTime() - limiters[message.author.id]) / 1000);
+				message.reply({embed:{
+					color: 3750201,
+					title: "OH SNAP",
+							fields: [{
+								name: "YOU JUST GOT...",
+								value: "__***RATELIMITED SON!!***__"
+							}, {
+								name: "._.",
+								value: `Retry that command in ${timeleft} seconds.`
+							}],
+							image: {
+								url: "https://i.imgur.com/jOs6J2C.gif"
+							},
+					 footer: {
+					     text: `${message.author.username} got rekt`,
+					     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+					 }
+				}}).catch();
+				return;
+			}
 		} else limiters[message.author.id] = new Date().getTime();
 	};
 	if (message.content == "Seb, discordstatus"){
