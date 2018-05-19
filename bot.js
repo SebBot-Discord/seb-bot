@@ -1140,16 +1140,16 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
-			var m = msg.replace("https", "http").match(/http:\/\/\S+/);
-			if (!m){
+			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			if (!img){
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
 			}
 		} else {
-			img = message.attachments[0];
+			img = message.attachments[0].url;
 		}
 		message.channel.send("Starting crazyimg...");
-		gm(request(img.url))
+		gm(request(img))
 			.flip()
 			.magnify()
 			.rotate('green', 45)
