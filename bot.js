@@ -1224,7 +1224,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			img = message.attachments[0].url;
 		}
 		message.channel.send("Starting crazyimg...");
-		await gm(request(img))
+		gm(request(img))
 			.flip()
 			.magnify()
 			.rotate('green', 45)
@@ -1234,7 +1234,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.write('output-' + message.author.id + '.jpg', function (err) {
 				if (err) console.log(err); message.reply("crazyimg failed"); return;
 			});
-		fs.createReadStream('output-' + message.author.id + '.jpg');
+		//fs.createReadStream('output-' + message.author.id + '.jpg');
 		message.reply({files:['output-' + message.author.id + '.jpg']});
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
