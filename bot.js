@@ -155,7 +155,7 @@ try {
         }})
 			.catch(console.error);
         message.reply("Check your DMs, I sent you a list of commands!");
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,13) == "Seb, cryptic "){
 		var input = message.content.substr(13);
@@ -210,7 +210,7 @@ try {
             },
 		}})
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
 	};
     if (message == "Seb, tell me a joke"){
 		cmd = true;
@@ -232,7 +232,7 @@ try {
         }})
 			.catch(console.error);
     });
-	message.channel.stopTyping();
+	message.channel.stopTyping(true);
     };
     if (message.content.substr(0,26) == "Seb, tell me a fact about "){
 		cmd = true;
@@ -256,7 +256,7 @@ try {
      } else
      message.reply("That number sucks!");
     });
-	message.channel.stopTyping();
+	message.channel.stopTyping(true);
     };
     if (message.content.substr(0,16) == "Seb, search for "){
 		cmd = true;
@@ -287,7 +287,7 @@ try {
         }
         }})
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,10) == "Seb, echo "){
 		cmd = true;
@@ -302,7 +302,7 @@ try {
         }
         }})
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
 	};
 	//https://api.duckduckgo.com/?q=DuckDuckGo&format=json
 	if (message.content.substr(0,9) == "Seb, ddg "){
@@ -335,7 +335,7 @@ try {
         });*/
 		message.reply("The bot has reached its API quota for DuckDuckGo, try again tomorrow.")
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, random meme"){
 		cmd = true;
@@ -362,7 +362,7 @@ try {
             } else
                message.reply("I can't find any memes right now").catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, cat pic"){
 		cmd = true;
@@ -396,7 +396,7 @@ try {
 		} catch(err) {
 			message.reply("**ERROR!**\n```\n"+err.message+"\n```");
 		}
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, fortune cookie"){
 		cmd = true;
@@ -421,7 +421,7 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,12) == "Seb, pirate "){
 		cmd = true;
@@ -443,7 +443,7 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content.substr(0,11) == "Seb, 8ball "){
 		cmd = true;
@@ -468,13 +468,13 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, shut up"){
 		cmd = true;
 		message.channel.startTyping();
         message.reply("no, u!");
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, trbmb"){
 		cmd = true;
@@ -495,7 +495,7 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, dog pic"){
 		cmd = true;
@@ -519,7 +519,7 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
     //
     if (message.content.substr(0,13) == "Seb, be like "){
@@ -540,7 +540,7 @@ try {
             }})
 				.catch(console.error);
        // });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, firecracker"){
 		cmd = true;
@@ -566,7 +566,7 @@ try {
 			newmessage.edit("Firecracker!");
 		})
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
 	};
 	if (message.content == "Seb, yo momma"){
 		cmd = true;
@@ -588,7 +588,7 @@ try {
             }})
 				.catch(console.error);
         });
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, stats"){
 		const guild = message.member.guild;
@@ -652,7 +652,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
             }})
 				.catch(console.error);
         //});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,11) == "Seb, image "){
 		cmd = true;
@@ -690,7 +690,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					.catch(console.error);
 			});
 		});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, ping"){
 		cmd = true;
@@ -704,7 +704,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    }
 		}})
 			.catch(console.error);
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, servers"){
 		const guild = message.member.guild;
@@ -735,7 +735,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
             }})
 				.catch(console.error);
         //});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, dblinfo"){
 		cmd = true;
@@ -755,7 +755,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
             }})
 				.catch(console.error);
         //});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,9) == "Seb, gif "){
 		cmd = true;
@@ -780,7 +780,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}})
 				.catch(console.error);
 			});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -825,7 +825,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				}
 			})
         }catch(err){}
-	message.channel.stopTyping();
+	message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,12) == "Seb, rule34 "){
 		if (cmd){ return; }
@@ -989,7 +989,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			};
 		});
 		*/
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	
 	if (message.content == "Seb, boobs"){
@@ -1007,7 +1007,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply("\n" + file)
 				.catch(console.error);
 		});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content == "Seb, sex"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
@@ -1132,7 +1132,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}})
 				.catch(console.error);
 		});
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0, 14) == "Seb, crazyimg "){
 		message.channel.startTyping();
@@ -1143,8 +1143,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				message.reply("Please attach an image file or supply an image URL as the second argument");
 				return;
 			}
-		} else
-			img = message.attachments[0]
+		} else {
+			img = message.attachments[0];
+		}
+		message.channel.send("Starting crazyimg...");
 		gm(request(img.url))
 			.flip()
 			.magnify()
@@ -1155,7 +1157,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.stream((error, stdout) => {
 			  message.reply({files:[stdout]});
 			})
-		message.channel.stopTyping();
+		message.channel.send("crazyimg complete!");
+		message.channel.stopTyping(true);
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
@@ -1167,7 +1170,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				description: "```\n" + txt + "\n```"
 			}});
 		})
-		message.channel.stopTyping();
+		message.channel.stopTyping(true);
 	}
 	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message + "', Embeds[] " + message.embeds + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
