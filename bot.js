@@ -148,7 +148,7 @@ try {
         message.author.send({embed: {
             title: "Seb Bot",
             color: 3750201,
-	    description: `**Running SebBot ${ver}**\nSeb Bot is an open-source multi-purpose discord bot with many fun + NSFW commands. You can see a list of all the commands at **__http://sebbot.tk/__**. Join the support service to speak to the owner and request help: **__https://discord.gg/8MQx6J7/__**`,
+	    description: `**Running SebBot ${ver}**\nSeb Bot is an open-source multi-purpose discord bot with many fun + NSFW commands. You can see a list of all the commands at **__https://sebbot.tk/__**. Join the support service to speak to the owner and request help: **__https://discord.gg/8MQx6J7/__**`,
             footer: {
                 text: "Seb Bot created by SebbyTheGODKid#0426",
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
