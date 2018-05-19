@@ -145,9 +145,7 @@ try {
 			var fields = [];
 			var txt = JSON.parse(bod);
 			var components = txt.components;
-			console.log(JSON.stringify(components));
 			for (i = 0; i < components; i++){
-				console.log(components[i]);
 				var indicator = ":white_check_mark:";
 				var indicator_text = "Broken";
 				if (components[i].status != "operational") indicator = ":x:";
