@@ -117,7 +117,7 @@ try {
 			return;
 		} else {
 			message.reply("Forcing process restart...");
-			setTimeout(function(){process.exit(0);}, 1000);
+			setTimeout(function(){process.exit(143);}, 1000);
 		}
     }
     if (message.content.substr(0, 10) == "Seb, eval "){
@@ -1138,8 +1138,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0, 13) == "Seb, crazyimg"){
 		message.channel.startTyping();
 		var img = undefined;
+		var msg = message.content;
 		if (message.attachments.length != 1){
-			var m = message.content.replace("https", "http").match(/http:\/\/\S+/);
+			var m = msg.replace("https", "http").match(/http:\/\/\S+/);
 			if (!m){
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
