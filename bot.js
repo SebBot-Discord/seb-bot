@@ -143,9 +143,11 @@ try {
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
 			var fields = [];
-			var txt = JSON.parse(bod)[0];
+			var txt = JSON.parse(bod);
 			var components = txt.components;
+			console.log(JSON.stringify(components));
 			for (i = 0; i < components; i++){
+				console.log(components[i]);
 				var indicator = ":white_check_mark:";
 				var indicator_text = "Broken";
 				if (components[i].status != "operational") indicator = ":x:";
