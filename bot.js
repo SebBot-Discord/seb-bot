@@ -118,7 +118,7 @@ try {
 		};
 		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
 			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
-			var timeleft = (new Date().getTime() - limiters[message.author.id]) / 1000;
+			var timeleft = math.floor((new Date().getTime() - limiters[message.author.id]) / 1000);
 			message.reply({embed:{
 				color: 3750201,
 				title: "OH SNAP",
@@ -127,7 +127,7 @@ try {
 							value: "__***RATELIMITED SON!!***__"
 						}, {
 							name: "._.",
-							value: `Retry that command in ${timeleft}.`
+							value: `Retry that command in ${timeleft} seconds.`
 						}],
 						image: {
 							url: "https://i.imgur.com/jOs6J2C.gif"
