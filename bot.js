@@ -6,6 +6,7 @@ New command: Seb, crazyimg
 var previous = null;
 var count = 0;
 var cheerio = require('cheerio');
+const fs = require('fs');
 var stat = 0;
 var ready = 0;
 var setup = 0;
@@ -1157,9 +1158,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.blur(7, 3)
 			.crop(300, 300, 150, 130)
 			.edge(3)
-			.stream((error, stdout) => {
-			  message.reply({files:[stdout]});
+			.write('output-' + message.author.id + '.jpg', function (err) {
+				if (err) console.log(err); message.reply("crazyimg failed"); return;
 			})
+		fs.createReadStream('output-' + message.author.id + '.jpg');
+		message.reply({files:['output-' + message.author.id + '.jpg']});
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
 	}
