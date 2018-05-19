@@ -116,7 +116,6 @@ try {
 				return;
 			};
 		};
-		limiters[message.author.id] = new Date().getTime();
 		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
 			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
 			var timeleft = new Date().getTime() - limiters[message.author.id];
@@ -127,8 +126,8 @@ try {
 							name: "YOU JUST GOT...",
 							value: "__***RATELIMITED SON!!***__"
 						}, {
-							name: String.fromCharCode(239),
-							value: "Retry that command in ${timeleft}."
+							name: "._.",
+							value: `Retry that command in ${timeleft}.`
 						}],
 						image: {
 							url: "https://i.pinimg.com/originals/60/ff/e4/60ffe47457e221d2d08c3cae9d6bee3b.jpg"
@@ -138,6 +137,7 @@ try {
 				     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
 				 }
 		        }}).catch();
+			return;
 		} else limiters[message.author.id] = new Date().getTime();
 	};
 	if (message.content == "Seb, discordstatus"){
