@@ -4,7 +4,7 @@ const changelog = `
 - Seb, discordstatus
 `;
 
-const CONFIG_COMMAND_DELAY = 3;
+const CONFIG_COMMAND_DELAY = 5;
 
 var previous = null;
 var count = 0;
@@ -118,7 +118,7 @@ try {
 		};
 		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
 			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
-			var timeleft = new Date().getTime() - limiters[message.author.id];
+			var timeleft = (new Date().getTime() - limiters[message.author.id]) / 1000;
 			message.reply({embed:{
 				color: 3750201,
 				title: "OH SNAP",
