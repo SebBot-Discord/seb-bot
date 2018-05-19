@@ -118,7 +118,7 @@ try {
 		};
 		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
 			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
-			var timeleft = math.floor((new Date().getTime() - limiters[message.author.id]) / 1000);
+			var timeleft = Math.floor((new Date().getTime() - limiters[message.author.id]) / 1000);
 			message.reply({embed:{
 				color: 3750201,
 				title: "OH SNAP",
