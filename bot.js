@@ -695,7 +695,7 @@ try {
 		var days = (Math.floor(hours/24));
 		var time = `${days} days | ${hours} hours | ${minutes} minutes | ${seconds} seconds`.replace(/[0-9]/g, function (x) {
                     return nums[x];
-                }));
+                });
                 message.reply({embed:{
                   color: 3750201,
                   title: "Statistics",
