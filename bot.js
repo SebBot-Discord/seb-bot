@@ -1224,6 +1224,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			img = message.attachments[0].url;
 		}
 		message.channel.send("Starting crazyimg...");
+		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
 			.flip()
 			.magnify()
@@ -1234,7 +1235,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.toBuffer('PNG',function (err, buffer) {
 			  if (err) console.log("!!!!!!!!!!!!!!!  " + err); return;
 			  process.env['output-' + message.author.id + '.buf'] = buffer.toString('utf-8');
-			  fs.writeFileSync('./output-' + message.author.id + '.PNG', buffer, function(err) {
+			  fs.writeFileSync('/tmp/' + name, buffer, function(err) {
 			      if(err) {
 			  	return console.log(err);
 			      }
@@ -1245,7 +1246,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
 			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		message.reply({files:['./output-' + message.author.id + '.PNG']}).catch(console.error);
+		message.reply({files:['/tmp/' + name]}).catch(console.error);
 		//message.reply(process.env['output-' + message.author.id + '.buf']);
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
