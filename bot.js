@@ -1231,11 +1231,15 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.blur(7, 3)
 			.crop(300, 300, 150, 130)
 			.edge(3)
-			.write('output-' + message.author.id + '.jpg', function (err) {
-				if (err) console.log(err); message.reply("crazyimg failed"); return;
+			.toBuffer('PNG',function (err, buffer) {
+			  if (err) console.log("!!!!!!!!!!!!!!!  " + err); return;
+			  process.env['output-' + message.author.id + '.png'] = buffer.toString('utf-8');
 			});
+			//.write('output-' + message.author.id + '.jpg', function (err) {
+			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
+			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		message.reply({files:['output-' + message.author.id + '.jpg']});
+		message.reply({files:[process.env['output-' + message.author.id + '.png']]});
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
 	}
