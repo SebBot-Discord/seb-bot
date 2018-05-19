@@ -1177,7 +1177,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping(true);
 	}
-	console.log("[" + message.member.guild.name ? "" : "DMs" + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot " + message.author.bot + ", Message '" + message + "', Embed[] " + JSON.stringify(message.embeds[0]) + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
+	var mesg = message.content ? "" : "Empty";
+	if (mesg != "Empty"){
+		mesg = "'" + mesg + "'";
+	}
+	console.log("[" + message.member.guild.name ? "" : "DMs" + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot " + message.author.bot + ", Message '" + mesg + "', MessageLength " + message.content.length + ", Command " + cmd + "} Embed:");
+	console.log(JSON.stringify(message.embeds[0]));
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
