@@ -2,6 +2,7 @@ const ver = "1.0.3";
 const changelog = `
 - Get rate limited sonnnn!
 - Seb, discordstatus
+- The bot will show how long it's been running in the "Seb, stats" command
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -688,20 +689,20 @@ try {
 		};
 		var member_count = "`" + guild.memberCount + "`";
 		message.channel.startTyping();
-		function toEmoji(num){
-		        return num + "".replace("0", ":zero:").replace("1", ":one:").replace("2", ":two:").replace("3", ":three:").replace("4", ":four:").replace("5", ":five:").replace("6", ":six:").replace("7", ":seven:").replace("8", ":eight:").replace("9", ":nine:");
-		}
-		var minutes = toEmoji(Math.floor(seconds/60));
-		var hours = toEmoji(Math.floor(minutes/60));
-		var days = toEmoji(Math.floor(hours/24));
-		var time = `:clock1: ${days} days | ${hours} hours | ${seconds} seconds`;
+		var nums = {"0":":zero:","1":":one:","2":":two:","3":":three:","4":":four:","5":":five:","6":":six:","7":":seven:","8":":eight:","9":":nine:"};
+		var minutes = (Math.floor(seconds/60));
+		var hours = (Math.floor(minutes/60));
+		var days = (Math.floor(hours/24));
+		var time = `${days} days | ${hours} hours | ${minutes} minutes | ${seconds} seconds`.replace(/[0-9]/g, function (x) {
+                    return nums[x];
+                }));
                 message.reply({embed:{
                   color: 3750201,
                   title: "Statistics",
                   description: `
 **Seb Bot Stats**
-Running in ` + "`" + `${client.guilds.size}` + "`" + ` servers
-Running for ` + "`" + `*${time}*` + "`" + `
+Running in ` + `${client.guilds.size}` + ` servers
+Running for ` + "`" + `*:clock1: ${time}*` + "`" + `
 Shard: ` + "`undefined`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
