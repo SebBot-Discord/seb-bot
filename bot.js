@@ -1,19 +1,24 @@
-const ver = "1.0.2";
+const ver = "1.0.3";
 const changelog = `
-Internal changes
+- Get rate limited sonnnn!
+- Seb, discordstatus
 `;
+
+const CONFIG_COMMAND_DELAY = 3;
 
 var previous = null;
 var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
+const upgraded = [""];
+var limiters = {};
 var stat = 0;
 var ready = 0;
 var setup = 0;
 var Discord = require('discord.js');
 var htmlToJson = require("html-to-json");
 var client = new Discord.Client();
-const gm = require("gm")//.subClass({imageMagick: true});
+const gm = require("gm").subClass({imageMagick: true});
 const DBL = require("dblapi.js");
 const request = require('request')
 const dbl = new DBL(process.env.DBL_TOKEN, client);
@@ -111,7 +116,63 @@ try {
 				return;
 			};
 		};
+		limiters[message.author.id] = new Date().getTime();
+		if (new Date().getTime() - limiters[message.author.id] < CONFIG_COMMAND_DELAY * 1000){
+			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
+			var timeleft = new Date().getTime() - limiters[message.author.id];
+			message.reply({embed:{
+                color: 3750201,
+                title: "OH SNAP",
+				fields: [{
+					name: "YOU JUST GOT...",
+					value: "__***RATELIMITED SON!!***__"
+				}, {
+					name: String.fromCharCode(160),
+					value: "Retry that command in ${timeleft}."
+				}],
+				image: {
+					url: "https://i.pinimg.com/originals/60/ff/e4/60ffe47457e221d2d08c3cae9d6bee3b.jpg"
+				},
+                 footer: {
+                     text: `${message.author.username} got rekt`,
+                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+                 }
+            }}).catch();
+		else limiters[message.author.id] = new Date().getTime();
 	};
+	if (message.content == "Seb, discordstatus"){
+		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
+			var fields = [];
+			var txt = JSON.parse(bod);
+			var components = txt.components;
+			for (i = 0; i < components; i++){
+				var indicator = ":white_check_mark:";
+				var indicator_text = "Broken";
+				if (components[i].status != "operational") indicator = ":x:";
+				if (components[i].status == "operational") indicator_text = "Operational";
+				fields.push({
+					name: `${indicator} **|** ${components[i].name}`,
+					value: `${indicator_text}`
+				});
+			}
+			var incidents = txt.incidents;
+			var incident = "None";
+			if (incidents[0]){
+				incident = incidents[0].incident_updates.body;
+			}
+			message.reply({embed:{
+                color: 3750201,
+                title: "Discord Status",
+				url: "https://status.discordapp.com/",
+				fields: fields,
+				description: `${txt.status.description}\n~~--------------------------~~\nLatest incident: ${incident}`,
+                 footer: {
+                     text: `${message.author.username} got rekt`,
+                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+                 }
+            }}).catch();
+		});
+	}
     if (message.content == "Seb, fprestart"){
 	    if (message.author.id != 299708692129906692){
 			message.reply("Haha, nice try");
