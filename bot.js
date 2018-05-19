@@ -143,7 +143,7 @@ try {
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
 			var fields = [];
-			var txt = JSON.parse(bod);
+			var txt = JSON.parse(bod)[0];
 			var components = txt.components;
 			for (i = 0; i < components; i++){
 				var indicator = ":white_check_mark:";
