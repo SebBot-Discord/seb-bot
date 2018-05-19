@@ -1,6 +1,6 @@
-const ver = "1.0.1";
+const ver = "1.0.2";
 const changelog = `
-Seb, help updates
+Internal changes
 `;
 
 var previous = null;
@@ -1177,7 +1177,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping(true);
 	}
-	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message + "', Embeds[] " + message.embeds[0] + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
+	console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Message '" + message + "', Embed[] " + JSON.stringify(message.embeds[0]) + ", MessageLength " + message.content.length + ", Command " + cmd + "}");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
