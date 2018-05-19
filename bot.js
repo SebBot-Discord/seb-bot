@@ -1234,13 +1234,19 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.toBuffer('PNG',function (err, buffer) {
 			  if (err) console.log("!!!!!!!!!!!!!!!  " + err); return;
 			  process.env['output-' + message.author.id + '.buf'] = buffer.toString('utf-8');
+			  fs.writeFileSync("/tmp/" + 'output-' + message.author.id + '.PNG', buffer, function(err) {
+			      if(err) {
+			  	return console.log(err);
+			      }
+			      message.reply("Success, reading file contents...");
+			  }); 
 			});
 			//.write('output-' + message.author.id + '.jpg', function (err) {
 			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
 			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		//message.reply({files:[process.env['output-' + message.author.id + '.buf']]});
-		message.reply(process.env['output-' + message.author.id + '.buf']);
+		message.reply({files:["/tmp/" + 'output-' + message.author.id + '.PNG']});
+		//message.reply(process.env['output-' + message.author.id + '.buf']);
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
 	}
