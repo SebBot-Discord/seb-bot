@@ -121,24 +121,24 @@ try {
 			for (i = 0; i < upgraded.length; i++){ if (upgraded[i] == message.author.id) return; }
 			var timeleft = new Date().getTime() - limiters[message.author.id];
 			message.reply({embed:{
-                color: 3750201,
-                title: "OH SNAP",
-				fields: [{
-					name: "YOU JUST GOT...",
-					value: "__***RATELIMITED SON!!***__"
-				}, {
-					name: String.fromCharCode(160),
-					value: "Retry that command in ${timeleft}."
-				}],
-				image: {
-					url: "https://i.pinimg.com/originals/60/ff/e4/60ffe47457e221d2d08c3cae9d6bee3b.jpg"
-				},
-                 footer: {
-                     text: `${message.author.username} got rekt`,
-                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-                 }
-            }}).catch();
-		else limiters[message.author.id] = new Date().getTime();
+				color: 3750201,
+				title: "OH SNAP",
+						fields: [{
+							name: "YOU JUST GOT...",
+							value: "__***RATELIMITED SON!!***__"
+						}, {
+							name: String.fromCharCode(160),
+							value: "Retry that command in ${timeleft}."
+						}],
+						image: {
+							url: "https://i.pinimg.com/originals/60/ff/e4/60ffe47457e221d2d08c3cae9d6bee3b.jpg"
+						},
+				 footer: {
+				     text: `${message.author.username} got rekt`,
+				     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				 }
+		        }}).catch();
+		} else limiters[message.author.id] = new Date().getTime();
 	};
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
