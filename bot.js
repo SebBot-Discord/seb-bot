@@ -145,7 +145,7 @@ try {
     if (message == "Seb, help"){
 		cmd = true;
 		message.channel.startTyping();
-        message.author.send({embed: {
+        message.reply({embed: {
             title: "Seb Bot",
             color: 3750201,
 	    description: `**Running SebBot ${ver}**\nSeb Bot is an open-source multi-purpose discord bot with many fun + NSFW commands. You can see a list of all the commands at **__https://sebbot.tk/__**. Join the support service to speak to the owner and request help: **__https://discord.gg/8MQx6J7/__**`,
@@ -155,7 +155,6 @@ try {
             },
         }})
 			.catch(console.error);
-        message.reply("Check your DMs, I sent you a list of commands!");
 		message.channel.stopTyping(true);
     };
 	if (message.content.substr(0,13) == "Seb, cryptic "){
