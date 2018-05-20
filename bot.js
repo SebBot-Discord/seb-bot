@@ -1232,8 +1232,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.blur(7, 3)
 			.edge(3)
 			.stroke("#ffffff")
-			.font("Dense-Regular.ttf", 12)
-			.drawText(30, 20, "Generated with Seb Bot")
+			.font("Dense-Regular.ttf", 60)
+			.drawText(30, 75, "Generated with Seb Bot")
 			.resize(1024, 1024)
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
