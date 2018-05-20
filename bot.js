@@ -1231,10 +1231,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.rotate('green', 45)
 			.blur(7, 3)
 			.edge(3)
+			.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 45)
 			.drawText(5, 5, "Generated with Seb Bot")
-			.resize(1024, 1024)
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
