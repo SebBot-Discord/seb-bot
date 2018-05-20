@@ -1276,7 +1276,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message.content;
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
-			if ((!img[0]) && (!img[1])){
+			if (img.length != 2){
 				message.reply("Please provide two image links to merge");
 				return;
 			}
