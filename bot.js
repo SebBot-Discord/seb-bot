@@ -1230,8 +1230,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.magnify()
 			.rotate('green', 45)
 			.blur(7, 3)
-			.crop(300, 300, 150, 130)
 			.edge(3)
+			.resize(1024, 1024)
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
