@@ -1292,7 +1292,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.send("Processing image, please wait...");
 		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
-			.append(request(img2), true)
+			//.append(request(img2))
+			.append(img2)
 			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
