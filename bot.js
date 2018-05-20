@@ -1232,22 +1232,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.blur(7, 3)
 			.crop(300, 300, 150, 130)
 			.edge(3)
-			.toBuffer('PNG',function (err, buffer) {
-			  if (err) console.log("!!!!!!!!!!!!!!!  " + err); return;
-			  process.env['output-' + message.author.id + '.buf'] = buffer.toString('utf-8');
-			  fs.writeFileSync('tmpimg.png', function(err) {
-			      if(err) {
-			  	console.log(err);
-				return;
-			      }
-			      message.reply("Success, reading file contents...");
-			  }); 
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('crazyimg done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			});
 			//.write('output-' + message.author.id + '.jpg', function (err) {
 			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
 			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		message.reply({files:['tmpimg.png']}).catch(console.error);
 		//message.reply(process.env['output-' + message.author.id + '.buf']);
 		message.channel.send("crazyimg complete!");
 		message.channel.stopTyping(true);
