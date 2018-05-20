@@ -1223,7 +1223,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		} else {
 			img = message.attachments[0].url;
 		}
-		message.channel.send("Starting crazyimg...");
+		message.channel.send("Processing image, please wait...");
 		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
 			.flip()
@@ -1238,14 +1238,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
 			});
 			//.write('output-' + message.author.id + '.jpg', function (err) {
 			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
 			//});
 		//fs.createReadStream('output-' + message.author.id + '.jpg');
 		//message.reply(process.env['output-' + message.author.id + '.buf']);
-		message.channel.send("crazyimg complete!");
-		message.channel.stopTyping(true);
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
