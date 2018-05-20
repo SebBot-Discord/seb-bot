@@ -1276,12 +1276,11 @@ client.on('guildMemberAdd', member => {
 });
 client.on("guildCreate", (guild) => {
 	var invite = "No invite";
-	guild.fetchInvites()
-		.then(invites => {
-			invite = (invites.find(invite => invite.guild == guild));
-		});
-	var fields = [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")"}]
-	if (invite === "No invite") fields = [{name:"I joined",value:guild.name}]
+	guild.channels.first(1).createInvite({maxAge:0,maxUses:0})
+	  .then(invit_ => invite = invit_.code)
+	  .catch(console.error);
+	var fields = [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")" + " | " + guild.id}]
+	if (invite === "No invite") fields = [{name:"I joined",value:guild.name+" | "+guild.id}]
 	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
 		title: "New Guild",
 		color: 3750201,
