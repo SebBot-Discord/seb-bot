@@ -1,8 +1,8 @@
-const ver = "1.0.3";
+const ver = "1.0.4";
 const changelog = `
-- Get rate limited sonnnn!
-- Seb, discordstatus
-- The bot will show how long it's been running in the "Seb, stats" command
+- Seb, blur <img>
+- Seb, merge <img1> <img2>
+- Seb, crazyimg <img>
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -1236,7 +1236,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.font("Dense-Regular.ttf", 130)
 			.drawText(5, 5, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
-			  if (!err) console.log('crazyimg done');
+			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
 			});
@@ -1265,6 +1265,40 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.drawText(5, 5, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+			});
+	}
+	if (message.content.substr(0, 10) == "Seb, merge"){
+		message.channel.startTyping();
+		var img = undefined;
+		var img2 = undefined;
+		var msg = message.content;
+		if (message.attachments.length != 1){
+			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			if (img.length != 2){
+				message.reply("Please provide two image links to merge");
+				return;
+			}
+			img2 = img[1];
+			if (!img){
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				return;
+			}
+			img = img[0];
+		} else {
+			img = message.attachments[0].url;
+		}
+		message.channel.send("Processing image, please wait...");
+		var name = 'output-' + message.author.id + '.PNG';
+		gm(request(img))
+			.append(request(img2), true)
+			.resize(1024, 1024)
+			.stroke("#ffffff")
+			.font("Dense-Regular.ttf", 130)
+			.drawText(5, 5, "Generated with Seb Bot")
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
 			});
