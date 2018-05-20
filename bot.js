@@ -1233,7 +1233,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.edge(3)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 60)
-			.drawText(30, 75, "Generated with Seb Bot")
+			.drawText(5, 1000, "Generated with Seb Bot")
 			.resize(1024, 1024)
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
