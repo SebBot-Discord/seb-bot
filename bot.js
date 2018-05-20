@@ -1240,11 +1240,34 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
 			});
-			//.write('output-' + message.author.id + '.jpg', function (err) {
-			//	if (err) console.log("!!!!!!!!!!!!!!  " + err); message.reply("crazyimg failed"); return;
-			//});
-		//fs.createReadStream('output-' + message.author.id + '.jpg');
-		//message.reply(process.env['output-' + message.author.id + '.buf']);
+	}
+	if (message.content.substr(0, 9) == "Seb, blur"){
+		message.channel.startTyping();
+		var img = undefined;
+		var msg = message.content;
+		if (message.attachments.length != 1){
+			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			if (!img){
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				return;
+			}
+			img = img[0];
+		} else {
+			img = message.attachments[0].url;
+		}
+		message.channel.send("Processing image, please wait...");
+		var name = 'output-' + message.author.id + '.PNG';
+		gm(request(img))
+			.blur(7, 3)
+			.resize(1024, 1024)
+			.stroke("#ffffff")
+			.font("Dense-Regular.ttf", 130)
+			.drawText(5, 5, "Generated with Seb Bot")
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('crazyimg done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+			});
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
