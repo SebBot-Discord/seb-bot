@@ -1214,7 +1214,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
-			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			img = msg.replace("https", "http").match(/http:\/\/\S+.\%S+/);
 			if (!img){
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
@@ -1246,7 +1246,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
-			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			img = msg.replace("https", "http").match(/http:\/\/\S+.\%S+/);
 			if (!img){
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
@@ -1275,7 +1275,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var img2 = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
-			img = msg.replace("https", "http").match(/http:\/\/\S+/);
+			img = msg.replace("https", "http").match(/http:\/\/\S+.\%S+/);
 			if (img.length != 2){
 				message.reply("Please provide two image links to merge");
 				return;
