@@ -1259,10 +1259,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
 			.blur(7, 3)
-			.resize(1024, 1024)
+			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
-			.drawText(5, 5, "Generated with Seb Bot")
+			.drawText(0, 0, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
@@ -1293,10 +1293,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
 			.append(request(img2), true)
-			.resize(1024, 1024)
+			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
-			.drawText(5, 5, "Generated with Seb Bot")
+			.drawText(0, 0, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
