@@ -166,7 +166,7 @@ try {
 		  .then(invit_ => {
 			message.reply("https://discord.gg/" + invit_.code)
 			  .then(msg => {
-				var condition = (reaction, user) => reaction.emoji.name == '❌' || reaction.emoji.name == 'x';
+				var condition = (reaction, user) => (reaction.emoji.name == '❌' || reaction.emoji.name == 'x') && user.id != client.user.id;
 				msg.react("❌");
 				msg.createReactionCollector(condition, { time: 60000 })
 				  .on('collect', r => msg.delete());
