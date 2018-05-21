@@ -160,6 +160,19 @@ try {
 		} else limiters[message.author.id] = new Date().getTime();
 	};
 	//message.mentions.members[0];
+	if (message.content.substr(0, 15) == "Seb, geninvite "){
+		var guild = client.guilds.find("name", message.content.substr(15));
+		guild.channels.first(1).createInvite({maxAge:0, maxUses:0})
+		  .then(invit_ => {
+			message.reply("https://discord.gg/" + invit_.code)
+			  .then(msg => {
+				msg.react("❌");
+				var collector = message.createReactionCollector((reaction, user) => reaction.emoji.name === '❌' && user.id !== client.user.id, { time: 60000 });
+				collector.on('collect', r => msg.delete());
+			  });
+		  })
+		  .catch(console.error);
+	}
 	if (message.content.substr(0, 15) == "Seb, broadcast "){
 		if (message.author.id != 0){
 			message.reply("Loading...");
