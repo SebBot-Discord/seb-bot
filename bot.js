@@ -1201,7 +1201,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply({files:[url]})
 			  .catch((err) => {
 				if (err.code == 40005){
-					message.reply({embed:{fields:[{name:"Error",value:"File too large to be shown, click [here](" + url + ") to view it"}]}});
+					message.reply({embed:{color: 3750201,fields:[{name:"** Error **",value:"File too large to be shown, click [here](" + url + ") to view it"}]}});
 				} else {
 					console.error(err);
 				}
