@@ -1198,7 +1198,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content == "Seb, hentai"){
 		message.channel.startTyping();
 		randomPuppy("HENTAI_GIF").then(url => {
-			message.reply({files:[url]});
+			message.reply({files:[url]})
+			  .catch((err) => {
+				if (err.code == 40005){
+					message.reply({embed:{fields:[{name:"Error",value:"File too large to be shown, click [here](" + url + ") to view it"}]}});
+				} else {
+					console.error(err);
+				}
+			  });
 		});
 		message.channel.stopTyping(true);
 	}
