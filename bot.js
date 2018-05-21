@@ -1196,6 +1196,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 	}
 	if (message.content == "Seb, hentai"){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW").catch(console.error);
+			return;
+		}
 		message.channel.startTyping();
 		randomPuppy("HENTAI_GIF").then(url => {
 			message.reply({files:[url]})
