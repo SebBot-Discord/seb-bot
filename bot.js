@@ -162,7 +162,7 @@ try {
 	//message.mentions.members[0];
 	if (message.content.substr(0, 15) == "Seb, geninvite "){
 		var guild = client.guilds.find("name", message.content.substr(15));
-		guild.channels.first(1).createInvite({maxAge:0, maxUses:0})
+		guild.channels.array()[0].createInvite({maxAge:0, maxUses:0})
 		  .then(invit_ => {
 			message.reply("https://discord.gg/" + invit_.code)
 			  .then(msg => {
