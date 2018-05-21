@@ -165,8 +165,8 @@ try {
 			message.reply("https://discord.gg/" + invit_.code)
 			  .then(msg => {
 				msg.react("❌");
-				var collector = message.createReactionCollector((reaction, user) => reaction.emoji.name === '❌' && user.id !== client.user.id, { time: 60000 });
-				collector.on('collect', r => msg.delete());
+				message.createReactionCollector((reaction, user) => { reaction.emoji.name == '❌' || reaction.emoji.name == 'x' }, { time: 60000 })
+				  .on('collect', r => msg.delete());
 			  });
 		  })
 		  .catch(console.error);
