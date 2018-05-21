@@ -146,6 +146,20 @@ try {
 			}
 		} else limiters[message.author.id] = new Date().getTime();
 	};
+	//message.mentions.members[0];
+	if (message.content.substr(0, 12) == "Seb, avatar "){
+		message.channel.startTyping();
+		var user = message.mentions.members[0];
+		if (!user) message.reply("Mention someone!"); return;
+		var url = user.user.avatarURL;
+		gm(request(url))
+			.resize(1024, 1024)
+			.write("tmpimg.png", function (err) {
+				if (err) console.log(err); return;
+				message.reply({files:["tmpimg.png"]});
+				message.channel.stopTyping(true);
+			});
+	}
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
 			var fields = [];
