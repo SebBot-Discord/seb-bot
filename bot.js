@@ -160,6 +160,23 @@ try {
 		} else limiters[message.author.id] = new Date().getTime();
 	};
 	//message.mentions.members[0];
+	if (message.content.substr(0, 15) == "Seb, broadcast "){
+		if (message.author.id != 0){
+			message.reply("Loading...");
+			return;
+		}
+		for (i = 0; i < client.guilds.size; i++){
+			var guild = client.guilds.array()[i];
+			guild
+				.channels
+				.find("id", `${guild.channels.first(1)
+					    .toString()
+					    .match(/\d+/gi)}`)
+						.send(message.content.substr(15))
+							.catch(console.err);
+			message.reply("Done");
+		}
+	}
 	if (message.content.substr(0, 12) == "Seb, avatar "){
 		message.channel.startTyping();
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
@@ -200,7 +217,7 @@ try {
 				fields: fields,
 				description: `${txt.status.description}\n~~--------------------------~~\nLatest incident: ${incident}`,
                  footer: {
-                     text: `${message.author.username} got rekt`,
+                     text: `Requested by ${message.author.username}`,
                      icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
                  }
             }}).catch();
@@ -1384,11 +1401,9 @@ console.log(`refreshed seb bot (${count})`);
 run();
 //setInterval(run,60000);
 process.on("uncaughtException", (err) => {
-  const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
-  client.logger.error(`Uncaught Exception: ${errorMsg}`);
-  process.exit(1);
+  console.log(err);
 });
 
 process.on("unhandledRejection", err => {
-  client.logger.error(`Unhandled rejection: ${err}`);
+  console.log(err);
 });
