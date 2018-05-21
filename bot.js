@@ -1,8 +1,6 @@
 const ver = "1.0.4";
 const changelog = `
-- Seb, blur <img>
-- Seb, merge <img1> <img2>
-- Seb, crazyimg <img>
+- Seb, furry ;)
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -1189,21 +1187,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			return;
 		}
 		cmd = true;
-		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
-			var b = jparsestring(body)
-			var key, count = 0;
-			for(key in b.items) {
-				if(b.items.hasOwnProperty(key)) {
-					count++;
-				}
-			}
-			var index = getRandomInt(0,count)
-			var file = b.items[index].thumbnail
-			request(file, function (error, response, body){
-				var $ = cheerio.load(body);
-				file = $('img').prop('src');
-			});
-			message.reply("\n" + b.items[index].thumbnail)
+		request('https://sheri.fun/api/v1/yiff', function (error, response, body) {
+			var b = jparsestring(body).url
+			message.reply({files:[b]})
 				.catch(console.error);
 		});
 	}
