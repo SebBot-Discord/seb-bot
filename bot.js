@@ -149,7 +149,7 @@ try {
 	//message.mentions.members[0];
 	if (message.content.substr(0, 12) == "Seb, avatar "){
 		message.channel.startTyping();
-		var user = message.member.guild.members.get(message.content.match(/\d+/));
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
 		if (!user) message.reply("Mention someone!"); return;
 		var url = user.user.avatarURL;
 		gm(request(url))
