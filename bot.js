@@ -37,7 +37,20 @@ function getElementByAttribute(attr, root) {
     }
     return null;
 }
-
+function jparsestring(str){
+	if (str.startsWith("<")){
+		console.error("JSON parse has failed (a)");
+		return {};
+	} else
+		var result = {};
+		try {
+			result = JSON.parse(str);
+		} catch(err) {
+			console.error("JSON parse has failed (b)");
+			return {};
+		}
+		return result;
+}
 const imgurToken = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
@@ -163,7 +176,7 @@ try {
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
 			var fields = [];
-			var txt = JSON.parse(bod);
+			var txt = jparsestring(bod);
 			var components = txt.components;
 			for (i = 0; i < components; i++){
 				var indicator = ":white_check_mark:";
@@ -301,7 +314,7 @@ try {
 			message.reply(error);
 			return;
 		};
-        var joke = JSON.parse(body).attachments[0].text.replace("Dad","Seb Bot")
+        var joke = jparsestring(body).attachments[0].text.replace("Dad","Seb Bot")
         message.reply({embed:{
             color: 3750201,
             title: "Seb Joke",
@@ -390,7 +403,7 @@ try {
 		cmd = true;
 		message.channel.startTyping();
         /*request("https://api.duckduckgo.com/?q="+message.content.substr(9)+"&format=json", function (error, response, body){
-			var data = JSON.parse(body).Results
+			var data = jparsestring(body).Results
 			if (error){
 				message.reply(error);
 				return;
@@ -430,9 +443,9 @@ try {
                message.reply({embed:{
                     color: 3750201,
                     title: "Random Meme",
-					url: JSON.parse(body).data.url,
+					url: jparsestring(body).data.url,
                     image: {
-                        url: JSON.parse(body).data.images.source.url
+                        url: jparsestring(body).data.images.source.url
                     },
                     footer: {
                         text: `Requested by ${message.author.username}`,
@@ -459,7 +472,7 @@ try {
 				message.reply(error);
 				return;
 			};
-            var file = JSON.parse(body).file
+            var file = jparsestring(body).file
             message.reply({embed:{
                 color: 3750201,
                 title: "Cat Pic",
@@ -487,7 +500,7 @@ try {
 			message.reply(error);
 			return;
 		};
-            var fortune = JSON.parse(body).fortune
+            var fortune = jparsestring(body).fortune
             message.reply({embed:{
                 color: 3750201,
                 title: "_*Fortune Cookie*_",
@@ -512,7 +525,7 @@ try {
 			message.reply(error);
 			return;
 		};
-            var fortune = JSON.parse(body).contents.translated
+            var fortune = jparsestring(body).contents.translated
             message.reply({embed:{
                 color: 3750201,
                 title: "Pirate Translation",
@@ -534,7 +547,7 @@ try {
 			message.reply(error);
 			return;
 		};
-            var fortune = JSON.parse(body).magic.answer
+            var fortune = jparsestring(body).magic.answer
             message.reply({embed:{
                 color: 3750201,
                 title: "_*Magic 8 Ball*_",
@@ -568,7 +581,7 @@ try {
             message.reply({embed:{
                 color: 3750201,
                 title: "That really blanks my blank",
-                description: JSON.parse(body)[0],
+                description: jparsestring(body)[0],
                 footer: {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
@@ -590,9 +603,9 @@ try {
                 color: 3750201,
                 title: "Dog Pic",
                 image: {
-                    url: JSON.parse(body).message
+                    url: jparsestring(body).message
                 },
-                url: JSON.parse(body).message,
+                url: jparsestring(body).message,
                 footer: {
                     text: `Requested by ${message.author.username}`,
                     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
@@ -661,7 +674,7 @@ try {
             message.reply({embed:{
                 color: 3750201,
                 title: "Yo Momma",
-                description: JSON.parse(body).joke,
+                description: jparsestring(body).joke,
                 url: "http://yomomma.info/",
                 footer: {
                     text: `Requested by ${message.author.username}`,
@@ -749,7 +762,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var tag = encodeURIComponent(message.content.substr(11))
 		request({url:`https://api.imgur.com/3/gallery/search/top/1?q=${tag}`,headers:{Authorization: imgurToken}}, function(error, response, body){
 			if(error) { message.reply(err); return; }
-			var data = JSON.parse(body).data
+			var data = jparsestring(body).data
 			if (!data){
 				message.reply("An error ocurred")
 				return;
@@ -854,7 +867,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				message.reply(error);
 				return;
 			};
-			var file = JSON.parse(body).gfycats[0].gifUrl
+			var file = jparsestring(body).gfycats[0].gifUrl
 			message.reply({embed:{
 				color: 3750201,
 				title: "Gif",
@@ -1092,7 +1105,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//https://rbxutility.000webhostapp.com/get.php?url=
 		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
 			console.log(error, response, body);
-			var file = "http://media.oboobs.ru/"+JSON.parse(body)[0].preview
+			var file = "http://media.oboobs.ru/"+jparsestring(body)[0].preview
 			message.reply("\n" + file)
 				.catch(console.error);
 		});
@@ -1106,7 +1119,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
 			console.log(error, response, body);
-			var b = JSON.parse(body)
+			var b = jparsestring(body)
 			var key, count = 0;
 			for(key in b.data) {
 				if(b.data.hasOwnProperty(key)) {
@@ -1127,7 +1140,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		cmd = true;
 		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
 			console.log(error, response, body);
-			var b = JSON.parse(body)
+			var b = jparsestring(body)
 			var key, count = 0;
 			for(key in b.data) {
 				if(b.data.hasOwnProperty(key)) {
@@ -1147,7 +1160,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		request('https://api2.sofurry.com/browse/all/art?format=json', function (error, response, body) {
-			var b = JSON.parse(body)
+			var b = jparsestring(body)
 			var key, count = 0;
 			for(key in b.items) {
 				if(b.items.hasOwnProperty(key)) {
@@ -1168,7 +1181,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		cmd = true;
 		var index = getRandomInt(0, 1989);
 		request(`https://xkcd.com/${index}/info.0.json`, function (error, response, body) {
-			var b = JSON.parse(body)
+			var b = jparsestring(body)
 			message.reply({files: [b.img]})
 				.catch(console.error);
 		});
@@ -1184,7 +1197,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 		}, function(error, response, body){
 			if(error) { message.reply(err); return; }
-			var data = JSON.parse(body).results[0]
+			var data = jparsestring(body).results[0]
 			if (!data){
 				message.reply("An error ocurred")
 				return;
@@ -1320,7 +1333,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
 		request("http://cowsay.morecode.org/say?message=" + encodeURIComponent(message.content.substr(12)) + "&format=json", function (err, resp, bod){
-			var txt = JSON.parse(bod).cow;
+			var txt = jparsestring(bod).cow;
 			message.reply({embed:{
 				color: 3750201,
 				title: "The Cow Says",
