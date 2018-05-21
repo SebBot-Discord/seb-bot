@@ -1,6 +1,7 @@
 const ver = "1.0.4";
 const changelog = `
-- Seb, furry ;)
+- Seb, furry -- ;)
+- Seb, hentai -- for ya weebs
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -9,6 +10,7 @@ var previous = null;
 var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
+const randomPuppy = require('random-puppy');
 const upgraded = ["299708692129906692"];
 var limiters = {};
 var stat = 0;
@@ -1192,6 +1194,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply({files:[b]})
 				.catch(console.error);
 		});
+	}
+	if (message.content == "Seb, hentai"){
+		message.channel.startTyping();
+		randomPuppy("HENTAI_GIF").then(url => {
+			message.reply({files:[url]});
+		});
+		message.channel.stopTyping(true);
 	}
 	if (message.content == "Seb, xkcd"){
 		cmd = true;
