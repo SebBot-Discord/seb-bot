@@ -12,6 +12,7 @@ var cheerio = require('cheerio');
 const fs = require('fs');
 const randomPuppy = require('random-puppy');
 const upgraded = ["299708692129906692"];
+const DiscordRPC = require("discord-rpc");
 var limiters = {};
 var stat = 0;
 var ready = 0;
