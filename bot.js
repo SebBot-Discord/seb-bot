@@ -1435,10 +1435,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var mp = null;
 		console.log("audio: " + file);
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
-			ytdl(file, { filter : 'audioonly' })
-			  .pipe(fs.createWriteStream("temp.mp3"));
+			var stream = ytdl(file, { filter : 'audioonly' });
 			message.reply("Playing audio");
-			var dispatcher = connection.playFile("temp.mp3")
+			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
 				console.log("left channel");
