@@ -1357,9 +1357,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.send("Processing image, please wait...");
 		var name = 'output-' + message.author.id + '.PNG';
 		var setting = message.content.match(/-size \d+/);
-		if (setting) setting = setting.substr(6);
+		if (setting){ setting = setting.substr(6); } else { setting = 7; }
 		gm(request(img.replace(/-size \d+/, ""))
-			.blur((setting ? setting : 7), 3)
+			.blur(setting, 3)
 			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
