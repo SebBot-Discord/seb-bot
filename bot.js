@@ -1442,7 +1442,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		} }
 			connection.playArbitraryInput(file)
 			  .then(() => message.reply("Playing file"))
-			  .catch((err) => message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); )
+			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
 				voice.leave();
