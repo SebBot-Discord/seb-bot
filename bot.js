@@ -1431,6 +1431,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		var file = message.content.substr(10);
+		var loader = null;
 		var mp = null;
 		console.log("audio: " + file);
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
