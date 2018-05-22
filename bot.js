@@ -173,9 +173,12 @@ try {
 			message.reply("https://discord.gg/" + invit_.code)
 			  .then(msg => {
 				var condition = (reaction, user) => (reaction.emoji.name == '❌' || reaction.emoji.name == 'x') && user.id != client.user.id;
-				msg.react("❌");
+				msg.react("❌").catch();
 				msg.createReactionCollector(condition, { time: 60000 })
 				  .on('collect', r => msg.delete());
+			  })
+			  .catch(() => {
+				message.reply(Emojis.error + " An error ocurred sending the invite");
 			  });
 		  })
 		  .catch(() => {
@@ -1399,7 +1402,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
-	message.reply(Emojis.error + " An error ocurred!\n```fix\n" + err.message + "\n```");
+	message.reply(Emojis.error + " An error ocurred!\n```fix\n" + err.message + "\n```\n");
 };
 });
 client.on('guildMemberAdd', member => {
