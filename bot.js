@@ -1428,7 +1428,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.error + ' Join a voice channel!');
 	  }
 	}
-	if (message.content.substr(0, 10) == 'Seb, play ') {
+	if (message.content.startsWith('Seb, play')) {
 		if (!voice) message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return;
 		var file = message.content.substr(10);
 		var mp = null;
