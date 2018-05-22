@@ -13,6 +13,11 @@ const fs = require('fs');
 const randomPuppy = require('random-puppy');
 const upgraded = ["299708692129906692"];
 const DiscordRPC = require("discord-rpc");
+const Emojis = {
+	"loading": "<a:load" + "er:448541225860071444>",
+	"error": "<:error:448547930094305281>",
+	"warning": "<:warn:448548444026437645>"
+}
 var limiters = {};
 var stat = 0;
 var ready = 0;
@@ -163,17 +168,7 @@ try {
 	//message.mentions.members[0];
 	if (message.content.substr(0, 15) == "Seb, geninvite "){
 		var guild = client.guilds.find("name", message.content.substr(15));
-		guild.channels.array()[0].createInvite({maxAge:0, maxUses:0})
-		  .then(invit_ => {
-			message.reply("https://discord.gg/" + invit_.code)
-			  .then(msg => {
-				var condition = (reaction, user) => (reaction.emoji.name == '❌' || reaction.emoji.name == 'x') && user.id != client.user.id;
-				msg.react("❌");
-				msg.createReactionCollector(condition, { time: 60000 })
-				  .on('collect', r => msg.delete());
-			  });
-		  })
-		  .catch(console.error);
+		v
 	}
 	if (message.content.substr(0, 15) == "Seb, broadcast "){
 		if (message.author.id != 0){
@@ -1186,6 +1181,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 	}
 	if (message.content == "Seb, furry"){
+		message.channel.startTyping();
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
 			return;
@@ -1196,6 +1192,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply({files:[b]})
 				.catch(console.error);
 		});
+		message.channel.stopTyping(true);
 	}
 	if (message.content == "Seb, hentai"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
@@ -1288,7 +1285,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		} else {
 			img = message.attachments[0].url;
 		}
-		message.channel.send("Processing image, please wait...");
+		var load = null;
+		message.channel.send(Emojis.loading + " Processing image, please wait...")
+			.then((msg) => load = msg);
 		var name = 'output-' + message.author.id + '.PNG';
 		gm(request(img))
 			.flip()
@@ -1304,7 +1303,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
+			  load.delete();
+			  return;
 			});
+		//load.edit(Emojis.error + " Image processing failed");
 	}
 	if (message.content.substr(0, 9) == "Seb, blur"){
 		message.channel.startTyping();
@@ -1385,6 +1387,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
+	message.reply(Emojis.error + " An error ocurred!\n```fix\n" + err.message + "\n```");
 };
 });
 client.on('guildMemberAdd', member => {
@@ -1393,9 +1396,9 @@ client.on('guildMemberAdd', member => {
 });
 client.on("guildCreate", (guild) => {
 	var invite = "No invite";
-	guild.channels.first(1).createInvite({maxAge:0,maxUses:0})
-	  .then(invit_ => invite = invit_.code)
-	  .catch(console.error);
+	guild.channels.array()[0].createInvite({maxAge:0, maxUses:0})
+	.then(invit_ => { invite = invit_ })
+	.catch(console.error);
 	var fields = [{name:"I joined",value:"[" + guild.name + "](https://discord.gg/"+invite+")" + " | " + guild.id}]
 	if (invite === "No invite") fields = [{name:"I joined",value:guild.name+" | "+guild.id}]
 	client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
@@ -1413,40 +1416,6 @@ client.on("guildCreate", (guild) => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
-DiscordRPC.register(408718297400475668);
-const rpc = new DiscordRPC.Client({
-  transport: 'ipc'
-});
-async function setActivity() {
-  if (!rpc)console.log("rpc failed"); return;
-  var ltext = `Seb Bot v${ver}`;
-  var details = "\"Seb, help\"";
-  var state = `on ${client.guilds.size} servers`;
-  var stext = ":D";
-  var lkey = "sebbot";
-  var skey = "";
-
-  var activity = {
-    details: details,
-    state: state,
-    largeImageKey: lkey,
-    largeImageText: ltext,
-    instance: false
-  }
-  if (skey !== 'none') {
-    activity.smallImageKey = skey
-    activity.smallImageText = stext
-  }
-  rpc.setActivity(activity);
-}
-// 408718297400475668
-rpc.on('ready', () => {
-  setActivity();
-  setInterval(() => {
-    setActivity();
-  }, 15e3);
-});
-rpc.login(408718297400475668).catch(console.error);
 stat++;
 count++;
 client.login(token);
