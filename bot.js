@@ -1412,7 +1412,40 @@ client.on("guildCreate", (guild) => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
+DiscordRPC.register(token);
+const rpc = new DiscordRPC.Client({
+  transport: 'ipc'
+});
+async function setActivity() {
+  if (!rpc)console.log("rpc failed"); return;
+  var ltext = `Seb Bot v${ver}`;
+  var details = "\"Seb, help\"";
+  var state = `on ${client.guilds.size} servers`;
+  var stext = ":D";
+  var lkey = "sebbot";
+  var skey = "";
 
+  var activity = {
+    details: details,
+    state: state,
+    largeImageKey: lkey,
+    largeImageText: ltext,
+    instance: false
+  }
+  if (skey !== 'none') {
+    activity.smallImageKey = skey
+    activity.smallImageText = stext
+  }
+  rpc.setActivity(activity);
+}
+// 408718297400475668
+rpc.on('ready', () => {
+  setActivity();
+  setInterval(() => {
+    setActivity();
+  }, 15e3);
+});
+rpc.login(token).catch(console.error);
 stat++;
 count++;
 client.login(token);
