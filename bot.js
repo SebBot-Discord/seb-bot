@@ -1439,28 +1439,26 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  .pipe(fs.createWriteStream("temp.mp3"));
 			loader.delete();
 			message.reply("Playing audio");
-		} else { if (file.match(/\S+.\S+/)){ //file
-			//hooray
-		} else {
+			connection.playFile("temp.mp3")
+			  .then(() => message.reply("Playing file"))
+			  .setVolume(0.5)
+			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
+			  .on("end", end => {
+				console.log("left channel");
+				voice.leave();
+			});
+		} else if (file.match(/\S+.\S+/)){ //file
+			connection.playArbitraryInput(file)
+			  .then(() => message.reply("Playing file"))
+			  .setVolume(0.5)
+			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
+			  .on("end", end => {
+				console.log("left channel");
+				voice.leave();
+			});
+		} else
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
-		} }
-			if (mode == "ext") connection.playArbitraryInput(file)
-			  .then(() => message.reply("Playing file"))
-			  .setVolume(0.5)
-			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
-			  .on("end", end => {
-				console.log("left channel");
-				voice.leave();
-			});
-		        if (mode == "local") connection.playFile("temp.mp3")
-			  .then(() => message.reply("Playing file"))
-			  .setVolume(0.5)
-			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
-			  .on("end", end => {
-				console.log("left channel");
-				voice.leave();
-			});
 	}
 	//console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length + ", Command " + cmd + "}");
 	//try { console.log(" Embeds: " + JSON.stringify(message.embeds)); } catch(_) { console.log(" Embeds: []"); };
