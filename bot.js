@@ -13,6 +13,7 @@ const fs = require('fs');
 var ytdl = require('ytdl-core');
 var voice = null;
 var connection = null;
+var senders = {};
 const randomPuppy = require('random-puppy');
 const os = require('os');
 const upgraded = ["299708692129906692"];
@@ -1419,6 +1420,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
             message.reply(Emojis.loading + " Connecting...").then((msg) => loader = msg);
 	    message.member.voiceChannel.join()
 	    .then(_connection => { // Connection is an instance of VoiceConnection
+	      senders[message.member.guild.id] = message.author.id;
 	      connection = _connection;
 	      voice = message.member.voiceChannel;
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
@@ -1431,6 +1433,19 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    });
 	  } else {
 	    message.reply(Emojis.error + ' Join a voice channel!');
+	  }
+	}
+	if (message.content === 'Seb, leave') {
+	  var loader = null;
+	  if (senders[message.member.guild.id] == message.author.id) {
+            message.reply(Emojis.loading + " Disconnecting...").then((msg) => loader = msg);
+	    voice.leave()
+	    .catch((err) => {
+		    message.reply(Emojis.error + " I'm not in a voice channel");
+		    return;
+	    });
+	  } else {
+	    message.reply(Emojis.error + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
 	if (message.content.startsWith('Seb, play')) {
