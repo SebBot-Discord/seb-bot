@@ -1321,7 +1321,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		gm(request(img))
 			.flip()
 			.magnify()
-			.rotate('green', 45)
+			.rotate('green', 0)
 			.blur(7, 3)
 			.edge(3)
 			.resize(1024, 1024)
