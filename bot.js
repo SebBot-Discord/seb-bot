@@ -1440,7 +1440,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply("Playing audio");
 			connection.playFile("temp.mp3")
 			  .setVolume(0.5)
-			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
 				voice.leave();
@@ -1449,7 +1448,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}/* else if (file.match(/\S+.\S+/)){ //file
 			connection.playArbitraryInput(file)
 			  .setVolume(0.5)
-			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
 				voice.leave();
