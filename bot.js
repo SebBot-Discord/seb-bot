@@ -12,6 +12,8 @@ var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
 const ytdl = require('ytdl');
+var voice = null;
+var connection = null;
 const randomPuppy = require('random-puppy');
 const upgraded = ["299708692129906692"];
 const DiscordRPC = require("discord-rpc");
@@ -1413,12 +1415,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  if (message.member.voiceChannel) {
             message.reply(Emojis.loading + " Connecting...").then((msg) => loader = msg);
 	    message.member.voiceChannel.join()
-	    .then(connection => { // Connection is an instance of VoiceConnection
-	      voice = connection;
+	    .then(_connection => { // Connection is an instance of VoiceConnection
+	      connection = _connection;
+	      voice = message.member.voiceChannel;
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
 	      loader.delete();
 	    })
-	    .catch({
+	    .catch(() => {
 		    message.reply(Emojis.error + " I can't connect to this channel!");
 	    });
 	  } else {
