@@ -1413,7 +1413,7 @@ client.on("guildCreate", (guild) => {
 //	client.user.setPresence({ game: { name: 'with housestan17', type: 1 } });
 //	stat = 1
 //};
-DiscordRPC.register(token);
+DiscordRPC.register(408718297400475668);
 const rpc = new DiscordRPC.Client({
   transport: 'ipc'
 });
