@@ -1446,7 +1446,7 @@ rpc.on('ready', () => {
     setActivity();
   }, 15e3);
 });
-rpc.login(token).catch(console.error);
+rpc.login(408718297400475668).catch(console.error);
 stat++;
 count++;
 client.login(token);
