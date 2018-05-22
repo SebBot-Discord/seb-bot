@@ -783,7 +783,7 @@ try {
 **Seb Bot Stats**
 Running in ` + `${client.guilds.size}` + ` servers
 Running for ` + `:clock1: ${time}` + `
-Endianness: ` + os.endianness() + `
+Endianness: ` + "`" + os.endianness() == "LE" ? "Little Endian" : "Big Endian" + "`" + `
 CPU: ` + os.cpus()[0].model + `
 Platform: ` + os.platform() + `
 Shard: ` + "`NaN`" + `
