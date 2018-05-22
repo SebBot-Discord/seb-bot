@@ -1438,20 +1438,20 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			ytdl(file, { filter : 'audioonly' })
 			  .pipe(fs.createWriteStream("temp.mp3"));
 			message.reply("Playing audio");
-			connection.playFile("temp.mp3")
-			  .setVolume(0.5)
-			  .on("end", end => {
+			var dispatcher = connection.playFile("temp.mp3")
+			    dispatcher.setVolume(0.5);
+			    dispatcher.on("end", end => {
 				console.log("left channel");
 				voice.leave();
-			});
+			    });
 			message.reply("Playing video");
 		}/* else if (file.match(/\S+.\S+/)){ //file
-			connection.playArbitraryInput(file)
-			  .setVolume(0.5)
-			  .on("end", end => {
+			var dispatcher = connection.playArbitraryInput(file);
+			    dispatcher.setVolume(0.5);
+			    dispatcher.on("end", end => {
 				console.log("left channel");
 				voice.leave();
-			  });
+			    });
 			  message.reply("Playing file");
 		}*/ else
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
