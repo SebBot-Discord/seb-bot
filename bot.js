@@ -1439,11 +1439,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  var loader = null;
 	  if (senders[message.member.guild.id] == message.author.id) {
             message.reply(Emojis.loading + " Disconnecting...").then((msg) => loader = msg);
-	    voice.leave()
-	    .catch((err) => {
-		    message.reply(Emojis.error + " I'm not in a voice channel");
-		    return;
-	    });
+	    if (voice){ voice.leave(); } else { message.reply(Emojis.error + " I'm not in a voice channel"); }
 	  } else {
 	    message.reply(Emojis.error + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
