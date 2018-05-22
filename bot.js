@@ -1419,10 +1419,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      connection = _connection;
 	      voice = message.member.voiceChannel;
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
-	      loader.delete();
+	      setTimeout(function(){loader.delete()}, 500);
+	      return;
 	    })
-	    .catch(() => {
+	    .catch((err) => {
 		    message.reply(Emojis.error + " I can't connect to this channel!");
+		    return;
 	    });
 	  } else {
 	    message.reply(Emojis.error + ' Join a voice channel!');
@@ -1435,6 +1437,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var mp = null;
 		console.log("audio: " + file);
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
+			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
 			message.reply("Playing audio");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
@@ -1444,7 +1447,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				voice.leave();
 			    });
 			message.reply("Playing video");
-		}/* else if (file.match(/\S+.\S+/)){ //file
+			setTimeout(function(){loader.delete()}, 500);
+		} else if (file.match(/\S+.\S+/)){ //file
+			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var dispatcher = connection.playArbitraryInput(file);
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
@@ -1452,7 +1457,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				voice.leave();
 			    });
 			  message.reply("Playing file");
-		}*/ else
+			setTimeout(function(){loader.delete()}, 500);
+		} else
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
 	}
