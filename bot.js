@@ -16,7 +16,10 @@ const DiscordRPC = require("discord-rpc");
 const Emojis = {
 	"loading": "<a:load" + "er:448541225860071444>",
 	"error": "<:error:448547930094305281>",
-	"warning": "<:warn:448548444026437645>"
+	"warning": "<:warn:448548444026437645>",
+	"online": "<:online:448555851943510016>",
+	"idle": "<:idle:448555750378176526>",
+	"dnd": "<:dnd:448555580454469644>"
 }
 var limiters = {};
 var stat = 0;
@@ -263,7 +266,10 @@ try {
 			return;
 		} else {
 			try {
-				var out = eval(message.content.substr(10));
+				var out = eval(message.content.substr(10).replace("--silent", ""));
+				if (message.content.match(/--silent/)){
+					return;
+				}
 				message.reply({embed:{
 					color: 3750201,
 					title: "JavaScript Evaluated",
