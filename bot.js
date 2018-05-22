@@ -1436,10 +1436,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			mp = ytdl(file, { filter : 'audioonly' });
 		} else { if (file.match(/\S+.\S+/)){ //file
 			//hooray
-		} } else {
+		} else {
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
-		}
+		} }
 			connection.playArbitraryInput(file)
 			  .then(() => message.reply("Playing file"))
 			  .catch((err) => message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); )
