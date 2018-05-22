@@ -7,9 +7,11 @@ const changelog = `
 const CONFIG_COMMAND_DELAY = 5;
 
 var previous = null;
+var voice = null;
 var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
+const ytdl = require('ytdl');
 const randomPuppy = require('random-puppy');
 const upgraded = ["299708692129906692"];
 const DiscordRPC = require("discord-rpc");
@@ -1402,6 +1404,46 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}});
 		})
 		message.channel.stopTyping(true);
+	}
+	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	//////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////
+	if (message.content === 'Seb, join') {
+	  var loader = null;
+	  if (message.member.voiceChannel) {
+            message.reply(Emojis.loading + " Connecting...").then((msg) => loader = msg);
+	    message.member.voiceChannel.join()
+	    .then(connection => { // Connection is an instance of VoiceConnection
+	      voice = connection;
+	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
+	      loader.delete();
+	    })
+	    .catch({
+		    message.reply(Emojis.error + " I can't connect to this channel!");
+	    });
+	  } else {
+	    message.reply(Emojis.error + ' Join a voice channel!');
+	  }
+	}
+	if (message.content.substr(0, 10) === 'Seb, play ') {
+		if (!voice) message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return;
+		var file = message.content.substr(10);
+		var mp = null;
+		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
+			mp = ytdl(file, { filter : 'audioonly' });
+		} else { if (file.match(/\S+.\S+/)){ //file
+			//hooray
+		} } else {
+			message.reply(Emojis.error + " Please specify a file link or youtube video url");
+			return;
+		}
+			connection.playArbitraryInput(file)
+			  .then(() => message.reply("Playing file"))
+			  .catch((err) => message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); )
+			  .on("end", end => {
+				console.log("left channel");
+				voice.leave();
+			});
 	}
 	//console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length + ", Command " + cmd + "}");
 	//try { console.log(" Embeds: " + JSON.stringify(message.embeds)); } catch(_) { console.log(" Embeds: []"); };
