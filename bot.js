@@ -1338,6 +1338,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		//load.edit(Emojis.error + " Image processing failed");
 	}
 	if (message.content.substr(0, 9) == "Seb, blur"){
+		var load = null;
+		message.channel.send(Emojis.loading + " Processing image, please wait...")
+			.then((msg) => load = msg);
 		message.channel.startTyping();
 		var img = undefined;
 		var msg = message.content;
@@ -1353,8 +1356,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		message.channel.send("Processing image, please wait...");
 		var name = 'output-' + message.author.id + '.PNG';
+		var setting = message.content.match(/-size \d+/);
+		if (setting) setting = setting.substr(6);
 		gm(request(img))
-			.blur(7, 3)
+			.blur((setting ? setting : 7), 3)
 			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
@@ -1363,9 +1368,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
+			  load.delete();
 			});
 	}
 	if (message.content.substr(0, 10) == "Seb, merge"){
+		var load = null;
+		message.channel.send(Emojis.loading + " Processing image, please wait...")
+			.then((msg) => load = msg);
 		message.channel.startTyping();
 		var img = undefined;
 		var img2 = undefined;
@@ -1397,6 +1406,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
+			  load.delete();
 			});
 	}
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
