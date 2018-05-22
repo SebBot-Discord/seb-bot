@@ -1358,7 +1358,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var setting = message.content.match(/-size \d+/gi)[0];
 		if (setting){ setting = message.content.match(/-size \d+/gi)[0].substr(6); } else { setting = 7; }
 		gm(request(img.replace(/-size \d+/, "")))
-			.blur(setting, 3)
+			.blur(setting + 4, setting)
 			//.resize(1024, 1024)
 			.stroke("#ffffff")
 			.font("Dense-Regular.ttf", 130)
