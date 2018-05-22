@@ -1,7 +1,6 @@
-const ver = "1.0.4";
+const ver = "1.0.5";
 const changelog = `
-- Seb, furry -- ;)
-- Seb, hentai -- for ya weebs
+- Seb, stats :: Updates
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -15,6 +14,7 @@ var ytdl = require('ytdl-core');
 var voice = null;
 var connection = null;
 const randomPuppy = require('random-puppy');
+const os = require('os');
 const upgraded = ["299708692129906692"];
 const DiscordRPC = require("discord-rpc");
 const Emojis = {
@@ -772,7 +772,7 @@ try {
 		var minutes = (Math.floor(seconds/60));
 		var hours = (Math.floor(minutes/60));
 		var days = (Math.floor(hours/24));
-		var time = `${days} days | ${hours} hours | ${minutes} minutes | ${seconds} seconds`.replace(/[0-9]/g, function (x) {
+		var time = `${days} days **|** ${hours} hours **|** ${minutes} minutes **|** ${seconds} seconds`.replace(/[0-9]/g, function (x) {
                     return nums[x];
                 });
                 message.reply({embed:{
@@ -781,8 +781,11 @@ try {
                   description: `
 **Seb Bot Stats**
 Running in ` + `${client.guilds.size}` + ` servers
-Running for ` + `*:clock1: ${time}*` + `
-Shard: ` + "`undefined`" + `
+Running for ` + `:clock1: ${time}` + `
+Endianness: ` + os.endianness() + `
+CPU: ` + os.cpus()[0].model + `
+Platform: ` + os.platform() + `
+Shard: ` + "`NaN`" + `
 Prefix: ` + "`Seb,`" + `\n
 **Server Stats**
 Verification level: ` + "`" + verification + "`" + `
