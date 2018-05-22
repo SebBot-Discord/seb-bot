@@ -1435,11 +1435,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var mp = null;
 		console.log("audio: " + file);
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
-			message.reply(Emojis.loading + " Loading audio...")
-			  .then((msg) => loader = msg);
 			ytdl(file, { filter : 'audioonly' })
 			  .pipe(fs.createWriteStream("temp.mp3"));
-			loader.delete();
 			message.reply("Playing audio");
 			connection.playFile("temp.mp3")
 			  .then(() => message.reply("Playing file"))
