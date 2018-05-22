@@ -1358,7 +1358,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var name = 'output-' + message.author.id + '.PNG';
 		var setting = message.content.match(/-size \d+/);
 		if (setting){ setting = setting.substr(6); } else { setting = 7; }
-		gm(request(img.replace(/-size \d+/, ""))
+		gm(request(img.replace(/-size \d+/, "")))
 			.blur(setting, 3)
 			//.resize(1024, 1024)
 			.stroke("#ffffff")
