@@ -1433,15 +1433,25 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var file = message.content.substr(10);
 		var mp = null;
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
-			mp = ytdl(file, { filter : 'audioonly' });
+			ytdl(file, { filter : 'audioonly' })
+			  .pipe(fs.createWriteStream("temp.mp3"));
 		} else { if (file.match(/\S+.\S+/)){ //file
 			//hooray
 		} else {
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
 		} }
-			connection.playArbitraryInput(file)
+			if (mode == "ext") connection.playArbitraryInput(file)
 			  .then(() => message.reply("Playing file"))
+			  .setVolume(0.5)
+			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
+			  .on("end", end => {
+				console.log("left channel");
+				voice.leave();
+			});
+		        if (mode == "local") connection.playFile("temp.mp3")
+			  .then(() => message.reply("Playing file"))
+			  .setVolume(0.5)
 			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
