@@ -1461,8 +1461,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
 	}
-	//console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length + ", Command " + cmd + "}");
-	//try { console.log(" Embeds: " + JSON.stringify(message.embeds)); } catch(_) { console.log(" Embeds: []"); };
+///////////////////////////////////////////////////////////////
+	if (message.content.substr(0, 5) == "Seb, ")
+	  console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length + ");
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
