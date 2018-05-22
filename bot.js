@@ -1432,6 +1432,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (!voice) message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return;
 		var file = message.content.substr(10);
 		var mp = null;
+		console.log("audio: " + file);
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...")
 			  .then((msg) => loader = msg);
@@ -1447,7 +1448,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				console.log("left channel");
 				voice.leave();
 			});
-		} else if (file.match(/\S+.\S+/)){ //file
+		}/* else if (file.match(/\S+.\S+/)){ //file
 			connection.playArbitraryInput(file)
 			  .then(() => message.reply("Playing file"))
 			  .setVolume(0.5)
@@ -1456,7 +1457,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				console.log("left channel");
 				voice.leave();
 			});
-		} else
+		}*/ else
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
 	}
