@@ -1439,22 +1439,22 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  .pipe(fs.createWriteStream("temp.mp3"));
 			message.reply("Playing audio");
 			connection.playFile("temp.mp3")
-			  .then(() => message.reply("Playing file"))
 			  .setVolume(0.5)
 			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
 				voice.leave();
 			});
+			message.reply("Playing video");
 		}/* else if (file.match(/\S+.\S+/)){ //file
 			connection.playArbitraryInput(file)
-			  .then(() => message.reply("Playing file"))
 			  .setVolume(0.5)
 			  .catch((err) => { message.reply(Emojis.error + " Failed to play file!"); console.error(err);message.reply(Emojis.error + " Failed to play file!"); })
 			  .on("end", end => {
 				console.log("left channel");
 				voice.leave();
-			});
+			  });
+			  message.reply("Playing file");
 		}*/ else
 			message.reply(Emojis.error + " Please specify a file link or youtube video url");
 			return;
