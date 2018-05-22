@@ -1462,7 +1462,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			return;
 	}
 ///////////////////////////////////////////////////////////////
-	if (message.content.substr(0, 5) == "Seb, "){
+	if (message.content.startsWith("Seb,")){
 	  console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length);
 	}
 ///////////////////////////////////////////////////////////////
