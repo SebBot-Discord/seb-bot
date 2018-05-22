@@ -1433,8 +1433,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var file = message.content.substr(10);
 		var mp = null;
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
+			message.reply(Emojis.loading + " Loading audio...")
+			  .then((msg) => loader = msg);
 			ytdl(file, { filter : 'audioonly' })
 			  .pipe(fs.createWriteStream("temp.mp3"));
+			loader.delete();
+			message.reply("Playing audio");
 		} else { if (file.match(/\S+.\S+/)){ //file
 			//hooray
 		} else {
