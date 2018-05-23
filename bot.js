@@ -1452,6 +1452,22 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      		  setTimeout(function(){load.delete()}, 500);
 			});
 	}
+	if (message.content.substr(0, 12) == "Seb, qrcode "){
+		var load = null;
+		var text = encodeURIComponent(message.content.substr(12));
+		message.channel.send(Emojis.loading + " Generating qrcode, please wait...")
+			.then((msg) => load = msg);
+		message.channel.startTyping();
+		var msg = message.content;
+		var name = 'output-' + message.author.id + '.PNG';
+		gm(request(`https://api.qrserver.com/v1/create-qr-code/?size=1024x1024&data=${text}`))
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+	      		  setTimeout(function(){load.delete()}, 500);
+			});
+	}
 	//Seb, eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
 	//.write("temp.png", function(){
 	//setTimeout(function(){message.reply({files:["temp.png"]});},1000);
@@ -1475,7 +1491,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  var loader = null;
 	  if (message.member.voiceChannel) {
 	    if (voice){
-		    message.reply(Emojis.error + " I'm already in a voice channel!");
+		    message.reply(Emojis.warning + " I'm already in a voice channel!");
 		    return;
 	    }
             message.reply(Emojis.loading + " Connecting...").then((msg) => loader = msg);
@@ -1500,9 +1516,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  var loader = null;
 	  if (senders[message.member.guild.id] == message.author.id) {
             message.reply(Emojis.loading + " Disconnecting...").then((msg) => { voice = null; loader = msg });
-	    if (voice){ voice.leave(); } else { message.reply(Emojis.error + " I'm not in a voice channel"); }
+	    if (voice){ voice.leave(); setTimeout(function(){ loader.delete(); }, 500); message.reply("Disconnected successfully!"); } else { message.reply(Emojis.error + " I'm not in a voice channel"); }
 	  } else {
-	    message.reply(Emojis.error + ' Only the person who added Seb Bot to the voice channel can do this');
+	    message.reply(Emojis.warning + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
 	if (message.content.startsWith('Seb, play')) {
@@ -1514,12 +1530,15 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
-			message.reply("Playing audio");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
-				console.log("left channel");
-				voice.leave();
+				    if (playlist.length == 0){
+					console.log("left channel");
+					voice.leave();
+					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
+					voice = null;
+				    }
 			    });
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
