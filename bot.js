@@ -1427,6 +1427,35 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  load.delete();
 			});
 	}
+	if (message.content.substr(0, 17) == "Seb, achievement "){
+		var load = null;
+		var texts = message.content.match(/\S+|\S+/g).join(" ").replace("Seb, achievement ", "").split("|");
+		var topText = texts[0];
+		var bottomText = texts[1];
+		if (!topText || !bottomText){
+			message.reply(Emojis.error + " Please format your command like so: `Seb, achievement <top text>|<bottom text>`");
+			return;
+		}
+		message.channel.send(Emojis.loading + " Generating image, please wait...")
+			.then((msg) => load = msg);
+		message.channel.startTyping();
+		var img = undefined;
+		var img2 = undefined;
+		var msg = message.content;
+		var name = 'output-' + message.author.id + '.PNG';
+		var selector = getRandomInt(0, 39);
+		gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=${selector}&h=${topText}&t=${bottomText}`))
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+			  load.delete();
+			});
+	}
+	//Seb, eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
+	//.write("temp.png", function(){
+	//setTimeout(function(){message.reply({files:["temp.png"]});},1000);
+	//});
 	if (message.content.substr(0, 12) == "Seb, cowsay "){
 		message.channel.startTyping();
 		request("http://cowsay.morecode.org/say?message=" + encodeURIComponent(message.content.substr(12)) + "&format=json", function (err, resp, bod){
