@@ -261,7 +261,7 @@ try {
 			message.reply("Haha, nice try");
 			return;
 		} else {
-			message.reply("Forcing process restart...");
+			message.reply(Emojis.loading + " Forcing process restart...");
 			setTimeout(function(){process.exit(143);}, 1000);
 		}
     }
@@ -1449,7 +1449,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
-			  load.delete();
+	      		  setTimeout(function(){load.delete()}, 500);
 			});
 	}
 	//Seb, eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
@@ -1468,12 +1468,16 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping(true);
 	}
-//	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////
+//	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
+//      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
+//	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////	\\
 	if (message.content === 'Seb, join') {
 	  var loader = null;
 	  if (message.member.voiceChannel) {
+	    if (voice){
+		    message.reply(Emojis.error + " I'm already in a voice channel!");
+		    return;
+	    }
             message.reply(Emojis.loading + " Connecting...").then((msg) => loader = msg);
 	    message.member.voiceChannel.join()
 	    .then(_connection => { // Connection is an instance of VoiceConnection
@@ -1495,7 +1499,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content === 'Seb, leave') {
 	  var loader = null;
 	  if (senders[message.member.guild.id] == message.author.id) {
-            message.reply(Emojis.loading + " Disconnecting...").then((msg) => loader = msg);
+            message.reply(Emojis.loading + " Disconnecting...").then((msg) => { voice = null; loader = msg });
 	    if (voice){ voice.leave(); } else { message.reply(Emojis.error + " I'm not in a voice channel"); }
 	  } else {
 	    message.reply(Emojis.error + ' Only the person who added Seb Bot to the voice channel can do this');
