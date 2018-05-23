@@ -1324,10 +1324,36 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.rotate('green', 0)
 			.blur(7, 3)
 			.edge(3)
-			.resize(1024, 1024)
-			.stroke("#ffffff")
-			.font("Dense-Regular.ttf", 130)
-			.drawText(5, 5, "Generated with Seb Bot")
+			//.resize(1024, 1024)
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+			  load.delete();
+			  return;
+			});
+		//load.edit(Emojis.error + " Image processing failed");
+	}
+	if (message.content.substr(0, 10) == "Seb, sepia"){
+		message.channel.startTyping();
+		var img = undefined;
+		var msg = message.content;
+		if (message.attachments.length != 1){
+			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
+			if (!img){
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				return;
+			}
+			img = img[0];
+		} else {
+			img = message.attachments[0].url;
+		}
+		var load = null;
+		message.channel.send(Emojis.loading + " Processing image, please wait...")
+			.then((msg) => load = msg);
+		var name = 'output-' + message.author.id + '.PNG';
+		gm(request(img))
+			.sepia()
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
@@ -1360,9 +1386,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		gm(request(img.replace(/-size \d+/, "")))
 			.blur(setting + 4, setting)
 			//.resize(1024, 1024)
-			.stroke("#ffffff")
-			.font("Dense-Regular.ttf", 130)
-			.drawText(0, 0, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
@@ -1397,9 +1420,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		gm(request(img))
 			.append(request(img2))
 			//.resize(1024, 1024)
-			.stroke("#ffffff")
-			.font("Dense-Regular.ttf", 130)
-			.drawText(0, 0, "Generated with Seb Bot")
 			.write('tmpimg.png', function (err) {
 			  if (!err) console.log('done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
