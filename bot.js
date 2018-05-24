@@ -187,9 +187,9 @@ try {
 		}
 		var uname = user.username;
 		user.user.send("You have been kicked from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
-		user.kick()
+		setTimeout(function(){user.kick()
   		  .then(() => {message.reply(`Successfully kicked user`)})
-		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
+		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});}, 2000);
 	}
 	if (message.content.startsWith("s!ban")){
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
@@ -204,9 +204,9 @@ try {
 		}
 		var uname = user.username;
 		user.user.send("You have been banned from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
-		user.ban()
+		setTimeout(function(){user.ban()
   		  .then(() => {message.reply(`Successfully banned user`)})
-		  .catch(() => {message.reply(Emojis.warning + " I can't ban this user")});
+		  .catch(() => {message.reply(Emojis.warning + " I can't ban this user")});}, 2000);
 	}
 	//message.mentions.members[0];
 	if (message.content.substr(0, 15) == "Seb, geninvite "){
