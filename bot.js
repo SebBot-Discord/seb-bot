@@ -188,7 +188,7 @@ try {
 		var uname = user.username;
 		user.user.send("You have been kicked from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
 		user.kick()
-  		  .then(() => {message.reply(`Successfully kicked ${uname}`)})
+  		  .then(() => {message.reply(`Successfully kicked user`)})
 		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
 	}
 	if (message.content.startsWith("s!ban")){
@@ -205,8 +205,8 @@ try {
 		var uname = user.username;
 		user.user.send("You have been banned from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
 		user.ban()
-  		  .then(() => {message.reply(`Successfully kicked ${uname}`)})
-		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
+  		  .then(() => {message.reply(`Successfully banned user`)})
+		  .catch(() => {message.reply(Emojis.warning + " I can't ban this user")});
 	}
 	//message.mentions.members[0];
 	if (message.content.substr(0, 15) == "Seb, geninvite "){
