@@ -173,6 +173,41 @@ try {
 			}
 		} else limiters[message.author.id] = new Date().getTime();
 	};
+	var args = message.content.match(/\S+/g);
+	if (message.content.startsWith("s!kick")){
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
+		var reason = args.slice(2).join(" ");
+		if (!user){
+			message.reply(Emojis.error + " User not found, did you follow the format? (`s!kick @User#1337 reason here`)");
+			return;
+		}
+		if (!user.bannable){
+			message.reply(Emojis.error + " I don't have permission to kick this user. Please give me the **`Administrator`** permission so I can manage members.");
+			return;
+		}
+		var uname = user.username;
+		user.user.send("You have been kicked from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
+		user.kick()
+  		  .then(() => {message.reply(`Successfully kicked ${uname}`)})
+		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
+	}
+	if (message.content.startsWith("s!ban")){
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
+		var reason = args.slice(2).join(" ");
+		if (!user){
+			message.reply(Emojis.error + " User not found, did you follow the format? (`s!kick @User#1337 reason here`)");
+			return;
+		}
+		if (!user.bannable){
+			message.reply(Emojis.error + " I don't have permission to ban this user. Please give me the **`Administrator`** permission so I can manage members.");
+			return;
+		}
+		var uname = user.username;
+		user.user.send("You have been banned from " + message.member.guild.name + ", reason:\n**```\n" + reason + "\n```**").catch();
+		user.ban()
+  		  .then(() => {message.reply(`Successfully kicked ${uname}`)})
+		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
+	}
 	//message.mentions.members[0];
 	if (message.content.substr(0, 15) == "Seb, geninvite "){
 		var guild = client.guilds.find("name", message.content.substr(15));
@@ -301,6 +336,24 @@ try {
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
             },
         }})
+	    		.then(() => {
+				if (message.member.hasPermission("MANAGE_GUILD")){
+					message.reply({embed: {
+					    title: "Moderator Commands",
+					    color: 3750201,
+					    description: "```yml"+`
+"s!kick <@user> <reason>":
+  - Kicks <user> from the server with reason <reason>
+"s!ban <@user> <reason>":
+  - Bans <user> from the server with reason <reason>
+`+"```",
+					    footer: {
+						text: "Seb Bot created by SebbyTheGODKid#0426",
+						icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
+					    },
+					}})
+				}
+			});
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
