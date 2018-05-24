@@ -353,7 +353,7 @@ try {
 					    },
 					}})
 				}
-			});
+			})
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
