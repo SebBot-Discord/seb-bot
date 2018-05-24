@@ -175,7 +175,7 @@ try {
 	};
 	var args = message.content.match(/\S+/g);
 	if (message.content.startsWith("s!kick")){
-		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
 		if (!user){
 			message.reply(Emojis.error + " User not found, did you follow the format? (`s!kick @User#1337 reason here`)");
@@ -192,10 +192,10 @@ try {
 		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});
 	}
 	if (message.content.startsWith("s!ban")){
-		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
 		if (!user){
-			message.reply(Emojis.error + " User not found, did you follow the format? (`s!kick @User#1337 reason here`)");
+			message.reply(Emojis.error + " User not found, did you follow the format? (`s!ban @User#1337 reason here`)");
 			return;
 		}
 		if (!user.bannable){
