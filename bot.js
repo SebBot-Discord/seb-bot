@@ -1626,6 +1626,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 					voice = null;
 				    } else {
+					    playlist.shift();
 					    console.log("loading next");
 					    connection.playStream(ytdl(playlist[0]));
 					    console.log("now playing: " + playlist[0]);
