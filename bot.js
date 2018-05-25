@@ -158,10 +158,12 @@ try {
 								name: "YOU JUST GOT...",
 								value: "__***RATELIMITED SON!!***__"
 							}, {
-								name: "._.",
+								name: "owo",
 								value: `Retry that command in ${timeleft} seconds.`
 							}],
 							image: {
+								width: 512,
+								height: 512,
 								url: "https://i.imgur.com/jOs6J2C.gif"
 							},
 					 footer: {
