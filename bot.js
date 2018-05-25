@@ -1616,7 +1616,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return;
 			}
 			try{playlist.shift()}catch(er){console.log("nothing to shift")};
-			playlist.push(file);
+			playlist.push("skipped");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
@@ -1626,7 +1626,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 					voice = null;
 				    } else {
+					    console.log("loading next");
 					    connection.playStream(ytdl(playlist[0]));
+					    console.log("now playing: " + playlist[0]);
 					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
 				    }
 			    });
