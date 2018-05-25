@@ -1615,8 +1615,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				setTimeout(function(){loader.delete()}, 500);
 				return;
 			}
+			try{playlist.shift()}catch(er){console.log("nothing to shift")};
 			playlist.push(file);
-			playlist.shift();
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
