@@ -1572,6 +1572,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      connection = _connection;
 	      voiceNotif = message.channel;
 	      voice = message.member.voiceChannel;
+	      playlist = [];
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
 	      setTimeout(function(){loader.delete()}, 500);
 	      return;
