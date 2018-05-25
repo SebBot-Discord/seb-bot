@@ -28,7 +28,7 @@ const Emojis = {
 	"partyparrot": "<a:party_parrot:449602721369030657>"
 }
 var voiceNotif = null;
-var playlist = {};
+var playlist = [];
 var limiters = {};
 var stat = 0;
 var ready = 0;
