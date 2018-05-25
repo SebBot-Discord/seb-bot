@@ -1608,8 +1608,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
-			if (playlist.length != 0){
-				playlist.push(stream);
+			if (playlist.length == 0){
+				playlist.push(file);
 				return;
 			}
 			playlist.shift();
@@ -1622,7 +1622,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 					voice = null;
 				    } else {
-					    connection.playStream(playlist[0]);
+					    connection.playStream(ytdl(playlist[0]));
+					    voiceNotif.send("Now playing: " + playlist[0]);
 				    }
 			    });
 			message.reply("Playing video");
