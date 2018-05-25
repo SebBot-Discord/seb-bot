@@ -1611,7 +1611,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			if (playlist.length > 0){
 				console.log("playlist is here");
 				playlist.push(file);
-				message.reply("Added to que");
+				message.reply(":loud_sound: Added to que");
 				setTimeout(function(){loader.delete()}, 500);
 				return;
 			}
@@ -1627,7 +1627,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					voice = null;
 				    } else {
 					    connection.playStream(ytdl(playlist[0]));
-					    voiceNotif.send("Now playing: " + playlist[0]);
+					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
 				    }
 			    });
 			message.reply("Playing video");
