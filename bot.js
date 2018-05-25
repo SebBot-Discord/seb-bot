@@ -1630,7 +1630,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			    });
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
-		} else if (file.match(/\S+.\S+/)){ //file
+		} /*else if (file.match(/\S+.\S+/)){ //file
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var dispatcher = connection.playArbitraryInput(file);
 			    dispatcher.setVolume(0.5);
@@ -1640,8 +1640,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			    });
 			  message.reply("Playing file");
 			setTimeout(function(){loader.delete()}, 500);
-		} else
-			message.reply(Emojis.error + " Please specify a file link or youtube video url");
+		}*/ else
+			message.reply(Emojis.error + " Please specify a youtube video url");
 			return;
 	}
 ///////////////////////////////////////////////////////////////
