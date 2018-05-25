@@ -1,6 +1,6 @@
 const ver = "1.0.5";
 const changelog = `
-- Seb, stats :: Updates
+\x0a
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -1593,8 +1593,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.warning + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
+	if (message.content.startsWith('Seb, skip')) {
+		if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " No"); }
+		playlist.shift();
+		connection.playStream(playlist[0]);
+	}
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
+		if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var file = message.content.substr(10);
 		var loader = null;
 		var mp = null;
@@ -1602,6 +1608,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
+			if (playlist.length != 0){
+				playlist.push(stream);
+				return;
+			}
+			playlist.shift();
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
@@ -1610,6 +1621,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					voice.leave();
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 					voice = null;
+				    } else {
+					    connection.playStream(playlist[0]);
 				    }
 			    });
 			message.reply("Playing video");
