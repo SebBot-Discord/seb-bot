@@ -24,8 +24,11 @@ const Emojis = {
 	"warning": "<:warn:448548444026437645>",
 	"online": "<:online:448555851943510016>",
 	"idle": "<:idle:448555750378176526>",
-	"dnd": "<:dnd:448555580454469644>"
+	"dnd": "<:dnd:448555580454469644>",
+	"partyparrot": "<a:party_parrot:449602721369030657>"
 }
+var voiceNotif = null;
+var playlist = {};
 var limiters = {};
 var stat = 0;
 var ready = 0;
@@ -95,7 +98,20 @@ function output(error, token) {
                 console.log(`Logged in. Token: ${token}`);
 }
 var seconds = 0;
+function startAsyncTasks(){
+	setInterval(function(){
+		if (voice){
+			if (voice.members.length - 1 == 0){
+				voice.leave();
+				voice = null;
+				voiceNotif = null;
+				voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+			}
+		}
+	}, 1000);
+}
 client.on('ready', () => {
+startAsyncTasks();
 ready = 1;
 console.log("SebBot " + ver + " ready!");
 client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
@@ -1554,6 +1570,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    .then(_connection => { // Connection is an instance of VoiceConnection
 	      senders[message.member.guild.id] = message.author.id;
 	      connection = _connection;
+	      voiceNotif = message.channel;
 	      voice = message.member.voiceChannel;
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
 	      setTimeout(function(){loader.delete()}, 500);
