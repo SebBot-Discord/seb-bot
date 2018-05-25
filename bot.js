@@ -1608,14 +1608,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
-			playlist.push(file);
 			if (playlist.length > 0){
 				console.log("playlist is here");
 				playlist.push(file);
-				message.reply("Added to playlist");
+				message.reply("Added to que");
 				setTimeout(function(){loader.delete()}, 500);
 				return;
 			}
+			playlist.push(file);
 			playlist.shift();
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
