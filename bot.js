@@ -1,6 +1,6 @@
 const ver = "1.0.5";
 const changelog = `
-\x0a
+Party parrot :: PARTY PARROT TAKEOVER!!
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -99,16 +99,7 @@ function output(error, token) {
 }
 var seconds = 0;
 function startAsyncTasks(){
-	setInterval(function(){
-		if (voice){
-			if (voice.members.length - 1 == 0){
-				voice.leave();
-				voice = null;
-				voiceNotif = null;
-				voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
-			}
-		}
-	}, 1000);
+	//none
 }
 client.on('ready', () => {
 startAsyncTasks();
@@ -1555,6 +1546,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping(true);
 	}
+	if (message.content == "Seb, partyparrots"){
+		message.channel.send(Emojis.partyparrot.repeat(50));
+	}
 //	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////	\\
@@ -1636,6 +1630,16 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			    });
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
+			setInterval(function(){
+				if (voice.members.size == 1){
+					voice.leave();
+					voice = null;
+					voiceNotif = null;
+					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+					return;
+				}
+				if (!voice) return;
+			}, 1000);
 		} /*else if (file.match(/\S+.\S+/)){ //file
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var dispatcher = connection.playArbitraryInput(file);
