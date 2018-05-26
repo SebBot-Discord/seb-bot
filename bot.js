@@ -1638,7 +1638,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
 					return;
 				}
-				if (!voice) return;
+				if (!voice) { console.log("voice channel null"); return; }
 			}, 1000);
 		} /*else if (file.match(/\S+.\S+/)){ //file
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
