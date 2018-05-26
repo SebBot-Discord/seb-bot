@@ -1615,7 +1615,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", end => {
-				    if (playlist.length == 0){
+				    if (playlist.length < 2){
 					console.log("left channel");
 					voice.leave();
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
