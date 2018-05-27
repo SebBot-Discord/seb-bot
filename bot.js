@@ -140,6 +140,7 @@ setInterval(() => {
 });
 client.on('message', message => {
 try {
+	if (message.author.bot){ return; }
 	var cmd = false;
 	if (message.content.substr(0,5) == "Seb, "){
 		if (message.member.guild.name == "Hebby"){
