@@ -1609,7 +1609,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			playlist.push("skipped");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
-			    dispatcher.on("end", end => {
+			    var callback = (end) => {
 				    if (playlist.length < 2){
 					console.log("left channel");
 					voice.leave();
@@ -1618,11 +1618,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				    } else {
 					    console.log( playlist.shift() );
 					    console.log("loading next");
-					    connection.playStream(ytdl(playlist[0]));
+					    var dispatcher = connection.playStream(ytdl(playlist[0]));
+			    			dispatcher.setVolume(0.5);
+				    		dispatcher.on("end", callback);
 					    console.log("now playing: " + playlist[0]);
 					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
 				    }
-			    });
+			    }
+			    dispatcher.on("end", callback);
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
 			setInterval(function(){
