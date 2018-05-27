@@ -1620,7 +1620,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the que."); return; }
 				playlist = file.replace(/\n/g, "").replace(/ /g, "").split(",");
 				playlist.shift();
-				voice.disconnect();
+				voice.leave();
 				setTimeout(() => {
 					voice.join();
 					connection.playStream(ytdl(playlist[0]), {seek: 0, volume: 1})
