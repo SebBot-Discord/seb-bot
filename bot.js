@@ -1588,14 +1588,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.warning + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
-	if (message.content.startsWith('Seb, skip')) {
-		if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " No"); }
-		playlist.shift();
-		connection.playStream(playlist[0]);
-	}
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
-		if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
+		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var file = message.content.substr(10);
 		var loader = null;
 		var mp = null;
@@ -1621,7 +1616,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 					voice = null;
 				    } else {
-					    playlist.shift();
+					    console.log( playlist.shift() );
 					    console.log("loading next");
 					    connection.playStream(ytdl(playlist[0]));
 					    console.log("now playing: " + playlist[0]);
