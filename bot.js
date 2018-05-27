@@ -1,6 +1,6 @@
 const ver = "1.0.5";
 const changelog = `
-Party parrot :: PARTY PARROT TAKEOVER!!
+Seb, wikihow :: Random wikihow article
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -27,6 +27,7 @@ const Emojis = {
 	"dnd": "<:dnd:448555580454469644>",
 	"partyparrot": "<a:party_parrot:449602721369030657>"
 }
+const ksoft = process.env.KSOFT_TOKEN;
 var voiceNotif = null;
 var playlist = [];
 var limiters = {};
@@ -267,6 +268,19 @@ try {
 				message.reply({files:["tmpimg.png"]});
 				message.channel.stopTyping(true);
 			});
+	}
+	if (message.content == "Seb, wikihow"){
+		request({url:"https://api.ksoft.si/meme/random-wikihow",headers:{"Authorization": ksoft}}, function(e,r,b){
+			var json = JSON.parse(b);
+			message.channel.send({embed:{
+				color: 3750201,
+				title: json.title,
+				url: json.article_url,
+				image: {
+					url: json.url
+				}
+			}});
+		});
 	}
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
