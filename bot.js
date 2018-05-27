@@ -269,7 +269,15 @@ try {
 				message.channel.stopTyping(true);
 			});
 	}
+	if (message.content == "Seb, lenny"){
+		message.channel.startTyping();
+		request("https://api.lenny.today/v1/random", function(e,r,b){
+		    message.reply("**`" + JSON.parse(b)[0].face + "`**");
+		});
+		message.channel.stopTyping();
+	}
 	if (message.content == "Seb, wikihow"){
+		message.channel.startTyping();
 		request({url:"https://api.ksoft.si/meme/random-wikihow",headers:{"Authorization": ksoft}}, function(e,r,b){
 			var json = JSON.parse(b);
 			message.channel.send({embed:{
@@ -281,6 +289,7 @@ try {
 				}
 			}});
 		});
+		message.channel.stopTyping();
 	}
 	if (message.content == "Seb, discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
