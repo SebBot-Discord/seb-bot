@@ -1597,7 +1597,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var mp = null;
 		console.log("audio: " + file);
 		var callback = (end) => {
-		    if (playlist.length < 2){
+		    if (playlist.length < 1){
 			console.log("left channel");
 			voice.leave();
 			message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
