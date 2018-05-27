@@ -1621,6 +1621,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				playlist = file.replace(/\n/g, "").replace(/ /g, "").split(",");
 				playlist.shift();
 				voice.leave();
+			    	console.log("now playing: " + playlist[0]);
+				voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
 				setTimeout(() => {
 					voice.join();
 					connection.playStream(ytdl(playlist[0]), {seek: 0, volume: 1})
