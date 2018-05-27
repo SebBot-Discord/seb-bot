@@ -1595,9 +1595,39 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var loader = null;
 		var mp = null;
 		console.log("audio: " + file);
+		var callback = (end) => {
+		    if (playlist.length < 2){
+			console.log("left channel");
+			voice.leave();
+			message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
+			voice = null;
+		    } else {
+			    console.log( playlist.shift() );
+			    console.log("loading next");
+			    var pl = playlist[0];
+			    var dispatcher = connection.playStream(ytdl(pl));
+					dispatcher.setVolume(0.5);
+		    		dispatcher.on("end", callback);
+			    console.log("now playing: " + playlist[0]);
+			    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
+		    }
+		}
 		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
+			if (file.includes(",")){
+				if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the que."); return; }
+				playlist = file.replace(/\n/g, "").replace(/ /g, "").split(",");
+				playlist.shift();
+				voice.disconnect();
+				setTimeout(() => {
+					voice.join();
+					connection.playStream(ytdl(playlist[0]), {seek: 0, volume: 1})
+						  .on("end", callback);
+					message.reply("Set playlist");
+				}, 1000);
+				return;
+			}
 			if (playlist.length > 0){
 				console.log("playlist is here");
 				playlist.push(file);
@@ -1609,22 +1639,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			playlist.push("skipped");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
-			    var callback = (end) => {
-				    if (playlist.length < 2){
-					console.log("left channel");
-					voice.leave();
-					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
-					voice = null;
-				    } else {
-					    console.log( playlist.shift() );
-					    console.log("loading next");
-					    var dispatcher = connection.playStream(ytdl(playlist[0]));
-			    			dispatcher.setVolume(0.5);
-				    		dispatcher.on("end", callback);
-					    console.log("now playing: " + playlist[0]);
-					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
-				    }
-			    }
 			    dispatcher.on("end", callback);
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
