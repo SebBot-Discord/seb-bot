@@ -1662,14 +1662,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				return;
 			}
 			try{playlist.shift()}catch(er){console.log("nothing to shift")};
-			playlist.push("skipped");
+			//playlist.push("skipped");
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
 			    dispatcher.on("end", callback);
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
-			setInterval(function(){
-				if (voice.members.size == 1){
+			setInterval(() => {
+				if (voice.members.size < 2){
 					voice.leave();
 					voice = null;
 					voiceNotif = null;
