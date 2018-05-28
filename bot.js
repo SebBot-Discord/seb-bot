@@ -1658,18 +1658,23 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var loader = null;
 		var mp = null;
 		console.log("audio: " + file);
+		var first = true;
 		var callback = (end) => {
-		    if (playlist.length < 1){
+		    if (playlist.length == 1){
 			console.log("left channel");
 			voice.leave();
 			message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
 			voice = null;
 		    } else {
+			    if (first){
+				    playlist.shift();
+				    first = false;
+			    }
 			    console.log( playlist.shift() );
 			    console.log("loading next");
 			    var pl = playlist[0];
 			    var dispatcher = connection.playStream(ytdl(pl));
-					dispatcher.setVolume(0.5);
+				dispatcher.setVolume(0.5);
 		    		dispatcher.on("end", callback);
 			    console.log("now playing: " + playlist[0]);
 			    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
