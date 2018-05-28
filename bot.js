@@ -1597,8 +1597,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		img = img[0];
 		var name = 'output-' + message.author.id + '.PNG';
-		var setting = message.content.match(/-size \d+/gi)[0];
-		if (setting){ setting = message.content.match(/-size \d+/gi)[0].substr(6); } else { setting = 7; }
 		gm(request(img.replace(/-size \d+/, "")))
 			.edge(10)
 			//.resize(1024, 1024)
