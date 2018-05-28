@@ -1,6 +1,6 @@
-const ver = "1.0.5";
+const ver = "1.2.6";
 const changelog = `
-Seb, wikihow :: Random wikihow article
+Seb, edge :: Image edge detection **trippy**
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
