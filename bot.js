@@ -1651,7 +1651,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.warning + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
-	if (message.content.startsWith('Seb, play')) {
+	/*if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var file = message.content.substr(10);
@@ -1712,6 +1712,65 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			    dispatcher.on("end", callback);
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
+		} else
+			message.reply(Emojis.error + " Please specify a youtube video url");
+			return;
+	}*/
+	if (message.content.startsWith('Seb, play')) {
+		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
+		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
+		var file = message.content.substr(10);
+		var loader = null;
+		var mp = null;
+		console.log("audio: " + file);
+		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
+			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
+			var stream = ytdl(file, { filter : 'audioonly' });
+			if (playlist.length > 0){
+				console.log("playlist is here");
+				playlist.push(file);
+				message.reply(":loud_sound: Added to que");
+				setTimeout(function(){loader.delete()}, 500);
+				return;
+			}
+			try{playlist.shift()}catch(er){console.log("nothing to shift")};
+			playlist.push("skipped");
+			var first = true;
+			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
+			    dispatcher.setVolume(0.5);
+			    var callback = (end) => {
+				    if (playlist.length < 2){
+					console.log("left channel");
+					voice.leave();
+					message.reply(Emojis.warning + " Since the playlist ended, I left the voice channel");
+					voice = null;
+				    } else {
+					    if (first){
+						    playlist.shift();
+						    first = false;
+					    }
+					    console.log( playlist.shift() );
+					    console.log("loading next");
+					    var dispatcher = connection.playStream(ytdl(playlist[0]));
+			    			dispatcher.setVolume(0.5);
+				    		dispatcher.on("end", callback);
+					    console.log("now playing: " + playlist[0]);
+					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
+				    }
+			    }
+			    dispatcher.on("end", callback);
+			message.reply("Playing video");
+			setTimeout(function(){loader.delete()}, 500);
+			setInterval(function(){
+				if (voice.members.size == 1){
+					voice.leave();
+					voice = null;
+					voiceNotif = null;
+					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+					return;
+				}
+				if (!voice) { console.log("voice channel null"); return; }
+			}, 1000);
 		} /*else if (file.match(/\S+.\S+/)){ //file
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var dispatcher = connection.playArbitraryInput(file);
