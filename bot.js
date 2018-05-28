@@ -1593,6 +1593,16 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      playlist = [];
 	      message.reply('Connected to ' + message.member.voiceChannel.name + "!");
 	      setTimeout(function(){loader.delete()}, 500);
+	      setInterval(() => {
+	      	if (voice.members.size < 2){
+	      		voice.leave();
+	      		voice = null;
+	      		voiceNotif = null;
+	      		voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+	      		return;
+	      	}
+	      	if (!voice) { console.log("voice channel null"); return; }
+	      }, 1000);
 	      return;
 	    })
 	    .catch((err) => {
@@ -1668,16 +1678,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			    dispatcher.on("end", callback);
 			message.reply("Playing video");
 			setTimeout(function(){loader.delete()}, 500);
-			setInterval(() => {
-				if (voice.members.size < 2){
-					voice.leave();
-					voice = null;
-					voiceNotif = null;
-					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
-					return;
-				}
-				if (!voice) { console.log("voice channel null"); return; }
-			}, 1000);
 		} /*else if (file.match(/\S+.\S+/)){ //file
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var dispatcher = connection.playArbitraryInput(file);
