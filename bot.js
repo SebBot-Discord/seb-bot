@@ -1590,16 +1590,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		var img = undefined;
 		var msg = message.content;
-		if (message.attachments.length != 1){
-			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
-			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
-				return;
-			}
-			img = img[0];
-		} else {
-			img = message.attachments[0].url;
+		img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
+		if (!img){
+			message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+			return;
 		}
+		img = img[0];
 		var name = 'output-' + message.author.id + '.PNG';
 		var setting = message.content.match(/-size \d+/gi)[0];
 		if (setting){ setting = message.content.match(/-size \d+/gi)[0].substr(6); } else { setting = 7; }
