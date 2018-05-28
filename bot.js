@@ -1583,6 +1583,40 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      		  setTimeout(function(){load.delete()}, 500);
 			});
 	}
+	if (message.content.startsWith("Seb, edge")){
+		var load = null;
+		message.channel.send(Emojis.loading + " Processing image, please wait...")
+			.then((msg) => load = msg);
+		message.channel.startTyping();
+		var img = undefined;
+		var img2 = undefined;
+		var msg = message.content;
+		if (message.attachments.length != 1){
+			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
+			if (img.length != 2){
+				message.reply("Please provide two image links to edge detection");
+				return;
+			}
+			img2 = img[1];
+			if (!img){
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				return;
+			}
+			img = img[0];
+		} else {
+			img = message.attachments[0].url;
+		}
+		var name = 'output-' + message.author.id + '.PNG';
+		gm(request(img))
+			.edge(10)
+			//.resize(1024, 1024)
+			.write('tmpimg.png', function (err) {
+			  if (!err) console.log('done');
+			  message.reply({files:['tmpimg.png']}).catch(console.error);
+			  message.channel.stopTyping(true);
+			  load.delete();
+			});
+	}
 	//Seb, eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
 	//.write("temp.png", function(){
 	//setTimeout(function(){message.reply({files:["temp.png"]});},1000);
