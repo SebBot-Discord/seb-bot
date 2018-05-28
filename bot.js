@@ -1597,8 +1597,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      	if (voice.members.size < 2){
 	      		voice.leave();
 	      		voice = null;
-	      		voiceNotif = null;
 	      		voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+	      		voiceNotif = null;
 	      		return;
 	      	}
 	      	if (!voice) { console.log("voice channel null"); return; }
