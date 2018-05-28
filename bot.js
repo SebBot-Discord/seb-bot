@@ -1589,15 +1589,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.then((msg) => load = msg);
 		message.channel.startTyping();
 		var img = undefined;
-		var img2 = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
-			if (img.length != 2){
-				message.reply("Please provide two image links to edge detection");
-				return;
-			}
-			img2 = img[1];
 			if (!img){
 				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
 				return;
@@ -1607,11 +1601,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			img = message.attachments[0].url;
 		}
 		var name = 'output-' + message.author.id + '.PNG';
-		gm(request(img))
+		var setting = message.content.match(/-size \d+/gi)[0];
+		if (setting){ setting = message.content.match(/-size \d+/gi)[0].substr(6); } else { setting = 7; }
+		gm(request(img.replace(/-size \d+/, "")))
 			.edge(10)
 			//.resize(1024, 1024)
 			.write('tmpimg.png', function (err) {
-			  if (!err) console.log('done');
+			  if (!err) console.log('crazyimg done');
 			  message.reply({files:['tmpimg.png']}).catch(console.error);
 			  message.channel.stopTyping(true);
 			  load.delete();
