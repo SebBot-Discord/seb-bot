@@ -48,7 +48,7 @@ dbl.webhook.on('vote', vote => {
   upgraded.push(vote.id);
 });
 const request = require('request')
-const dbl = new DBL(process.env.DBL_TOKEN, client);
+//const dbl = new DBL(process.env.DBL_TOKEN, client);
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
