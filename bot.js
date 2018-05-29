@@ -16,7 +16,7 @@ var connection = null;
 var senders = {};
 const randomPuppy = require('random-puppy');
 const os = require('os');
-const upgraded = ["299708692129906692"];
+var upgraded = ["299708692129906692"];
 const DiscordRPC = require("discord-rpc");
 const Emojis = {
 	"loading": "<a:load" + "er:448541225860071444>",
@@ -39,6 +39,14 @@ var htmlToJson = require("html-to-json");
 var client = new Discord.Client();
 const gm = require("gm").subClass({imageMagick: true});
 const DBL = require("dblapi.js");
+const dbl = new DBL(process.env.DBL_TOKEN, { webhookPort: 5000, webhookAuth: process.env.WHPW });
+dbl.webhook.on('ready', hook => {
+  console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
+});
+dbl.webhook.on('vote', vote => {
+  console.log(vote);
+  upgraded.push(vote.id);
+});
 const request = require('request')
 const dbl = new DBL(process.env.DBL_TOKEN, client);
 function getElementByAttribute(attr, root) {
@@ -167,8 +175,8 @@ try {
 								name: "YOU JUST GOT...",
 								value: "__***RATELIMITED SON!!***__"
 							}, {
-								name: "owo",
-								value: `Retry that command in ${timeleft} seconds.`
+								name: `Retry that command in ${timeleft} seconds.`,
+								value: "Vote [here](https://discordbots.org/bot/408718297400475668/vote) to remove this limitation"
 							}],
 							image: {
 								width: 512,
