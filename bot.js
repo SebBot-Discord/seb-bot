@@ -1,6 +1,6 @@
-const ver = "1.2.6";
+const ver = "1.2.7";
 const changelog = `
-Seb, edge :: Image edge detection **trippy**
+Seb, wikihow :: Try it
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
