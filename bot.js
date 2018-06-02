@@ -294,7 +294,11 @@ try {
 				url: json.article_url,
 				image: {
 					url: json.url
-				}
+				},
+				footer: {
+				     text: `Requested by ${message.author.username}`,
+				     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+				 }
 			}});
 		});
 		message.channel.stopTyping();
@@ -1748,6 +1752,25 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(Emojis.error + " Please specify a youtube video url");
 			return;
 	}*/
+	if (message.content.startsWith('Seb, que')) {
+		message.channel.startTyping();
+		var fields = [];
+		var pl = playlist.slice(0, 5);
+		for (i = 0; i < pl.length; i++){
+			var link = pl[i];
+			fields.push(link.name);
+		}
+		message.author.reply({embed:{
+			title: "Up Next",
+			color: 3750201,
+			fields: fields,
+			footer: {
+			     text: `Requested by ${message.author.username}`,
+			     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+			}
+		}});
+		message.channel.stopTyping(true);
+	}
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
@@ -1760,13 +1783,18 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var stream = ytdl(file, { filter : 'audioonly' });
 			if (playlist.length > 0){
 				console.log("playlist is here");
-				playlist.push(file);
+				var title = "PaTCH Error";
+				request(file, function(e, r, b){
+				    var $ = cheerio.load(b);
+				    title = $('title').text());
+				});
+				playlist.push({name:_n,url:file});
 				message.reply(":loud_sound: Added to que");
 				setTimeout(function(){loader.delete()}, 500);
 				return;
 			}
 			try{playlist.shift()}catch(er){console.log("nothing to shift")};
-			playlist.push("skipped");
+			playlist.push({name:"skipped",url:"_blank"});
 			var first = true;
 			var dispatcher = connection.playStream(stream, {seek: 0, volume: 1})
 			    dispatcher.setVolume(0.5);
@@ -1783,11 +1811,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					    }
 					    console.log( playlist.shift() );
 					    console.log("loading next");
-					    var dispatcher = connection.playStream(ytdl(playlist[0]));
+					    var dispatcher = connection.playStream(ytdl(playlist[0].url));
 			    			dispatcher.setVolume(0.5);
 				    		dispatcher.on("end", callback);
 					    console.log("now playing: " + playlist[0]);
-					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0]);
+					    voiceNotif.send(":loud_sound: Now playing: " + playlist[0].url);
 				    }
 			    }
 			    dispatcher.on("end", callback);
