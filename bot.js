@@ -1760,10 +1760,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var link = pl[i];
 			fields.push(link.name);
 		}
-		message.author.reply({embed:{
+		message.reply({embed:{
 			title: "Up Next",
 			color: 3750201,
 			fields: fields,
+			thumbnail: {
+				url: "https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/135/speaker-with-three-sound-waves_1f50a.png"
+			},
 			footer: {
 			     text: `Requested by ${message.author.username}`,
 			     icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
