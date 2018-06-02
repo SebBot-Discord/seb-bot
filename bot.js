@@ -149,6 +149,30 @@ setInterval(() => {
 });
 client.on('message', message => {
 try {
+	if (message.content.substr(0, 10) == "Seb, eval "){
+	    if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
+			message.reply("Haha, nice try");
+			return;
+		} else {
+			try {
+				var out = eval(message.content.substr(10).replace("--silent", ""));
+				if (message.content.match(/--silent/)){
+					return;
+				}
+				message.reply({embed:{
+					color: 3750201,
+					title: "JavaScript Evaluated",
+					description: "```css\nNo problems while running the code\n```\n*Output:*\n```cs\n# " + out + "\n```"
+				}}).catch();
+			} catch(output){
+				message.reply({embed:{
+					color: 3750201,
+					title: "JavaScript Evaluation Error",
+					description: "```http\n" + output + "\n```"
+				}}).catch();
+			}
+		}
+	}
 	if (message.author.bot){ return; }
 	var cmd = false;
 	if (message.content.substr(0,5) == "Seb, "){
@@ -266,9 +290,9 @@ try {
 	}
 	if (message.content.substr(0, 12) == "Seb, avatar "){
 		message.channel.startTyping();
-		var user = message.member.guild.members.find("id", message.content.match(/\d+/));
-		if (!user) message.reply("Mention someone!"); return;
-		var url = user.user.avatarURL;
+		//var user = message.member.guild.members.find("id", message.content.match(/\d+/));
+		//if (!user) message.reply("Mention someone!"); return;
+		var url = message.author.avatarURL;
 		gm(request(url))
 			.resize(1024, 1024)
 			.write("tmpimg.png", function (err) {
@@ -343,30 +367,6 @@ try {
 		} else {
 			message.reply(Emojis.loading + " Forcing process restart...");
 			setTimeout(function(){process.exit(143);}, 1000);
-		}
-    }
-    if (message.content.substr(0, 10) == "Seb, eval "){
-	    if (message.author.id != 299708692129906692){
-			message.reply("Haha, nice try");
-			return;
-		} else {
-			try {
-				var out = eval(message.content.substr(10).replace("--silent", ""));
-				if (message.content.match(/--silent/)){
-					return;
-				}
-				message.reply({embed:{
-					color: 3750201,
-					title: "JavaScript Evaluated",
-					description: "```css\nNo problems while running the code\n```\n*Output:*\n```cs\n# " + out + "\n```"
-				}}).catch();
-			} catch(output){
-				message.reply({embed:{
-					color: 3750201,
-					title: "JavaScript Evaluation Error",
-					description: "```http\n" + output + "\n```"
-				}}).catch();
-			}
 		}
     }
     if (message == "Seb, help"){
