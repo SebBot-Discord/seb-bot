@@ -1819,8 +1819,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	}
 ///////////////////////////////////////////////////////////////
 	if (message.content.startsWith("Seb,")){
-	  console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length);
-	}
+	  try {
+		  console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length);
+	  } catch(e) { }
+	 }
 ///////////////////////////////////////////////////////////////
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
