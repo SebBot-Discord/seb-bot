@@ -1786,7 +1786,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				var title = "PaTCH Error";
 				request(file, function(e, r, b){
 				    var $ = cheerio.load(b);
-				    title = $('title').text());
+				    title = $('title').text();
 				});
 				playlist.push({name:_n,url:file});
 				message.reply(":loud_sound: Added to que");
