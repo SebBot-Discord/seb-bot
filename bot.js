@@ -1762,8 +1762,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		if (fields.length == 0){
 			fields = [{
-				name: "There are no songs in the que",
-				value: "[...](https://sebbot.tk/NoSongsAdded)"
+				name: "Oops!",
+				value: "[There are no songs in the que](https://sebbot.tk/ErrorAPI?!=There%20are%20no%20songs%20in%20the%20que)"
 			}]
 		}
 		message.reply({embed:{
