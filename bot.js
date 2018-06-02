@@ -1761,10 +1761,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			fields.push(link.name);
 		}
 		if (fields.length == 0){
-			fields = {
+			fields = [{
 				name: "There are no songs in the que",
 				value: "[...](https://sebbot.tk/NoSongsAdded)"
-			}
+			}]
 		}
 		message.reply({embed:{
 			title: "Up Next",
