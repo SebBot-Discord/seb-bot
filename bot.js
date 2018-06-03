@@ -1905,11 +1905,12 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					fields: fields
 				}}).then((msg) => {
 					var condition = (reaction, user) => user.id == message.author.id;
-					msg.react(":one:").catch(() => {message.channel.send("Can't react, aborting process");return;});
-					setTimeout(() => { msg.react(":two:") }, 500);
-					setTimeout(() => { msg.react(":three:") }, 1000);
-					setTimeout(() => { msg.react(":four:") }, 1500);
-					setTimeout(() => { msg.react(":five:") }, 2000);
+					var remoji = process.env.REMOJI.split(",");
+					msg.react(remoji[0]).catch(() => {message.channel.send("Can't react, aborting process");return;});
+					setTimeout(() => { msg.react(remoji[1]) }, 500);
+					setTimeout(() => { msg.react(remoji[2]) }, 1000);
+					setTimeout(() => { msg.react(remoji[3]) }, 1500);
+					setTimeout(() => { msg.react(remoji[4]) }, 2000);
 					msg.createReactionCollector(condition, { time: 15000 })
 					  .on('collect', (r) => {
 						console.log(r.emoji.name);
