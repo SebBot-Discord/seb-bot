@@ -1,7 +1,6 @@
 const ver = "1.2.7";
 const changelog = `
-Seb, que
-Seb, avatar
+Seb, play :: Now accepts text instead of a link
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -1844,7 +1843,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				    title = $('title').text().replace(" - YouTube", "");
 				    thumb = $("meta[property='og:image']").attr('content');
 				});
-				playlist.push({name:_n,url:file,thumbnail:thumb});
+				playlist.push({name:title,url:file,thumbnail:thumb});
 				message.reply(":loud_sound: Added to que");
 				setTimeout(function(){loader.delete()}, 500);
 				return;
