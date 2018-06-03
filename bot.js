@@ -149,7 +149,6 @@ setInterval(() => {
   //console.log("Finished!");
 });
 client.on('message', message => {
-setTimeout(() => { message.channel.stopTyping(true); }, 10000);
 try {
 	if (message.content.substr(0, 10) == "Seb, eval "){
 	    if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
