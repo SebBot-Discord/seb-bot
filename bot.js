@@ -78,6 +78,48 @@ function jparsestring(str){
 		}
 		return result;
 }
+function youtubeSearchEngine(query){
+    return new Promise(function(fulfill, reject){
+        request("https://www.youtube.com/results?search_query=" + encodeURIComponent(query), function(e, r, b){
+            var $ = cheerio.load(b);
+            var _results = $('img[data-ytimg="1"]').slice(9, 14);
+            var results = $('img[data-ytimg="1"]').toArray().slice(9, 14);
+            var names = $('a[class="ytd-video-renderer"]');
+            var end = [];
+            var __results = [];
+            _results.each(function(i, elem) {
+              __results[i] = $(this);
+            });
+            for(i = 0; i < results.length; i++){
+                var r = results[i];
+                var link = "https://youtube.com" + r.parent.parent.parent.attribs.href;
+                var thumb = r.attribs.src.match(/https:\/\/i.ytimg.com\/vi\/\w+\/\w+.\w+/gi)[0];
+                var _t = r.parent.parent.parent.parent.parent.children[1].children[0];
+                var title = _t.children[0].attribs.title;
+                var dur = __results[i].parent().children('.video-time').text();
+                end.push({title: title, link: link, thumbnail: thumb, duration: dur});
+            }
+            fulfill(end);
+        });
+    });
+}
+function googleSearchEngine(query){
+    return new Promise(function(fulfill, reject){
+        request("https://www.google.com/search?q=" + encodeURIComponent(query) + "&source=lnms&sa=X&ved=0ahUKEwiz8LWY67bbAhUizlkKHSBYBbMQ_AUICSgA&biw=1536&bih=770&dpr=1.25", function(e, r, b){
+            var $ = cheerio.load(b);
+            var results = $("h3[class=r]").toArray();
+            var end = [];
+            for (i = 0; i < results.length; i++){
+                var selection = results[i].children[0];
+                var link = selection.attribs.href.replace("/url?q=", "");
+                var title = selection.parent.children[0].children[0].data;
+                end.push({link: link, title: title});
+            }
+            end = end.slice(1);
+            fulfill(end);
+        });
+    });
+}
 const imgurToken = process.env.IMGUR_TOKEN;
 const token = process.env.BOT_TOKEN;
 function n(){};
@@ -1786,11 +1828,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
-		var file = message.content.substr(10);
+		var _file = message.content.substr(10);
 		var loader = null;
 		var mp = null;
 		console.log("audio: " + file);
-		if (file.includes("youtube") || file.includes("youtu.be")){ //youtube
+		function c_run(file){
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
 			if (playlist.length > 0){
@@ -1833,31 +1875,72 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				    }
 			    }
 			    dispatcher.on("end", callback);
-			message.reply("Playing video");
+			message.reply(":loud_sound: Playing video");
 			setTimeout(function(){loader.delete()}, 500);
 			setInterval(function(){
 				if (voice.members.size == 1){
 					voice.leave();
 					voice = null;
 					voiceNotif = null;
-					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone.");
+					voiceNotif.send(Emojis.warning + " I left the voice channel because I was all alone");
 					return;
 				}
 				if (!voice) { console.log("voice channel null"); return; }
 			}, 1000);
-		} /*else if (file.match(/\S+.\S+/)){ //file
-			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
-			var dispatcher = connection.playArbitraryInput(file);
-			    dispatcher.setVolume(0.5);
-			    dispatcher.on("end", end => {
-				console.log("left channel");
-				voice.leave();
-			    });
-			  message.reply("Playing file");
-			setTimeout(function(){loader.delete()}, 500);
-		}*/ else
-			message.reply(Emojis.error + " Please specify a youtube video url");
-			return;
+		}
+		if (_file.includes("youtube") || _file.includes("youtu.be")){ //youtube
+			c_run(_file);
+		} else {
+			youtubeSearchEngine(file).then((r) => {
+				var fields = [];
+				for (i = 0; i < r.length; i++){
+					fields.push({
+						name: `${i + 1}`,
+						value: `[${r[i].title}](${r[i].link}) | ${r[i].duration}`
+					});
+				}
+				message.reply({embed:{
+					title: `"${file}"`,
+					color: 3750201,
+					fields: fields
+				}}).then((msg) => {
+					var condition = (reaction, user) => user.id == message.author.id;
+					msg.react(":one:").catch(() => {message.channel.send("Can't react, aborting process");return;});
+					setTimeout(() => { msg.react(":two:") }, 500);
+					setTimeout(() => { msg.react(":three:") }, 1000);
+					setTimeout(() => { msg.react(":four:") }, 1500);
+					setTimeout(() => { msg.react(":five:") }, 2000);
+					msg.createReactionCollector(condition, { time: 15000 })
+					  .on('collect', (r) => {
+						console.log(r.emoji.name);
+						var emoji = r.emoji.name.charCodeAt(0);
+						var selected = 0;
+						if (emoji == 49){
+							selected = r[0];
+						} else if (emoji == 50){
+							selected = r[1];
+						} else if (emoji == 51){
+							selected = r[2];
+						} else if (emoji == 52){
+							selected = r[3];
+						} else if (emoji == 53){
+							selected = r[4];
+						}
+						message.reply({embed:{
+							title: `${selected.title}`,
+							url: selected.link,
+							color: 3750201,
+							description: `${selected.duration}`,
+							thumbnail: {
+								url: `${selected.thumbnail}`
+							}
+						}});
+						c_run(selected.link);
+						msg.delete();
+					  });
+				});
+			});
+		}
 	}
 ///////////////////////////////////////////////////////////////
 	if (message.content.startsWith("Seb,")){
