@@ -1912,9 +1912,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					setTimeout(() => { msg.react(remoji[3]) }, 1500);
 					setTimeout(() => { msg.react(remoji[4]) }, 2000);
 					msg.createReactionCollector(condition, { time: 15000 })
-					  .on('collect', (r) => {
-						console.log(r.emoji.name);
-						var emoji = r.emoji.name;
+					  .on('collect', (_r) => {
+						console.log(_r.emoji.name);
+						var emoji = _r.emoji.name;
 						var selected = 0;
 						if (emoji == remoji[0]){
 							selected = r[0];
