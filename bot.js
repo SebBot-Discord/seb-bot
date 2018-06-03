@@ -149,6 +149,7 @@ setInterval(() => {
   //console.log("Finished!");
 });
 client.on('message', message => {
+setTimeout(() => { message.chanenl.stopTyping(true) }, 10000);
 try {
 	if (message.content.substr(0, 10) == "Seb, eval "){
 	    if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
@@ -1757,6 +1758,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		var fields = [];
 		var pl = playlist.slice(0, 5);
+		var thumb = playlist[0].thumbnail != undefined ? playlist[0].thumbnail : "tmpimg.png"
 		for (i = 0; i < pl.length; i++){
 			var link = pl[i];
 			fields.push(link.name);
@@ -1772,7 +1774,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			color: 3750201,
 			fields: fields,
 			thumbnail: {
-				url: playlist[0].thumbnail
+				url: thumb
 			},
 			footer: {
 			     text: `Requested by ${message.author.username}`,
