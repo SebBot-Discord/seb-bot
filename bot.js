@@ -149,6 +149,7 @@ setInterval(() => {
   //console.log("Finished!");
 });
 client.on('message', message => {
+setTimeout(() => { message.channel.stopTyping(true); }, 10000);
 try {
 	if (message.content.substr(0, 10) == "Seb, eval "){
 	    if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
@@ -1864,7 +1865,6 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  } catch(e) { }
 	 }
 ///////////////////////////////////////////////////////////////
-setTimeout(() => { message.channel.stopTyping(true); }, 10000);
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
 	message.reply(Emojis.error + " An error ocurred!\n```fix\n" + err.message + "\n```\n");
