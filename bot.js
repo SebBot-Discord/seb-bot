@@ -1,6 +1,7 @@
 const ver = "1.2.7";
 const changelog = `
 Seb, que
+Seb, avatar
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -288,7 +289,7 @@ try {
 			message.reply("Done");
 		}
 	}
-	if (message.content.substr(0, 12) == "Seb, avatar "){
+	if (message.content == "Seb, avatar"){
 		message.channel.startTyping();
 		//var user = message.member.guild.members.find("id", message.content.match(/\d+/));
 		//if (!user) message.reply("Mention someone!"); return;
