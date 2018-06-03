@@ -1,6 +1,6 @@
 const ver = "1.2.7";
 const changelog = `
-::
+Seb, que
 `;
 
 const CONFIG_COMMAND_DELAY = 5;
@@ -1771,7 +1771,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			color: 3750201,
 			fields: fields,
 			thumbnail: {
-				url: "https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/135/speaker-with-three-sound-waves_1f50a.png"
+				url: playlist[0].thumbnail
 			},
 			footer: {
 			     text: `Requested by ${message.author.username}`,
@@ -1793,11 +1793,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			if (playlist.length > 0){
 				console.log("playlist is here");
 				var title = "PaTCH Error";
+				var thumb = "";
 				request(file, function(e, r, b){
 				    var $ = cheerio.load(b);
-				    title = $('title').text();
+				    title = $('title').text().replace(" - YouTube", "");
+				    thumb = $("meta[property='og:image']").attr('content');
 				});
-				playlist.push({name:_n,url:file});
+				playlist.push({name:_n,url:file,thumbnail:thumb});
 				message.reply(":loud_sound: Added to que");
 				setTimeout(function(){loader.delete()}, 500);
 				return;
