@@ -1891,7 +1891,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (_file.includes("youtube") || _file.includes("youtu.be")){ //youtube
 			c_run(_file);
 		} else {
-			youtubeSearchEngine(file).then((r) => {
+			youtubeSearchEngine(_file).then((r) => {
 				var fields = [];
 				for (i = 0; i < r.length; i++){
 					fields.push({
@@ -1900,7 +1900,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					});
 				}
 				message.reply({embed:{
-					title: `"${file}"`,
+					title: `"${_file}"`,
 					color: 3750201,
 					fields: fields
 				}}).then((msg) => {
@@ -1914,18 +1914,23 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					msg.createReactionCollector(condition, { time: 15000 })
 					  .on('collect', (r) => {
 						console.log(r.emoji.name);
-						var emoji = r.emoji.name.charCodeAt(0);
+						var emoji = r.emoji.name;
 						var selected = 0;
-						if (emoji == 49){
+						if (emoji == remoji[0]){
 							selected = r[0];
-						} else if (emoji == 50){
+							console.log(emoji, 1);
+						} else if (emoji == remoji[1]){
 							selected = r[1];
-						} else if (emoji == 51){
+							console.log(emoji, 2);
+						} else if (emoji == remoji[2]){
 							selected = r[2];
-						} else if (emoji == 52){
+							console.log(emoji, 3);
+						} else if (emoji == remoji[3]){
 							selected = r[3];
-						} else if (emoji == 53){
+							console.log(emoji, 4);
+						} else if (emoji == remoji[4]){
 							selected = r[4];
+							console.log(emoji, 5);
 						}
 						message.reply({embed:{
 							title: `${selected.title}`,
