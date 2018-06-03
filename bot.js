@@ -1758,7 +1758,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		var fields = [];
 		var pl = playlist.slice(0, 5);
-		var thumb = playlist[0].thumbnail != undefined ? playlist[0].thumbnail : "tmpimg.png"
+		var thumb = playlist[0] ? playlist[0].thumbnail : "tmpimg.png"
 		for (i = 0; i < pl.length; i++){
 			var link = pl[i];
 			fields.push(link.name);
