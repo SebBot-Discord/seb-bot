@@ -1802,7 +1802,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var thumb = playlist[0] ? playlist[0].thumbnail : "https://images.emojiterra.com/mozilla/512px/1f50a.png"
 		for (i = 0; i < pl.length; i++){
 			var link = pl[i];
-			fields.push(link.name);
+			fields.push({name:`${i + 1}`,value:`[${link.name}](${link.url})`);
 		}
 		if (fields.length == 0){
 			fields = [{
