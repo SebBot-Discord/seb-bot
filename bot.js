@@ -1753,7 +1753,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(Emojis.error + " Please specify a youtube video url");
 			return;
 	}*/
-	if (message.content.startsWith('Seb, que')) {
+	if (message.content == 'Seb, que') {
 		message.channel.startTyping();
 		var fields = [];
 		var pl = playlist.slice(0, 5);
@@ -1864,6 +1864,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	  } catch(e) { }
 	 }
 ///////////////////////////////////////////////////////////////
+setTimeout(() => { message.channel.stopTyping(true); }, 10000);
 } catch(err) {
 	console.log(`=== [ Error Encountered ] ===\n\n<${err.line}>: ${err.message}\n\n=================`);
 	message.reply(Emojis.error + " An error ocurred!\n```fix\n" + err.message + "\n```\n");
