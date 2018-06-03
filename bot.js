@@ -1932,6 +1932,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 							selected = r[4];
 							console.log(emoji, 5);
 						}
+						console.log(selected);
 						message.reply({embed:{
 							title: `${selected.title}`,
 							url: selected.link,
