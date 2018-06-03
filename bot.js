@@ -93,7 +93,7 @@ function youtubeSearchEngine(query){
             for(i = 0; i < results.length; i++){
                 var r = results[i];
                 var link = "https://youtube.com" + r.parent.parent.parent.attribs.href;
-                var thumb = r.attribs.src.match(/https:\/\/i.ytimg.com\/vi\/\w+\/\w+.\w+/gi)[0];
+                var thumb = r.attribs.src//.match(/https:\/\/i.ytimg.com\/vi\/\w+\/\w+.\w+/gi)[0];
                 var _t = r.parent.parent.parent.parent.parent.children[1].children[0];
                 var title = _t.children[0].attribs.title;
                 var dur = __results[i].parent().children('.video-time').text();
