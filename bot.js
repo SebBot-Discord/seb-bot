@@ -158,16 +158,6 @@ client.on('ready', () => {
 startAsyncTasks();
 ready = 1;
 console.log("SebBot " + ver + " ready!");
-client.guilds.get("395371039779192842").channels.find("name", "bot-logs").send({embed:{
-	title: "Seb Bot has restarted",
-    color: 3750201,
-	url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
-	description: "**v"+ver+" Changelog:**\n```\n"+changelog+"\n```",
-	footer: {
-        text: `Say "Seb, help" for a list of commands`,
-        icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
-    },
-}});
 var stat = 0;
 client.user.setStatus("idle");
 client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 } });
@@ -672,7 +662,6 @@ try {
                     }})
 	        			.catch(console.error);
                 });
-   	   });
 	   message.channel.stopTyping(true);
     };
     if (message.content == "Seb, fortune cookie"){
