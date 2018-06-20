@@ -11,6 +11,8 @@ var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
 var ytdl = require('ytdl-core');
+var cats = require("cats-js");
+var catapi = new cats();
 var voice = null;
 var connection = null;
 var senders = {};
@@ -653,38 +655,25 @@ try {
 		message.channel.stopTyping(true);
     };
     if (message.content == "Seb, cat pic"){
-		cmd = true;
-		message.channel.startTyping();
-		try {
-        request("http://aws.random.cat/meow", function (error, response, body){
-			if (body.substr(0,0) == "<"){
-				message.reply("Ummmmm, no cats here. Try again.")
-					.catch(console.error);
-				return;
-			}
-			if (error){
-				message.reply(error);
-				return;
-			};
-            var file = jparsestring(body).file
-            message.reply({embed:{
-                color: 3750201,
-                title: "Cat Pic",
-                image: {
-                    url: file
-                },
-                url: file,
-                footer: {
-                    text: `Requested by ${message.author.username}`,
-                    icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-                }
-            }})
-				.catch(console.error);
-        });
-		} catch(err) {
-			message.reply("**ERROR!**\n```\n"+err.message+"\n```");
-		}
-		message.channel.stopTyping(true);
+	     cmd = true;
+	     message.channel.startTyping();
+	     catapi.get().then((cat) => {
+                    message.reply({embed:{
+                        color: 3750201,
+                        title: "Cat Pic",
+                        image: {
+                            url: cat.images.image.url
+                        },
+                        url: cat.images.image.url,
+                        footer: {
+                            text: `Requested by ${message.author.username}`,
+                            icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
+                        }
+                    }})
+	        			.catch(console.error);
+                });
+   	   });
+	   message.channel.stopTyping(true);
     };
     if (message.content == "Seb, fortune cookie"){
 		cmd = true;
