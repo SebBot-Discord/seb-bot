@@ -1117,14 +1117,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		console.log(b);
 		var $ = cheerio.load(b, {xmlMode: true});
 		var results = $("post").toArray();
-		var error = results == undefined || results.length == 0 ? true : false;
-		if (error){
+		if (results == undefined || results == null || results.length == 0){
 		    message.reply(Emojis.warning + " I can't find any results for that tag");
 		    return;
 		}
 		var file = results[getRandomInt(0, results.length)].attribs.file_url;
 		var length = results.length + 1;
-		message.reply(":mag: " + length + " results", { files: [ file ] });
+		message.reply(":mag: " + length <= 100 ? length : "100+" + " results", { files: [ file ] });
 	    });
 			message.channel.stopTyping(true);
 	};
