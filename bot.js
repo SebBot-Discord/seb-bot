@@ -1825,7 +1825,7 @@ client.on("guildCreate", (guild) => {
 //};
 stat++;
 count++;
-//client.login(token);
+client.login(token);
 console.log(`refreshed seb bot (${count})`);
 }catch(err){console.log(`=== [ Error Encountered ] ===\n\n${err.message}\n\n=================`);run();};};
 run();
