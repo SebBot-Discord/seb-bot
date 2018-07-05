@@ -1518,6 +1518,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content == "Seb, partyparrots"){
 		message.channel.send(Emojis.partyparrot.repeat(50));
 	}
+	if (message.content.substr(0, 12) == "Seb, upload "){
+		message.reply({files:[message.content.substr(12)]}).catch();
+	}
 //	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////	\\
