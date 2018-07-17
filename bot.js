@@ -1664,6 +1664,33 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}});
 		message.channel.stopTyping(true);
 	}
+	if (message.content = "Seb, play +") {
+		playlist = [
+			{url:`https://www.youtube.com/watch?v=kton-qrKNLc`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=BR2JtsVumFA`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=dZLfasMPOU4`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=yyDUC1LUXSU`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=ghb6eDopW8I`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=X5G9tIe84lE`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=-C_3eYj-pOM`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=PWgvGjAhvIw`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=Qkuu0Lwb5EM`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=I_izvAbhExY`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=vimZj8HW0Kg`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=lNYcviXK4rg`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=HEXWRTEbj1I`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=BinWA0EenDY`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=6W5pq4bIzIw`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=auzfTPp4moA`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=c1f7eZ8cHpM`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=D9ioyEvdggk`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=fGx6K90TmCI`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=xFrGuyw1V8s`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=cvChjHcABPA`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=DC_TrsY7U3A`,thumbnail:"tmpimg.png",title:"test"},
+ {url:`https://www.youtube.com/watch?v=aQUlA8Hcv4s`,thumbnail:"tmpimg.png",title:"test"}
+		]
+	}
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
