@@ -1727,7 +1727,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				if (!voice) { console.log("voice channel null"); return; }
 			}, 1000);
 		}
-		if (_file.includes("youtube") || _file.includes("youtu.be")){ //youtube
+		if (_file.includes("youtube.com") || _file.includes("youtu.be")){ //youtube
 			c_run(_file);
 		} else {
 			youtubeSearchEngine(_file).then((r) => {
