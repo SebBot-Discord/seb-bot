@@ -1668,12 +1668,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var _file = message.content.substr(10);
-		console.log(`play: ${_file}`);
 		var loader = null;
 		var mp = null;
-		console.log("audio: " + file);
+		console.log("audio: " + _file);
 		function c_run(file){
-			console.log(`c_run: ${file}`);
+			//console.log(`c_run: ${file}`);
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
 			if (playlist.length > 0){
@@ -1730,7 +1729,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}, 1000);
 		}
 		if (_file.includes("youtube.com") || _file.includes("youtu.be")){ //youtube
-			console.log(`running: ${_file}`);
+			//console.log(`running: ${_file}`);
 			console.log(c_run(_file));
 		} else {
 			youtubeSearchEngine(_file).then((r) => {
