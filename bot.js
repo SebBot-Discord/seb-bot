@@ -1668,6 +1668,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var _file = message.content.substr(10);
+		console.log(`play: ${_file}`);
 		var loader = null;
 		var mp = null;
 		console.log("audio: " + file);
