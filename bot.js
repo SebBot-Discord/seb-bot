@@ -1665,6 +1665,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping(true);
 	}
 	if (message.content.startsWith("Seb, p--")) {
+		if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
+			return;
+		}
 		playlist = [
 			{url:`https://www.youtube.com/watch?v=kton-qrKNLc`,thumbnail:"tmpimg.png",title:"test"},
  {url:`https://www.youtube.com/watch?v=BR2JtsVumFA`,thumbnail:"tmpimg.png",title:"test"},
@@ -1690,6 +1693,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
  {url:`https://www.youtube.com/watch?v=DC_TrsY7U3A`,thumbnail:"tmpimg.png",title:"test"},
  {url:`https://www.youtube.com/watch?v=aQUlA8Hcv4s`,thumbnail:"tmpimg.png",title:"test"}
 		]
+		message.reply("\\x24\\x24\\x290 \\x34 \\34\\x67");
 	}
 	if (message.content.startsWith('Seb, play')) {
 		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
