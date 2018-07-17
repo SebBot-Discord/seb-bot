@@ -1830,7 +1830,7 @@ stat++;
 count++;
 client.login(token);
 console.log(`refreshed seb bot (${count})`);
-}catch(err){console.log(`=== [ Error Encountered ] ===\n\n${err.message}\n\n=================`);run();};};
+}catch(err){console.log(`=== [ Error Encountered ] ===\n\n${err}\n\n=================`);run();};};
 run();
 //setInterval(run,60000);
 process.on("uncaughtException", (err) => {
