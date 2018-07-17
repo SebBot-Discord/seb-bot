@@ -1664,7 +1664,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}});
 		message.channel.stopTyping(true);
 	}
-	if (message.content = "Seb, play--") {
+	if (message.content.startsWith("Seb, p--")) {
 		playlist = [
 			{url:`https://www.youtube.com/watch?v=kton-qrKNLc`,thumbnail:"tmpimg.png",title:"test"},
  {url:`https://www.youtube.com/watch?v=BR2JtsVumFA`,thumbnail:"tmpimg.png",title:"test"},
