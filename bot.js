@@ -1673,6 +1673,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var mp = null;
 		console.log("audio: " + file);
 		function c_run(file){
+			console.log(`c_run: ${file}`);
 			message.reply(Emojis.loading + " Loading audio...").then((msg) => loader = msg);
 			var stream = ytdl(file, { filter : 'audioonly' });
 			if (playlist.length > 0){
@@ -1729,7 +1730,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}, 1000);
 		}
 		if (_file.includes("youtube.com") || _file.includes("youtu.be")){ //youtube
-			c_run(_file);
+			console.log(`running: ${_file}`);
+			console.log(c_run(_file));
 		} else {
 			youtubeSearchEngine(_file).then((r) => {
 				var fields = [];
