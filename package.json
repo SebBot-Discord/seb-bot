@@ -18,6 +18,7 @@
     "dblapi.js": "2.0.1",
     "html-to-json": "0.6.0",
     "gm": "1.23.1",
-    "ytdl-core": "0.20.4"
+    "ytdl-core": "0.20.4",
+    "pornsearch": "2.4.2"
   }
 }
