@@ -1129,7 +1129,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	};
 	
 	if (message.content.substr(0,11) == "Seb, booru "){
-		request({"url":"http://danbooru.donmai.us/posts?tags="+message.content.substr(11),"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
+			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+				message.reply(":underage: This channel is not NSFW");
+				return;
+			}
+		try{request({"url":"http://danbooru.donmai.us/posts?tags="+message.content.substr(11),"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
 		      var $ = cheerio.load(body);
 		      var b = [];
 		      $("img").each(function(i, elem) {
@@ -1138,8 +1142,50 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  var a = cheerio.load(body);
 			  message.reply({files:[a("img").toArray()[0].attribs.src]});
 		      });
-		 });
+		 });}catch(er){
+		   message.reply(Emojis.warning + " I didn't find anything");
+		   return;
+		 }
 	};
+	
+	if (message.content == "Seb, 4k"){
+			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+				message.reply(":underage: This channel is not NSFW");
+				return;
+			}
+		   var subreddits = [
+			'NSFW_Wallpapers',
+			'SexyWallpapers',
+			'HighResNSFW',
+			'nsfw_hd',
+			'UHDnsfw'
+		    ]
+		    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+		    randomPuppy(sub)
+		    .then(url => {
+			message.reply({files:[url]})
+		    })
+	}
+	
+	if (message.content.substr(0,13) == "Seb, pornhub "){
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+		  message.reply(":underage: This channel is not NSFW");
+		  return;
+		}
+		const Searcher = new Pornsearch(message.content.substr(13));
+		try{Searcher.videos()
+		  .then(videos => {
+		    var num = Math.round(Math.random() * (videos.length - 1));
+		    var vid = videos[num];
+		    Searcher.gifs()
+		      .then(gifs => {
+			var gif = gifs[Math.round(Math.random() * (gifs.length - 1))];
+			message.reply({files:[vid.thumb,gif.url]});
+		      });
+		  });}catch(er){
+			message.reply(Emojis.warning + " Nothing found");
+		  }
+	}
 	
 	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
