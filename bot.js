@@ -1181,7 +1181,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    Searcher.gifs()
 		      .then(gifs => {
 			var gif = gifs[Math.round(Math.random() * (gifs.length - 1))];
-			message.reply({files:[gif.webm,gif.url]});
+			message.reply({files:[gif.webm]}).catch({embed:{
+				title: "File too large",
+				description: "File too large to be shown"
+			}});
 		      });
 		  });}catch(er){
 			message.reply(Emojis.warning + " Nothing found");
