@@ -1128,6 +1128,19 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.channel.stopTyping(true);
 	};
 	
+	if (message.content.substr(0,11) == "Seb, booru "){
+		get({"url":"http://danbooru.donmai.us/posts?tags="+message.content.substr(11),"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
+		      var $ = cheerio.load(body);
+		      var b = [];
+		      $("img").each(function(i, elem) {
+		      });
+		      get({"url":"http://danbooru.donmai.us"+$("img").toArray()[getRandomInt(0, $("img").length)].parent.parent.attribs.href,"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
+			  var a = cheerio.load(body);
+			  message.reply({files:[a("img").toArray()[0].attribs.src]});
+		      });
+		 });
+	});
+	
 	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
