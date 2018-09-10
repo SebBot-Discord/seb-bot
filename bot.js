@@ -1181,7 +1181,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    Searcher.gifs()
 		      .then(gifs => {
 			var gif = gifs[Math.round(Math.random() * (gifs.length - 1))];
-			message.reply({files:[vid.thumb,gif.url]});
+			message.reply({files:[gif.webm,gif.url]});
 		      });
 		  });}catch(er){
 			message.reply(Emojis.warning + " Nothing found");
