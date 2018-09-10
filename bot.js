@@ -11,6 +11,7 @@ var count = 0;
 var cheerio = require('cheerio');
 const fs = require('fs');
 var ytdl = require('ytdl-core');
+var Pornsearch = require('pornsearch');
 var cats = require("cats-js");
 var catapi = new cats();
 var voice = null;
