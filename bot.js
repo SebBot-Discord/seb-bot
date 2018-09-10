@@ -1139,7 +1139,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  message.reply({files:[a("img").toArray()[0].attribs.src]});
 		      });
 		 });
-	});
+	};
 	
 	if (message.content == "Seb, boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
