@@ -346,7 +346,7 @@ try {
 	}
 	if (message.content == "Seb, wikihow"){
 		message.channel.startTyping();
-		request({url:"https://api.ksoft.si/meme/random-wikihow",headers:{"Authorization": ksoft}}, function(e,r,b){
+		request({url:"https://api.ksoft.si/meme/random-wikihow?format=json",headers:{"Authorization": ksoft}}, function(e,r,b){
 			var json = JSON.parse(b);
 			message.channel.send({embed:{
 				color: 3750201,
