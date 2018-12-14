@@ -1,7 +1,5 @@
 const ver = "1.2.7";
-const changelog = `
-Seb, play :: Now accepts text instead of a link
-`;
+const changelog = ``;
 
 const CONFIG_COMMAND_DELAY = 5;
 
@@ -158,7 +156,7 @@ function startAsyncTasks(){
 client.on('ready', () => {
 startAsyncTasks();
 ready = 1;
-console.log("SebBot " + ver + " ready!");
+console.log("Unbunn Bot " + ver + " ready!");
 var stat = 0;
 client.user.setStatus("idle");
 client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 } });
@@ -171,7 +169,7 @@ client.user.setPresence({ game: { name: 'RESTARTING - PLEASE WAIT...', type: 1 }
 	} else if (stat == 1){
 		client.user.setPresence({ game: { name: `${client.guilds.size} servers`, type: 3 } });
 	} else if (stat == 2){
-		client.user.setPresence({ game: { name: 'Seb, help', type: 2 } });
+		client.user.setPresence({ game: { name: 'bunn!help', type: 2 } });
 		stat = -1;
 	}
 },30000)
@@ -185,7 +183,7 @@ setInterval(() => {
 client.on('message', message => {
 //setTimeout(() => { message.chanenl.stopTyping(true) }, 10000);
 try {
-	if (message.content.substr(0, 10) == "Seb, eval "){
+	if (message.content.substr(0, 10) == "bunn!eval "){
 	    if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
 			message.reply("Haha, nice try");
 			return;
@@ -211,7 +209,7 @@ try {
 	}
 	if (message.author.bot){ return; }
 	var cmd = false;
-	if (message.content.substr(0,5) == "Seb, "){
+	if (message.content.substr(0,5) == "bunn!"){
 		if (message.member.guild.name == "Hebby"){
 			if (message.channel.name != "bot-commands" && message.member.guild != null){
 				message.reply("Commands can only be used in <#402320341420212224> on Hebby!").then((msg)=>{
@@ -288,7 +286,7 @@ try {
 		  .catch(() => {message.reply(Emojis.warning + " I can't ban this user")});}, 2000);
 	}
 	//message.mentions.members[0];
-	if (message.content.substr(0, 15) == "Seb, geninvite "){
+	if (message.content.substr(0, 15) == "bunn!geninvite "){
 		var guild = client.guilds.find("name", message.content.substr(15));
 		guild.channels.array()[0].createInvite({maxAge:0, maxUses:0})
 		  .then(invit_ => {
@@ -307,7 +305,7 @@ try {
 			message.reply(Emojis.error + " I don't have permission to create invites!");
 		  });
 	}
-	if (message.content.substr(0, 15) == "Seb, broadcast "){
+	if (message.content.substr(0, 15) == "bunn!broadcast "){
 		if (message.author.id != 0){
 			message.reply("Loading...");
 			return;
@@ -324,7 +322,7 @@ try {
 			message.reply("Done");
 		}
 	}
-	if (message.content == "Seb, avatar"){
+	if (message.content == "bunn!avatar"){
 		message.channel.startTyping();
 		//var user = message.member.guild.members.find("id", message.content.match(/\d+/));
 		//if (!user) message.reply("Mention someone!"); return;
@@ -337,14 +335,14 @@ try {
 				message.channel.stopTyping(true);
 			});
 	}
-	if (message.content == "Seb, lenny"){
+	if (message.content == "bunn!lenny"){
 		message.channel.startTyping();
 		request("https://api.lenny.today/v1/random", function(e,r,b){
 		    message.reply("**`" + JSON.parse(b)[0].face + "`**");
 		});
 		message.channel.stopTyping();
 	}
-	if (message.content == "Seb, wikihow"){
+	if (message.content == "bunn!wikihow"){
 		message.channel.startTyping();
 		request({url:"https://api.ksoft.si/meme/random-wikihow?format=json",headers:{"Authorization": ksoft}}, function(e,r,b){
 			var json = JSON.parse(b);
@@ -363,7 +361,7 @@ try {
 		});
 		message.channel.stopTyping();
 	}
-	if (message.content == "Seb, discordstatus"){
+	if (message.content == "bunn!discordstatus"){
 		request("https://srhpyqt94yxb.statuspage.io/api/v2/summary.json", function (err, resp, bod){
 			var fields = [];
 			var txt = jparsestring(bod);
@@ -396,7 +394,7 @@ try {
             }}).catch();
 		});
 	}
-    if (message.content == "Seb, fprestart"){
+    if (message.content == "bunn!fprestart"){
 	    if (message.author.id != 299708692129906692){
 			message.reply("Haha, nice try");
 			return;
@@ -405,7 +403,7 @@ try {
 			setTimeout(function(){process.exit(143);}, 1000);
 		}
     }
-    if (message == "Seb, help"){
+    if (message == "bunn!help"){
 		cmd = true;
 		message.channel.startTyping();
         message.reply({embed: {
@@ -438,7 +436,7 @@ try {
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0,13) == "Seb, cryptic "){
+	if (message.content.substr(0,13) == "bunn!cryptic "){
 		var input = message.content.substr(13);
 		var k = [];k["a"] = "ðŸ‡¦";k["b"] = "ðŸ‡§";k["c"] = "ðŸ‡¨";k["d"] = "ðŸ‡©";k["e"] = "ðŸ‡ª";k["f"] = "ðŸ‡«";k["g"] = "ðŸ‡¬";k["h"];"ðŸ‡­";k["i"] = "ðŸ‡®";k["j"] = "ðŸ‡¯";k["k"] = "ðŸ‡°";k["l"] = "ðŸ‡±";k["m"] = "ðŸ‡²";k["n"] = "ðŸ‡³";k["o"] = "ðŸ‡´";k["p"] = "ðŸ‡µ";k["q"] = "ðŸ‡¶";k["r"] = "ðŸ‡·";k["s"] = "ðŸ‡¸";k["t"] = "ðŸ‡¹";k["u"] = "ðŸ‡º";k["v"] = "ðŸ‡»";k["w"] = "ðŸ‡¼";k["x"] = "ðŸ‡½";k["y"] = "ðŸ‡¾";k["z"] = "ðŸ‡¿";
 		var _result = "";
@@ -477,7 +475,7 @@ try {
 				.catch(console.error);
 		}, 7000);
     };
-	if (message == "Seb, invite"){
+	if (message == "bunn!invite"){
 		cmd = true;
 		message.channel.startTyping();
 		message.reply({embed:{
@@ -486,14 +484,14 @@ try {
 			url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
 			//description: "(**Invite**)[https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot] **Seb Bot to your server**",
 			footer: {
-                text: `Say "Seb, help" for a list of commands`,
+                text: `Say "bunn!help" for a list of commands`,
                 icon_url: "https://cdn.discordapp.com/avatars/408718297400475668/c7b9be183d4cf2029912533e3afc2e69.png"
             },
 		}})
 			.catch(console.error);
 		message.channel.stopTyping(true);
 	};
-    if (message == "Seb, tell me a joke"){
+    if (message == "bunn!tell me a joke"){
 		cmd = true;
 		message.channel.startTyping();
     request('https://icanhazdadjoke.com/slack', function (error, response, body) {
@@ -515,7 +513,7 @@ try {
     });
 	message.channel.stopTyping(true);
     };
-    if (message.content.substr(0,26) == "Seb, tell me a fact about "){
+    if (message.content.substr(0,26) == "bunn!tell me a fact about "){
 		cmd = true;
 	message.channel.startTyping();
     request(('http://numbersapi.com/').concat(message.content.substr(26)), function (error, response, body) {
@@ -539,7 +537,7 @@ try {
     });
 	message.channel.stopTyping(true);
     };
-    if (message.content.substr(0,16) == "Seb, search for "){
+    if (message.content.substr(0,16) == "bunn!search for "){
 		cmd = true;
 		message.channel.startTyping();
 		var link = "about:blank";
@@ -570,7 +568,7 @@ try {
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0,10) == "Seb, echo "){
+	if (message.content.substr(0,10) == "bunn!echo "){
 		cmd = true;
 		message.channel.startTyping();
         message.reply({embed:{
@@ -586,7 +584,7 @@ try {
 		message.channel.stopTyping(true);
 	};
 	//https://api.duckduckgo.com/?q=DuckDuckGo&format=json
-	if (message.content.substr(0,9) == "Seb, ddg "){
+	if (message.content.substr(0,9) == "bunn!ddg "){
 		cmd = true;
 		message.channel.startTyping();
         /*request("https://api.duckduckgo.com/?q="+message.content.substr(9)+"&format=json", function (error, response, body){
@@ -618,7 +616,7 @@ try {
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, random meme"){
+    if (message.content == "bunn!random meme"){
 		cmd = true;
 		message.channel.startTyping();
         request("http://api.giphy.com/v1/gifs/random?api_key=66dDvOlfHygVwKPDOIeLTwOX8wtHxrZY", function (error, response, body){
@@ -645,7 +643,7 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, cat pic"){
+    if (message.content == "bunn!cat pic"){
 	     cmd = true;
 	     message.channel.startTyping();
 	     catapi.get().then((cat) => {
@@ -665,7 +663,7 @@ try {
                 });
 	   message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, fortune cookie"){
+    if (message.content == "bunn!fortune cookie"){
 		cmd = true;
 		message.channel.startTyping();
         request("http://www.yerkee.com/api/fortune", function (error, response, body){
@@ -690,7 +688,7 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0,12) == "Seb, pirate "){
+	if (message.content.substr(0,12) == "bunn!pirate "){
 		cmd = true;
 		message.channel.startTyping();
         request(`http://api.funtranslations.com/translate/pirate.json?text=${message.content.substr(12)}`, function (error, response, body){
@@ -712,7 +710,7 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-    if (message.content.substr(0,11) == "Seb, 8ball "){
+    if (message.content.substr(0,11) == "bunn!8ball "){
 		cmd = true;
 		message.channel.startTyping();
         request(`https://8ball.delegator.com/magic/JSON/${message.content.substr(11)}`, function (error, response, body){
@@ -737,13 +735,13 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, shut up"){
+    if (message.content == "bunn!shut up"){
 		cmd = true;
 		message.channel.startTyping();
         message.reply("no, u!");
 		message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, trbmb"){
+    if (message.content == "bunn!trbmb"){
 		cmd = true;
 		message.channel.startTyping();
         request("http://api.chew.pro/trbmb", function (error, response, body){
@@ -764,7 +762,7 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-    if (message.content == "Seb, dog pic"){
+    if (message.content == "bunn!dog pic"){
 		cmd = true;
 		message.channel.startTyping();
         request("https://dog.ceo/api/breeds/image/random", function (error, response, body){
@@ -789,7 +787,7 @@ try {
 		message.channel.stopTyping(true);
     };
     //
-    if (message.content.substr(0,13) == "Seb, be like "){
+    if (message.content.substr(0,13) == "bunn!be like "){
 		cmd = true;
 		message.channel.startTyping();
         //request(`http://belikebill.azurewebsites.net/billgen-API.php?default=1&name=${message.content.substr(13)}`, function (error, response, body){
@@ -809,7 +807,7 @@ try {
        // });
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, firecracker"){
+	if (message.content == "bunn!firecracker"){
 		message.reply("That command has been removed"); return;
 		cmd = true;
 		message.channel.startTyping();
@@ -836,7 +834,7 @@ try {
 			.catch(console.error);
 		message.channel.stopTyping(true);
 	};
-	if (message.content == "Seb, yo momma"){
+	if (message.content == "bunn!yo momma"){
 		cmd = true;
 		message.channel.startTyping();
         request("http://api.yomomma.info/", function (error, response, body){
@@ -858,7 +856,7 @@ try {
         });
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, stats"){
+	if (message.content == "bunn!stats"){
 		const guild = message.member.guild;
 		cmd = true;
 		var explicit_filter = undefined;
@@ -932,7 +930,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
         //});
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0,11) == "Seb, image "){
+	if (message.content.substr(0,11) == "bunn!image "){
 		cmd = true;
 		message.channel.startTyping();
 		var tag = encodeURIComponent(message.content.substr(11))
@@ -970,7 +968,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, ping"){
+	if (message.content == "bunn!ping"){
 		cmd = true;
 		message.channel.startTyping();
 		message.reply({embed:{
@@ -984,7 +982,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			.catch(console.error);
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, servers"){
+	if (message.content == "bunn!servers"){
 		const guild = message.member.guild;
 		var fields = [];
 		console.warn(client.guilds);
@@ -1015,7 +1013,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
         //});
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, dblinfo"){
+	if (message.content == "bunn!dblinfo"){
 		cmd = true;
 		message.channel.startTyping();
         //request({url: 'https://discordapp.com/api/users/@me/guilds',headers: {'Authorization': 'Bot NDA4NzE4Mjk3NDAwNDc1NjY4.DVUleg.VJV1fHSXPvXV_TX3CtJor-oAX8I'}};, function (error, response, body){
@@ -1035,7 +1033,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
         //});
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0,9) == "Seb, gif "){
+	if (message.content.substr(0,9) == "bunn!gif "){
 		cmd = true;
 		message.channel.startTyping();
         request("https://api.gfycat.com/v1/gfycats/search?search_text="+encodeURIComponent(message.content.substr(9)), function (error, response, body){
@@ -1063,7 +1061,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	if (message.content.substr(0,13) == "Seb, rule34b "){
+	if (message.content.substr(0,13) == "bunn!rule34b "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW");
 			return;
@@ -1105,7 +1103,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
         }catch(err){}
 	message.channel.stopTyping(true);
     };
-    if (message.content.substr(0,12) == "Seb, rule34 "){
+    if (message.content.substr(0,12) == "bunn!rule34 "){
 			if (cmd){ return; }
 			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 				message.reply(":underage: This channel is not NSFW");
@@ -1129,7 +1127,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.channel.stopTyping(true);
 	};
 	
-	if (message.content.substr(0,11) == "Seb, booru "){
+	if (message.content.substr(0,11) == "bunn!booru "){
 			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 				message.reply(":underage: This channel is not NSFW");
 				return;
@@ -1149,7 +1147,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		 }
 	};
 	
-	if (message.content == "Seb, 4k"){
+	if (message.content == "bunn!4k"){
 			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 				message.reply(":underage: This channel is not NSFW");
 				return;
@@ -1168,7 +1166,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    })
 	}
 	
-	if (message.content.substr(0,13) == "Seb, pornhub "){
+	if (message.content.substr(0,13) == "bunn!pornhub "){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 		  message.reply(":underage: This channel is not NSFW");
 		  return;
@@ -1191,7 +1189,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		  }
 	}
 	
-	if (message.content == "Seb, boobs"){
+	if (message.content == "bunn!boobs"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
 			return;
@@ -1208,7 +1206,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
     };
-	if (message.content == "Seb, sex"){
+	if (message.content == "bunn!sex"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
 			return;
@@ -1229,7 +1227,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 		});
 	}
-	if (message.content == "Seb, ass"){
+	if (message.content == "bunn!ass"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
 			return;
@@ -1250,7 +1248,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 		});
 	}
-	if (message.content == "Seb, furry"){
+	if (message.content == "bunn!furry"){
 		message.channel.startTyping();
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
@@ -1264,7 +1262,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
 	}
-	if (message.content == "Seb, hentai"){
+	if (message.content == "bunn!hentai"){
 		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
 			message.reply(":underage: This channel is not NSFW").catch(console.error);
 			return;
@@ -1282,7 +1280,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
 	}
-	if (message.content == "Seb, xkcd"){
+	if (message.content == "bunn!xkcd"){
 		cmd = true;
 		var index = getRandomInt(0, 1989);
 		request(`https://xkcd.com/${index}/info.0.json`, function (error, response, body) {
@@ -1291,7 +1289,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 		});
 	}
-	if (message.content == "Seb, news"){
+	if (message.content == "bunn!news"){
 		cmd = true;
 		message.channel.startTyping();
 		var tag = encodeURIComponent(message.content.substr(11))
@@ -1341,14 +1339,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		});
 		message.channel.stopTyping(true);
     };
-	if (message.content.substr(0, 13) == "Seb, crazyimg"){
+	if (message.content.substr(0, 13) == "bunn!crazyimg"){
 		message.channel.startTyping();
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
 			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 				return;
 			}
 			img = img[0];
@@ -1375,14 +1373,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			});
 		//load.edit(Emojis.error + " Image processing failed");
 	}
-	if (message.content.startsWith("Seb, oil")){
+	if (message.content.startsWith("bunn!oil")){
 		message.channel.startTyping();
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
 			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 				return;
 			}
 			img = img[0];
@@ -1404,14 +1402,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			});
 		//load.edit(Emojis.error + " Image processing failed");
 	}
-	if (message.content.substr(0, 10) == "Seb, sepia"){
+	if (message.content.substr(0, 10) == "bunn!sepia"){
 		message.channel.startTyping();
 		var img = undefined;
 		var msg = message.content;
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
 			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 				return;
 			}
 			img = img[0];
@@ -1433,7 +1431,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			});
 		//load.edit(Emojis.error + " Image processing failed");
 	}
-	if (message.content.substr(0, 9) == "Seb, blur"){
+	if (message.content.substr(0, 9) == "bunn!blur"){
 		var load = null;
 		message.channel.send(Emojis.loading + " Processing image, please wait...")
 			.then((msg) => load = msg);
@@ -1443,7 +1441,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		if (message.attachments.length != 1){
 			img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
 			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 				return;
 			}
 			img = img[0];
@@ -1463,7 +1461,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  load.delete();
 			});
 	}
-	if (message.content.substr(0, 10) == "Seb, merge"){
+	if (message.content.substr(0, 10) == "bunn!merge"){
 		var load = null;
 		message.channel.send(Emojis.loading + " Processing image, please wait...")
 			.then((msg) => load = msg);
@@ -1479,7 +1477,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			}
 			img2 = img[1];
 			if (!img){
-				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+				message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 				return;
 			}
 			img = img[0];
@@ -1497,13 +1495,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  load.delete();
 			});
 	}
-	if (message.content.substr(0, 17) == "Seb, achievement "){
+	if (message.content.substr(0, 17) == "bunn!achievement "){
 		var load = null;
-		var texts = message.content.match(/\S+|\S+/g).join(" ").replace("Seb, achievement ", "").split("|");
+		var texts = message.content.match(/\S+|\S+/g).join(" ").replace("bunn!achievement ", "").split("|");
 		var topText = texts[0];
 		var bottomText = texts[1];
 		if (!topText || !bottomText){
-			message.reply(Emojis.error + " Please format your command like so: `Seb, achievement <top text>|<bottom text>`");
+			message.reply(Emojis.error + " Please format your command like so: `bunn!achievement <top text>|<bottom text>`");
 			return;
 		}
 		message.channel.send(Emojis.loading + " Generating image, please wait...")
@@ -1522,7 +1520,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      		  setTimeout(function(){load.delete()}, 500);
 			});
 	}
-	if (message.content.substr(0, 12) == "Seb, qrcode "){
+	if (message.content.substr(0, 12) == "bunn!qrcode "){
 		var load = null;
 		var text = encodeURIComponent(message.content.substr(12));
 		message.channel.send(Emojis.loading + " Generating qrcode, please wait...")
@@ -1538,7 +1536,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	      		  setTimeout(function(){load.delete()}, 500);
 			});
 	}
-	if (message.content.startsWith("Seb, edge")){
+	if (message.content.startsWith("bunn!edge")){
 		var load = null;
 		message.channel.send(Emojis.loading + " Processing image, please wait...")
 			.then((msg) => load = msg);
@@ -1547,7 +1545,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		var msg = message.content;
 		img = msg.replace(/https/g, "http").match(/http:\/\/\S+\.\w+/gi);
 		if (!img){
-			message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. Seb, crazyimg http://example.com/image.png");
+			message.reply("Please attach an image file or supply an image URL as the second argument\ne.g. bunn!crazyimg http://example.com/image.png");
 			return;
 		}
 		img = img[0];
@@ -1562,11 +1560,11 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			  load.delete();
 			});
 	}
-	//Seb, eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
+	//bunn!eval gm(request(`https://www.minecraftskinstealer.com/achievement/a.php?i=2&h=yash&t=herllo`))
 	//.write("temp.png", function(){
 	//setTimeout(function(){message.reply({files:["temp.png"]});},1000);
 	//});
-	if (message.content.substr(0, 12) == "Seb, cowsay "){
+	if (message.content.substr(0, 12) == "bunn!cowsay "){
 		message.channel.startTyping();
 		request("http://cowsay.morecode.org/say?message=" + encodeURIComponent(message.content.substr(12)) + "&format=json", function (err, resp, bod){
 			var txt = jparsestring(bod).cow;
@@ -1578,16 +1576,16 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		})
 		message.channel.stopTyping(true);
 	}
-	if (message.content == "Seb, partyparrots"){
+	if (message.content == "bunn!partyparrots"){
 		message.channel.send(Emojis.partyparrot.repeat(50));
 	}
-	if (message.content.substr(0, 12) == "Seb, upload "){
+	if (message.content.substr(0, 12) == "bunn!upload "){
 		message.reply({files:[message.content.substr(12)]}).catch();
 	}
 //	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////	\\
-	if (message.content === 'Seb, join') {
+	if (message.content === 'bunn!join') {
 	  var loader = null;
 	  if (message.member.voiceChannel) {
 	    if (voice){
@@ -1624,7 +1622,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.error + ' Join a voice channel!');
 	  }
 	}
-	if (message.content === 'Seb, leave') {
+	if (message.content === 'bunn!leave') {
 	  var loader = null;
 	  if (senders[message.member.guild.id] == message.author.id) {
             message.reply(Emojis.loading + " Disconnecting...").then((msg) => { voice = null; loader = msg });
@@ -1633,8 +1631,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	    message.reply(Emojis.warning + ' Only the person who added Seb Bot to the voice channel can do this');
 	  }
 	}
-	/*if (message.content.startsWith('Seb, play')) {
-		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
+	/*if (message.content.startsWith('bunn!play')) {
+		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `bunn!join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var file = message.content.substr(10);
 		var loader = null;
@@ -1698,7 +1696,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(Emojis.error + " Please specify a youtube video url");
 			return;
 	}*/
-	if (message.content == 'Seb, que') {
+	if (message.content == 'bunn!que') {
 		message.channel.startTyping();
 		var fields = [];
 		var pl = playlist.slice(0, 5);
@@ -1727,7 +1725,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}});
 		message.channel.stopTyping(true);
 	}
-	if (message.content.startsWith("Seb, p--")) {
+	if (message.content.startsWith("bunn!p--")) {
 		if (message.author.id != 299708692129906692 && message.author.id != client.user.id){
 			return;
 		}
@@ -1758,8 +1756,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		]
 		message.reply("\\x24\\x24\\x290 \\x34 \\34\\x67");
 	}
-	if (message.content.startsWith('Seb, play')) {
-		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `Seb, join` first"); return; }
+	if (message.content.startsWith('bunn!play')) {
+		if (!voice){ message.reply(Emojis.error + " I'm not in a voice channel, say `bunn!join` first"); return; }
 		//if (senders[message.member.guild.id] != message.author.id){ message.reply(Emojis.warning + " Only the person controlling Seb Bot, " + message.member.guild.members.find('id', senders[message.member.guild.id]).username + ", can change the song."); }
 		var _file = message.content.substr(10);
 		var loader = null;
@@ -1898,7 +1896,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 });
 client.on('guildMemberAdd', member => {
   if(member.guild.id == 264445053596991498) return;
-  member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`Seb, help\` for a list of commands.');
+  member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`bunn!help\` for a list of commands.');
 });
 client.on("guildCreate", (guild) => {
 	var invite = "No invite";
