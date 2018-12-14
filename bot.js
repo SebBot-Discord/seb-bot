@@ -1013,30 +1013,10 @@ rule34 `+"`"+"ONLINE"+"`"+`
         //});
 		message.channel.stopTyping(true);
     };
-	if (message.content == "bunn!dblinfo"){
-		cmd = true;
-		message.channel.startTyping();
-        //request({url: 'https://discordapp.com/api/users/@me/guilds',headers: {'Authorization': 'Bot NDA4NzE4Mjk3NDAwNDc1NjY4.DVUleg.VJV1fHSXPvXV_TX3CtJor-oAX8I'}};, function (error, response, body){
-            message.reply({embed:{
-                color: 3750201,
-                title: "Discord Bots Info",
-				url: "https://discordbots.org/bot/408718297400475668",
-                image: {
-					url: "https://discordbots.org/api/widget/408718297400475668.svg"
-				},
-                footer: {
-                    text: `Requested by ${message.author.username}`,
-                    icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-                }
-            }})
-				.catch(console.error);
-        //});
-		message.channel.stopTyping(true);
-    };
 	if (message.content.substr(0,9) == "bunn!gif "){
 		cmd = true;
 		message.channel.startTyping();
-        request("https://api.gfycat.com/v1/gfycats/search?search_text="+encodeURIComponent(message.content.substr(9)), function (error, response, body){
+        	request("https://api.gfycat.com/v1/gfycats/search?search_text="+encodeURIComponent(message.content.substr(9)), function (error, response, body){
 			if (error){
 				message.reply(error);
 				return;
@@ -1057,228 +1037,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 				.catch(console.error);
 			});
 		message.channel.stopTyping(true);
-    };
+    	};
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-	if (message.content.substr(0,13) == "bunn!rule34b "){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW");
-			return;
-		}
-		message.channel.startTyping();
-		cmd = true;
-		try {
-			var r = [];
-			var found = false;
-			htmlToJson.request("https://rule34.xxx/index.php?page=post&s=list&tags=" + encodeURIComponent(message.content.substr(13)), {
-			  'images': ['a', function ($img) {
-				var link = $img.attr('href')
-				return link;
-			  }]
-			}, function (err, result) {
-				console.log(result);
-				var selector = getRandomInt(0,result.images.length);
-				for (i = 0; i < result.images.length; i++) {
-					var txt = result.images[i];
-					found = true;
-					if (txt == undefined || txt == null){
-						console.log("err")
-                    }
-					if (txt.includes("\&s\=view")){
-						if (i > selector){
-                            htmlToJson.request("https://rule34.xxx/" + txt, {
-                            'images': ['img', function ($img) {
-                             var link = $img.attr('src')
-                             return link;
-                            }]
-                            }, function (err, result) {
-                                console.log(result.images[3])
-                            })
-                            return;
-						}
-					}
-				}
-			})
-        }catch(err){}
-	message.channel.stopTyping(true);
-    };
-    if (message.content.substr(0,12) == "bunn!rule34 "){
-			if (cmd){ return; }
-			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-				message.reply(":underage: This channel is not NSFW");
-				return;
-			}
-			cmd = true;
-			var msg = message;
-			message.channel.startTyping();
-	    request("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=" + encodeURIComponent(message.content.substr(12)), function (e, r, b){
-		console.log(b);
-		var $ = cheerio.load(b, {xmlMode: true});
-		var results = $("post").toArray();
-		if (results == undefined || results == null || results.length == 0){
-		    message.reply(Emojis.warning + " I can't find any results for that tag");
-		    return;
-		}
-		var file = results[getRandomInt(0, results.length)].attribs.file_url;
-		var length = results.length + 1;
-		message.reply(":mag: " + length <= 100 ? length : "100+" + " results", { files: [ file ] });
-	    });
-			message.channel.stopTyping(true);
-	};
-	
-	if (message.content.substr(0,11) == "bunn!booru "){
-			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-				message.reply(":underage: This channel is not NSFW");
-				return;
-			}
-		try{request({"url":"http://danbooru.donmai.us/posts?tags="+message.content.substr(11),"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
-		      var $ = cheerio.load(body);
-		      var b = [];
-		      $("img").each(function(i, elem) {
-		      });
-		      request({"url":"http://danbooru.donmai.us"+$("img").toArray()[getRandomInt(0, $("img").length)].parent.parent.attribs.href,"headers":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"}}, function(err, res, body) {
-			  var a = cheerio.load(body);
-			  message.reply({files:[a("img").toArray()[0].attribs.src]});
-		      });
-		 });}catch(er){
-		   message.reply(Emojis.warning + " I didn't find anything");
-		   return;
-		 }
-	};
-	
-	if (message.content == "bunn!4k"){
-			if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-				message.reply(":underage: This channel is not NSFW");
-				return;
-			}
-		   var subreddits = [
-			'NSFW_Wallpapers',
-			'SexyWallpapers',
-			'HighResNSFW',
-			'nsfw_hd',
-			'UHDnsfw'
-		    ]
-		    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-		    randomPuppy(sub)
-		    .then(url => {
-			message.reply({files:[url]})
-		    })
-	}
-	
-	if (message.content.substr(0,13) == "bunn!pornhub "){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-		  message.reply(":underage: This channel is not NSFW");
-		  return;
-		}
-		const Searcher = new Pornsearch(message.content.substr(13));
-		try{Searcher.videos()
-		  .then(videos => {
-		    var num = Math.round(Math.random() * (videos.length - 1));
-		    var vid = videos[num];
-		    Searcher.gifs()
-		      .then(gifs => {
-			var gif = gifs[Math.round(Math.random() * (gifs.length - 1))];
-			message.reply({files:[gif.webm]}).catch({embed:{
-				title: "File too large",
-				description: "File too large to be shown"
-			}});
-		      });
-		  });}catch(er){
-			message.reply(Emojis.warning + " Nothing found");
-		  }
-	}
-	
-	if (message.content == "bunn!boobs"){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW").catch(console.error);
-			return;
-		}
-		cmd = true;
-		var msg = message;
-		message.channel.startTyping();
-		//https://rbxutility.000webhostapp.com/get.php?url=
-		request("http://api.oboobs.ru/boobs/"+getRandomInt(1,5000)+"/1/rank", function(error, response, body){
-			console.log(error, response, body);
-			var file = "http://media.oboobs.ru/"+jparsestring(body)[0].preview
-			message.reply("\n" + file)
-				.catch(console.error);
-		});
-		message.channel.stopTyping(true);
-    };
-	if (message.content == "bunn!sex"){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW").catch(console.error);
-			return;
-		}
-		cmd = true;
-		request('http://api.giphy.com/v1/gifs/search?q=sex&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			console.log(error, response, body);
-			var b = jparsestring(body)
-			var key, count = 0;
-			for(key in b.data) {
-				if(b.data.hasOwnProperty(key)) {
-					count++;
-				}
-			}
-			var index = getRandomInt(0,count)
-			var file = b.data[index].images.original.url
-			message.reply("\n" + file)
-				.catch(console.error);
-		});
-	}
-	if (message.content == "bunn!ass"){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW").catch(console.error);
-			return;
-		}
-		cmd = true;
-		request('http://api.giphy.com/v1/gifs/search?q=ass&api_key=dc6zaTOxFJmzC&limit=125', function (error, response, body) {
-			console.log(error, response, body);
-			var b = jparsestring(body)
-			var key, count = 0;
-			for(key in b.data) {
-				if(b.data.hasOwnProperty(key)) {
-					count++;
-				}
-			}
-			var index = getRandomInt(0,count)
-			var file = b.data[index].images.original.url
-			message.reply("\n" + file)
-				.catch(console.error);
-		});
-	}
-	if (message.content == "bunn!furry"){
-		message.channel.startTyping();
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW").catch(console.error);
-			return;
-		}
-		cmd = true;
-		request('https://sheri.fun/api/v1/yiff', function (error, response, body) {
-			var b = jparsestring(body).url
-			message.reply({files:[b]})
-				.catch(console.error);
-		});
-		message.channel.stopTyping(true);
-	}
-	if (message.content == "bunn!hentai"){
-		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
-			message.reply(":underage: This channel is not NSFW").catch(console.error);
-			return;
-		}
-		message.channel.startTyping();
-		randomPuppy("HENTAI_GIF").then(url => {
-			message.reply({files:[url]})
-			  .catch((err) => {
-				if (err.code == 40005){
-					message.reply({embed:{color: 3750201,fields:[{name:"** Error **",value:"File too large to be shown, click [here](" + url + ") to view it"}]}});
-				} else {
-					console.error(err);
-				}
-			  });
-		});
-		message.channel.stopTyping(true);
 	}
 	if (message.content == "bunn!xkcd"){
 		cmd = true;
@@ -1883,7 +1644,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 	}
 ///////////////////////////////////////////////////////////////
-	if (message.content.startsWith("Seb,")){
+	if (message.content.startsWith("bunn!")){
 	  try {
 		  console.log("[" + message.member.guild.name + " @ " + message.channel.name + "]: {Author " + message.author.username + ", Bot? " + message.author.bot + ", Message '" + message + "', MessageLength " + message.content.length);
 	  } catch(e) { }
@@ -1896,9 +1657,9 @@ rule34 `+"`"+"ONLINE"+"`"+`
 });
 client.on('guildMemberAdd', member => {
   if(member.guild.id == 264445053596991498) return;
-  member.send('Welcome to ' + member.guild.name + '!\nI\'m Seb Bot, created by SebbyTheGODKid#0426\nSay \`bunn!help\` for a list of commands.');
+  member.send('Welcome to ' + member.guild.name + '!\nI\'m Unbunn Bot, created by SebbyTheGODKid#0426\nSay \`bunn!help\` for a list of commands.');
 });
-client.on("guildCreate", (guild) => {
+/*client.on("guildCreate", (guild) => {
 	var invite = "No invite";
 	guild.channels.array()[0].createInvite({maxAge:0, maxUses:0})
 	.then(invit_ => { invite = invit_ })
@@ -1911,7 +1672,7 @@ client.on("guildCreate", (guild) => {
 		url: "https://discordapp.com/api/oauth2/authorize?client_id=408718297400475668&permissions=67160064&scope=bot",
 		fields: fields,
 	}}).catch(console.error);
-});
+});*/
 //if (stat == 1){
 //	client.user.setPresence({ game: { name: 'House, help', type: 2 } });
 //} else if (stat == 2){
