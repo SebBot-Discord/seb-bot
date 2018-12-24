@@ -270,6 +270,22 @@ try {
   		  .then(() => {message.reply(`Successfully kicked user`)})
 		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});}, 2000);
 	}
+	if (message.content.startsWith("s!warn")){
+		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
+		var reason = args.slice(2).join(" ");
+		if (!user){
+			message.reply(Emojis.error + " User not found, did you follow the format? (`s!warn @User#1337 reason here`)");
+			return;
+		}
+		if (!user.bannable){
+			message.reply(Emojis.error + " I don't have permission to warn this user. Please give me the **`Administrator`** permission and make my role be at the 2nd-to-top.");
+			return;
+		}
+		var uname = user.username;
+		user.user.send("You have been warned in " + message.member.guild.name + ", reason:\n**```diff\n- " + reason + "\n```**").catch((err) => {
+			message.reply(Emojis.error + "Operation failed. **(**" + err + "**)**");
+		});
+	}
 	if (message.content.startsWith("s!ban")){
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
