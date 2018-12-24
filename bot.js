@@ -282,7 +282,10 @@ try {
 			return;
 		}
 		var uname = user.username;
-		user.user.send("You have been warned in " + message.member.guild.name + ", reason:\n**```diff\n- " + reason + "\n```**").catch((err) => {
+		user.user.send("You have been warned in " + message.member.guild.name + ", reason:\n**```diff\n- " + reason + "\n```**")
+		.then(() => {
+			message.reply("User successfully warned");
+		}).catch((err) => {
 			message.reply(Emojis.error + "Operation failed. **(**" + err + "**)**");
 		});
 	}
@@ -443,6 +446,8 @@ try {
   - Kicks <user> from the server with reason <reason>
 "s!ban <@user> <reason>":
   - Bans <user> from the server with reason <reason>
+"s!warn <@user> <reason>":
+  - Warns <user> for <reason>
 `+"```",
 					    footer: {
 						text: "Seb Bot created by SebbyTheGODKid#0426",
