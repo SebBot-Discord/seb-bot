@@ -274,7 +274,7 @@ try {
 		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});}, 2000);
 	}
 	if (message.content.startsWith("s!warn")){
-		if (!message.author.hasPermission("ADMINISTRATOR")) {
+		if (!message.member.hasPermission("ADMINISTRATOR")) {
 			message.reply(Emojis.error + "No permission");
 		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
@@ -292,7 +292,7 @@ try {
 		});
 	}
 	if (message.content.startsWith("s!ban")){
-		if (!message.author.hasPermission("ADMINISTRATOR")) {
+		if (!message.member.hasPermission("ADMINISTRATOR")) {
 			message.reply(Emojis.error + "No permission");
 		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
