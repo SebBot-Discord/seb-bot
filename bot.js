@@ -254,7 +254,7 @@ try {
 	};
 	var args = message.content.match(/\S+/g);
 	if (message.content.startsWith("s!kick")){
-		if (!message.author.hasPermission("ADMINISTRATOR")) {
+		if (!message.member.hasPermission("ADMINISTRATOR")) {
 			message.reply(Emojis.error + "No permission");
 		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
