@@ -254,6 +254,9 @@ try {
 	};
 	var args = message.content.match(/\S+/g);
 	if (message.content.startsWith("s!kick")){
+		if (!message.author.hasPermission("ADMINISTRATOR")) {
+			message.reply(Emojis.error + "No permission");
+		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
 		if (!user){
@@ -271,14 +274,13 @@ try {
 		  .catch(() => {message.reply(Emojis.warning + " I can't kick this user")});}, 2000);
 	}
 	if (message.content.startsWith("s!warn")){
+		if (!message.author.hasPermission("ADMINISTRATOR")) {
+			message.reply(Emojis.error + "No permission");
+		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
 		if (!user){
 			message.reply(Emojis.error + " User not found, did you follow the format? (`s!warn @User#1337 reason here`)");
-			return;
-		}
-		if (!user.bannable){
-			message.reply(Emojis.error + " I don't have permission to warn this user. Please give me the **`Administrator`** permission and make my role be at the 2nd-to-top.");
 			return;
 		}
 		var uname = user.username;
@@ -290,6 +292,9 @@ try {
 		});
 	}
 	if (message.content.startsWith("s!ban")){
+		if (!message.author.hasPermission("ADMINISTRATOR")) {
+			message.reply(Emojis.error + "No permission");
+		}
 		var user = message.member.guild.members.find("id", message.content.match(/\d+/)[0]);
 		var reason = args.slice(2).join(" ");
 		if (!user){
