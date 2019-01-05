@@ -1625,6 +1625,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			var s = j[getRandomInt(0,20)];
 			if (j !== null){
 				message.reply({embed:{
+					color: 3750201,
 					fields: [{
 					    name: s.share_text,
 					    value: "[View](" + s.share_url + ")"
