@@ -52,6 +52,15 @@ dbl.webhook.on('vote', vote => {
 });
 const request = require('request')
 //const dbl = new DBL(process.env.DBL_TOKEN, client);
+function generateUUID() {
+  var d = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = (d + Math.random()*16)%16 | 0;
+    d = Math.floor(d/16);
+    return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+};
 function getElementByAttribute(attr, root) {
     if(root.hasAttribute(attr)) {
         return root;
@@ -1611,7 +1620,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.reply({files:[message.content.substr(12)]}).catch();
 	}
 	if (message.content.substr(0, ) == "Seb, tiktok"){
-		request("http://tiktok-web.glitch.me/videos", function(err, resp, body){
+		request("http://47.88.9.138:6555/short-video/get-short-videos?index=" + generateUUID(), function(err, resp, body){
 			var j = JSON.parse(body).result;
 			var s = j[getRandomInt(0,20)];
 			if (j !== null){
