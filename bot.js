@@ -1610,6 +1610,20 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0, 12) == "Seb, upload "){
 		message.reply({files:[message.content.substr(12)]}).catch();
 	}
+	if (message.content.substr(0, ) == "Seb, tiktok"){
+		request("http://tiktok-web.glitch.me/videos", function(err, resp, body){
+			var j = JSON.load(body).result;
+			var s = j[getRandomInt(0,20)];
+			if (j !== null){
+				message.reply({embed:{
+					fields: [{
+					    name: s.share_text,
+					    value: "[View](" + s.share_url + ")"
+				    	}],
+				},files:[{attachment:s.video_cdn_url,name:"TikTok.mp4"}]});
+			}
+		});
+	}
 //	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //	\\\\\\\\\\\\\\\\\\\\\\\\\\\\===============/////////////////////////////////	\\
