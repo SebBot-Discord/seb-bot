@@ -1628,7 +1628,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 					color: 3750201,
 					fields: [{
 					    name: s.share_text,
-					    value: "[View](" + s.share_url + ")"
+					    value: "[View](" + s.share_url + ")\n[Web Version](https://tiktok-web.glitch.me/videos/view)"
 				    	}],
 				},files:[{attachment:s.video_cdn_url,name:"TikTok.mp4"}]});
 			}
