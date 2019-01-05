@@ -1612,7 +1612,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	}
 	if (message.content.substr(0, ) == "Seb, tiktok"){
 		request("http://tiktok-web.glitch.me/videos", function(err, resp, body){
-			var j = JSON.load(body).result;
+			var j = JSON.parse(body).result;
 			var s = j[getRandomInt(0,20)];
 			if (j !== null){
 				message.reply({embed:{
