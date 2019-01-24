@@ -1619,20 +1619,17 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	if (message.content.substr(0, 12) == "Seb, upload "){
 		message.reply({files:[message.content.substr(12)]}).catch();
 	}
-	if (message.content.substr(0, ) == "Seb, tiktok"){
-		request("http://47.88.9.138:6555/short-video/get-short-videos?index=" + generateUUID(), function(err, resp, body){
-			var j = JSON.parse(body).result;
-			var s = j[getRandomInt(0,20)];
-			if (j !== null){
-				message.reply({embed:{
-					color: 3750201,
-					fields: [{
-					    name: s.share_text,
-					    value: "[View](" + s.share_url + ")\n[Web Version](https://tiktok-web.glitch.me/videos/view)"
-				    	}],
-				},files:[{attachment:s.video_cdn_url,name:"TikTok.mp4"}]});
-			}
-		});
+	if (message.content == "Seb, tiktok"){
+		message.reply({embed:{fields:[{
+			name: "TikTok is now a seperate bot.",
+			value: "Add it (here)[https://discordapp.com/api/oauth2/authorize?client_id=537087032917491752&permissions=34816&scope=bot]."
+		}]}});
+	}
+	if (message.content == "Seb, ditty"){
+		message.reply({embed:{fields:[{
+			name: "Ditty is now a seperate bot.",
+			value: "Add it (here)[https://discordapp.com/api/oauth2/authorize?client_id=538098543936798738&permissions=34816&scope=bot]."
+		}]}});
 	}
 //	 ////////////////////////////==============\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
 //      //////////////////////////// Voice Things \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\	\\
