@@ -1311,7 +1311,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		    var e = jparsestring(body);
 		    if (e.length > 0) {
 			var i = getRandomInt(0, e.length);
-			message.reply({files:[e[i].file_url]});
+			message.reply({files:[e[i].file_url]})
 				.catch(console.error);
 		    } else {
 			message.reply(Emojis.warning + "I can't find anything with those tags!");
