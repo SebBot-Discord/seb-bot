@@ -1292,10 +1292,30 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			return;
 		}
 		cmd = true;
+		//https://e621.net/post/index.json?limit=1&tags=INSERT_TAGS_HERE
 		request('https://sheri.fun/api/v1/yiff', function (error, response, body) {
 			var b = jparsestring(body).url
 			message.reply({files:[b]})
 				.catch(console.error);
+		});
+		message.channel.stopTyping(true);
+	}
+	if (message.content.substr(0, 10) == "Seb, e621 "){
+		message.channel.startTyping();
+		if ((!message.channel.nsfw) && (message.channel.id != 402320341420212224)){
+			message.reply(":underage: This channel is not NSFW").catch(console.error);
+			return;
+		}
+		cmd = true;
+		request({url:"https://e621.net/post/index.json?limit=1000&tags=" message.content.substr(10),headers:{"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.71 Safari/537.36"}}, function(err, resp, body){
+		    var e = jparsestring(body);
+		    if (e.length > 0) {
+			var i = getRandomInt(0, e.length);
+			message.reply({files:[e[i].file_url]});
+				.catch(console.error);
+		    } else {
+			message.reply("I can't find anything with those tags!");
+		    }
 		});
 		message.channel.stopTyping(true);
 	}
