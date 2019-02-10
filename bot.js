@@ -1339,7 +1339,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 	}
 	if (message.content == "Seb, xkcd"){
 		cmd = true;
-		var index = getRandomInt(0, 1989);
+		var index = getRandomInt(0, 2109);
 		request(`https://xkcd.com/${index}/info.0.json`, function (error, response, body) {
 			var b = jparsestring(body)
 			message.reply({files: [b.img]})
