@@ -1071,6 +1071,8 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping(true);
     };
 	if (message.content.startsWith("Seb, ship ")){
+		console.log(message.mentions);
+		console.log(message.mentions.users);
 		if (!message.mentions.users[0] || !message.mentions.users[1]) {
 			message.reply(Emojis.warning + " Please supply two users to ship");
 			return;
