@@ -1076,12 +1076,14 @@ rule34 `+"`"+"ONLINE"+"`"+`
 			message.reply(Emojis.warning + " Please supply two users to ship");
 			return;
 		}
+		message.channel.startTyping();
 		var name1 = users[0].username;
 		var name2 = users[1].username;
 		request({ url: "https://www.lovecalculator.com/love.php?name1=" + name1 + "&name2=" + name2, headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.39 Safari/537.36" }}, function (err, resp, body) {
 		    var $ = cheerio.load(body);
 		    var percent = $('div[class="result score"]').text().match(/\d+/)[0] + "%";
-		    message.reply("<3 The love between " + name1 + " and " + name2 + " is " + percent);
+		    message.reply(":heart: The love between `" + name1 + "` and `" + name2 + "` is " + percent);
+			message.channel.stopTyping();
 		});
 	}
 	if (message.content.substr(0,9) == "Seb, gif "){
