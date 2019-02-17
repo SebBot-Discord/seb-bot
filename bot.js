@@ -1071,14 +1071,13 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.stopTyping(true);
     };
 	if (message.content.startsWith("Seb, ship ")){
-		console.log(message.mentions);
-		console.log(message.mentions.users);
-		if (!message.mentions.users[0] || !message.mentions.users[1]) {
+		var users = message.mentions.users.array();
+		if (!users[0] || !users[1]) {
 			message.reply(Emojis.warning + " Please supply two users to ship");
 			return;
 		}
-		var name1 = message.mentions.users[0].username;
-		var name2 = message.mentions.users[1].username;
+		var name1 = users[0].username;
+		var name2 = users[1].username;
 		request({ url: "https://www.lovecalculator.com/love.php?name1=" + name1 + "&name2=" + name2, headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.39 Safari/537.36" }}, function (err, resp, body) {
 		    var $ = cheerio.load(body);
 		    var percent = $('div[class="result score"]').text().match(/\d+/)[0] + "%";
