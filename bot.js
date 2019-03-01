@@ -1315,7 +1315,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		}
 		cmd = true;
 		//https://e621.net/post/index.json?limit=1&tags=INSERT_TAGS_HERE
-		request('https://sheri.fun/api/v1/yiff', function (error, response, body) {
+		request('https://sheri.bot/api/v2/yiff', function (error, response, body) {
 			var b = jparsestring(body).url
 			message.reply({files:[b]})
 				.catch(console.error);
