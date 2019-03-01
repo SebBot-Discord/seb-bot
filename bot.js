@@ -1647,11 +1647,7 @@ rule34 `+"`"+"ONLINE"+"`"+`
 		message.channel.startTyping();
 		request("http://cowsay.morecode.org/say?message=" + encodeURIComponent(message.content.substr(12)) + "&format=json", function (err, resp, bod){
 			var txt = jparsestring(bod).cow;
-			message.reply({embed:{
-				color: 3750201,
-				title: "The Cow Says",
-				description: "```\n" + txt + "\n```"
-			}});
+			message.reply("```\n" + txt + "\n```");
 		})
 		message.channel.stopTyping(true);
 	}
